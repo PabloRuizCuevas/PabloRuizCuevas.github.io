@@ -25,7 +25,6 @@ export default {
         Portal: true,
         PageContained: false,
         About: false,
-
     }
   },
   props: {

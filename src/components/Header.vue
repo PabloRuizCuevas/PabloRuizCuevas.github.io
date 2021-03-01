@@ -17,18 +17,24 @@
   </header>
 
   <div v-if="home==1" class="content">
-    <Portal/>
+    <Portal  @clicked="onClickChild" />
   </div>
 
   <div v-if="contact==1" class="content">
     <Contact/>
   </div>
 
+  <div v-if="page1==1" class="content" > 
+    <PageContainer/>
+  </div>
+
+
 </template>
 
 <script>
 
 import Portal from "../components/portal_caratulas.vue"
+import PageContainer from "../components/PageContainer.vue"
 import Contact from "../components/contact.vue"
 
   export default {
@@ -36,6 +42,7 @@ import Contact from "../components/contact.vue"
     components: {
       Portal,
       Contact,
+      PageContainer,
     },
     props: {
       msg: String
@@ -45,25 +52,24 @@ import Contact from "../components/contact.vue"
         home: true,
         page: false,
         contact: false,
+        page1:false,
       }
     },
     mounted() {
 
     },
-   /* methods:{
-      update: function(dat2){
-        this.home= false,
-        this.page=false,
-        this.contact= false,
-        dat2 = true
-      }
-    }*/
     methods: {
       choose_page: function () {
         this.home= false,
         this.page=false,
-        this.contact= false
-    }
+        this.contact= false,
+        this.page1 = false;
+      },
+      onClickChild (value) {
+        this.choose_page();
+        this.page1 = true;
+        console.log(value) // someValue
+      }
   }
   }
 

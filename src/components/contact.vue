@@ -151,6 +151,8 @@ img {
   padding-bottom: 20px ;
 }
 
+
+
 html {
   font-size: 17px;
   color: rgb(255, 255, 255);
@@ -267,7 +269,6 @@ html {
   text-align: center;
   color: #343536;
 }
-
 
 
 </style>

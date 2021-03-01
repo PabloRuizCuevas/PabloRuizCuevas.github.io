@@ -5,14 +5,15 @@
 
     <div class="columns">
         <div id="pixelLeft"><Side class="side "/></div>
-        <div id="bannerCenter">
-            <Caratula/>
-            <Caratula2/>
-            <Caratula3/>
+        <div id="bannerCenter" >
+          <div v-for="n in publications" :key="n">
+            <Caratulall v-on:click="onClickButton(1)"  v-bind:dict="dict[n]" />
+          </div>
         </div>
         <div id="pixelRight">&nbsp;</div>
     </div>
- 
+
+
 </template>
 
 
@@ -20,9 +21,9 @@
 
 //import PageContainer from './components/PageContainer.vue'
 import Side from '../components/Side.vue'
-import Caratula from '../components/Caratulas/Caratula1.vue'
-import Caratula2 from '../components/Caratulas/Caratula2.vue'
-import Caratula3 from '../components/Caratulas/Caratula3.vue'
+
+import Caratulall from  '../components/Caratulas/Caratula_all.vue'
+const { dict,publications } = require('../pages.js')
 
 //import HelloWorld from './components/HelloWorld.vue'
 
@@ -31,13 +32,24 @@ export default {
   components: {
    // PageContainer,
     Side,
-    Caratula,
-    Caratula2,
-    Caratula3,
+    Caratulall,
   },
   props: {
       msg: String
   },
+  methods:{
+    onClickButton(value) {
+        this.$emit('clicked', value);
+        /*this.$emit('clicked', value)*/
+    }
+  },
+  data() {
+    return {
+        publications,
+        dict
+    }
+  },
+
 }
 
 

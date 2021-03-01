@@ -4,7 +4,7 @@
     <div class="container" >
 
         <div> published on Feb 18 2021 </div>
-        <h1 v-on:click="method"> MIEZE and three axis geometry </h1>
+        <h1 > MIEZE and three axis geometry </h1>
         <div class="image">
             <img alt="geometry" src="../../images/geometry.png">
         </div>
@@ -24,9 +24,7 @@
         components: {
             
         },
-        methods:{
 
-        }
     }
 
 </script>

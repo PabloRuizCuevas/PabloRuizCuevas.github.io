@@ -1,17 +1,21 @@
 
 <template>
-    <div class="container" >
-  
-        <div >
-            <div v-if="page==1"> <Latexpage msg="First page"/> </div>
-            <div v-if="page==2"> <Latexpage2 msg="First page"/> </div>
-        </div>
 
-        <div class="buttons">
-            <button class="button1" @click="page += -1"> &lt; </button> 
-            <button class="button1" @click="page += 1">   >    </button>
-        </div>
-        Page {{ page }}
+    <div class="columns">
+        <div id="pixelLeft"><Side class="side "/></div>
+        <div id="bannerCenter">
+            <div >
+                <div v-if="page==1"> <Latexpage msg="First page"/> </div>
+                <div v-if="page==2"> <Latexpage2 msg="First page"/> </div>
+            </div>
+
+            <div class="buttons">
+                <button class="button1" @click="page += -1"> &lt; </button> 
+                <button class="button1" @click="page += 1">   >    </button>
+            </div>
+            Page {{ page }}
+            </div>
+        <div id="pixelRight" ></div>
     </div>
 
 </template>
@@ -29,7 +33,7 @@
             Latexpage2,
         },
         props: {
-            msg: String
+            msg: Object
         },
         data() {
             return {
@@ -51,37 +55,51 @@
 
 <style scoped>
 
+/*@import "../style/latex.css"; */
 
-.container { 
-  flex-wrap:       wrap;
-  flex-direction: column;
-  align-content: center;
-  max-width: 60%;
+
+   #bannerCenter{
+        margin-right: 260px
+    }
+
+  #pixelRight{  
+        flex: 0.1
+    }
+    
+@media screen and (max-width: 1200px) {
+
+    #bannerCenter{
+        margin-right: 0px
+    }
+
+    #pixelRight, #pixelLeft{  
+        flex: 0.1
+    }
+
+    
 }
 
 @media screen and (max-width: 1000px) {
-    .container{
-        max-width: 75%;
-        margin: 20px;
+
+    #bannerCenter{
+        margin-right: 0px
+    }
+
+    #pixelRight, #pixelLeft{  
+        flex: 0.3
     }
 }
 
 @media screen and (max-width: 750px) {
-    .container{
-        max-width: 100%;
-        margin: 20px;
-    
+    #pixelRight, #pixelLeft{  
+        flex: 0.3
     }
+
 }
 
 @media screen and (max-width: 500px) {
-    .container{
-      max-width: 80%;
-      padding: 20px;
-      marging: 0px;
-    }
-}
 
+}
 
 
 .buttons{
@@ -94,9 +112,5 @@
     background-color: #4CAF50; /* Green */
     border: 2px solid #4CAF50; /* Green */
 }
-
-
-    @import 'https://latex.now.sh/style.css';
-    @import "https://latex.now.sh/prism/prism.css";
 
 </style>

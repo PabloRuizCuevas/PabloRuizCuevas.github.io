@@ -25,9 +25,6 @@
         components: {
             
         },
-        methods:{
-
-        }
     }
 
 </script>
@@ -43,7 +40,6 @@
     border-width: thin;
     margin-top: 60px;
 }
-
 
 img{
     width: 100%;

@@ -1,7 +1,7 @@
 
 <template>
 
-    <footer class="footer">
+    <footer id="footer">
         <p>Author: Pablo Ruiz Cuevas<br>
         <a href="pablo.r.c@livecom">pablo.r.c@livecom</a></p>
     </footer>
@@ -27,12 +27,12 @@
 <style scoped>
 
 p{
-
     color: honeydew;
+    text-align: center;
 }
 
 
-.footer {
+#footer {
     background-color: rgb(0, 0, 0);
     flex-shrink: 0; 
     flex: 1;
