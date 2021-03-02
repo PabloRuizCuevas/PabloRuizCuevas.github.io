@@ -42,11 +42,9 @@
         margin-top: 60px;
     }
 
-
-
     .image , img{
         min-width: 100%;
-        margin-top: 15 px ;
+        margin-top: 15 px ; /* read two wimes */
         height: auto;
     }
 

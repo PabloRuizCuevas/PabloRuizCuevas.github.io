@@ -1,21 +1,27 @@
 <template>
+
   <header>
-
-
     <div class="header">
 
-      <a v-on:click="choose_page(), home=true" href="#default" id="nombre"> Pablo Ruiz  <i style="color: #A28BE7;margin-left: 15px">  at FRMII </i>   </a>
-   
+      <a v-on:click="choose_page(), home=true" id="nombre"> Pablo Ruiz  <i style="color: #A28BE7;margin-left: 15px">  at FRMII </i>   </a>
+      
       <div class="header-right">
-        <a v-on:click="choose_page(), home=true" id="inactive" href="#home">  Home</a>
-        <a v-on:click="choose_page(), contact=true" id="inactive" href="#contact">Contact</a>
+        <!--<a v-on:click="choose_page(), home=true" id="inactive">  </a>-->
+        <router-link to="/">Home</router-link> 
+        <router-link to="/about">Contact</router-link>
         <a v-on:click="choose_page(), contact=true" id="inactive" href="#about">About</a>
         <img v-on:click="choose_page(), home=true" class="logo" alt="logo" src="../images/logo2.png">
+   
+        
       </div>
-      
+
     </div>
   </header>
 
+
+  <router-view/>
+
+   <!--
   <div v-if="home==1" class="content">
     <Portal  @clicked="onClickChild" />
   </div>
@@ -23,6 +29,7 @@
   <div v-if="contact==1" class="content">
     <Contact/>
   </div>
+  -->
 
   <div v-if="page1==1" class="content" > 
     <PageContainer/>
@@ -33,15 +40,11 @@
 
 <script>
 
-import Portal from "../components/portal_caratulas.vue"
 import PageContainer from "../components/PageContainer.vue"
-import Contact from "../components/contact.vue"
 
   export default {
     name: 'header',
     components: {
-      Portal,
-      Contact,
       PageContainer,
     },
     props: {
@@ -49,7 +52,7 @@ import Contact from "../components/contact.vue"
     },
     data() {
       return {
-        home: true,
+        home: false,
         page: false,
         contact: false,
         page1:false,

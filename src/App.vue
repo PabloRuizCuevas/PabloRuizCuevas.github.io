@@ -3,6 +3,7 @@
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/>-->
 
   <Header/>
+
   <Footer/>
 
 </template>
