@@ -4,12 +4,19 @@
     <div class="container" >
      
         <div> published on  {{dict.date}} </div>
-        <h1 >   {{dict.title}} </h1>
-        <div class="image">
-            <img alt="geometry" :src="`${dict.picture}`">
-        </div>
+        
+        <h1 >   {{dict.title}} </h1> 
+
+       
+            <div class="image">
+                <img alt="geometry" :src="`${dict.picture}`">
+            </div>
+        
+        <router-link :to="{ name: 'PageContainer', params: dict }" >
+        </router-link>
+
         <p v-html= "`${dict.summary}`" >  </p>
-        <a> Read - {{dict.read_time}} </a>
+        <p> Read - {{dict.read_time}} </p>
         
     </div>
 
@@ -37,6 +44,7 @@
         flex-wrap:       wrap;
         flex-direction: column;
         max-width: 100%;
+        min-height: 100%;
         border-bottom: solid rgb(218, 216, 216) ;
         border-width: thin;
         margin-top: 60px;

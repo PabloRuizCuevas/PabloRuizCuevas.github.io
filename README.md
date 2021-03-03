@@ -1,5 +1,8 @@
 # frmii
 
+##for now also need     vue npm install -g @vue/cli
+
+
 ## Project setup
 ```
 npm install

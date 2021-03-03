@@ -4,6 +4,7 @@
     <div class="columns">
         <div id="pixelLeft"><Side class="side "/></div>
         <div id="bannerCenter">
+
             <div >
                 <div v-if="page==1"> <Latexpage msg="First page"/> </div>
                 <div v-if="page==2"> <Latexpage2 msg="First page"/> </div>
@@ -23,6 +24,8 @@
 
 <script>
 
+    import Side from  '../components/Side.vue'
+
     import Latexpage from  '../components/Latexpage.vue'
     import Latexpage2 from  '../components/Latexpage2.vue'
 
@@ -31,9 +34,10 @@
         components: {
             Latexpage,
             Latexpage2,
+            Side,
         },
         props: {
-            msg: Object
+            dict: Object,
         },
         data() {
             return {
@@ -44,6 +48,9 @@
         mounted() {
 
         },
+        computed() {
+        }
+
 
 
     }
