@@ -7,12 +7,12 @@
         
         <h1 >   {{dict.title}} </h1> 
 
-       
+        <router-link :to="{ name: 'PageContainer', params: { datakey:dict.datakey , path:dict.path } }" >
+           
             <div class="image">
                 <img alt="geometry" :src="`${dict.picture}`">
             </div>
-        
-        <router-link :to="{ name: 'PageContainer', params: dict }" >
+      
         </router-link>
 
         <p v-html= "`${dict.summary}`" >  </p>

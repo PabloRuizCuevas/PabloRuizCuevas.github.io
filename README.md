@@ -1,5 +1,7 @@
 # frmii
 
+Software of my personal webpage with all the documentation needed
+
 ##for now also need     vue npm install -g @vue/cli
 
 

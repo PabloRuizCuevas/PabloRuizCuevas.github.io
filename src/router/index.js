@@ -24,10 +24,10 @@ const routes = [
     component: () => import('../views/Contact.vue')
   },
   {
-    path: '/pageContainer',
+    path: '/:path',
     name: 'PageContainer',
     component: PageContainer,
-    //component: () => import('../views/PageContainer.vue')
+    //component: () => import('../views/PageContainer.vue'),
     props: true
   }
 

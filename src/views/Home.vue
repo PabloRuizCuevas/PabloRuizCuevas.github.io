@@ -2,17 +2,15 @@
   <!-- <img alt="Vue logo" src="./assets/logo.png">-->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/>-->
 
-
     <div class="columns">
         <div id="pixelLeft"><Side class="side "/></div>
         <div id="bannerCenter" >
           <div v-for="n in publications" :key="n">
-            <Caratulall v-on:click="onClickButton(1)"  v-bind:dict="dict[n]" />
+            <Caratulall  v-bind:dict="dict[n]" />  <!-- v-on:click="onClickButton(1)"  dict[n]-->
           </div>
         </div>
         <div id="pixelRight">&nbsp;</div>
     </div>
-
 
 </template>
 
@@ -22,7 +20,7 @@
 //import PageContainer from './components/PageContainer.vue'
 import Side from '../components/Side.vue'
 
-import Caratulall from  '../components/Caratulas/Caratula_all.vue'
+import Caratulall from  '../components/Caratula_all.vue'
 const { dict,publications } = require('../pages.js')
 
 //import HelloWorld from './components/HelloWorld.vue'
@@ -35,13 +33,11 @@ export default {
     Caratulall,
   },
   props: {
-      msg: String
   },
   methods:{
-    onClickButton(value) {
-        this.$emit('clicked', value);
-        /*this.$emit('clicked', value)*/
-    }
+    /*onClickButton(value) {
+       this.$emit('clicked', value)
+    }*/
   },
   data() {
     return {

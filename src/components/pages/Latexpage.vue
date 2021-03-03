@@ -29,7 +29,7 @@
             But in the most general case we can have the sample rotated by an angle of \(\theta_S \), in that case the reduction factor is given by: 
             </p>  
 
-            <img alt="Figure" src="../images/figure.svg">
+            <img alt="Figure" src="../../images/figure.svg">
 
         </div>
     
@@ -48,9 +48,9 @@
         name: 'Latexpage',
         mounted() {
 
-            let mathscript = document.createElement('script')
-            mathscript.setAttribute('src',"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js")
-            document.head.appendChild(mathscript)
+        //    let mathscript = document.createElement('script')
+        //    mathscript.setAttribute('src',"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js")
+        //    document.head.appendChild(mathscript)
 
   
             let prism = document.createElement('script')
@@ -66,6 +66,6 @@
 
 <style scoped url="https://latex.now.sh/prism/prism.css">
 
-@import "../style/latex.css";
+@import "../../style/latex.css";
  /*src="../style/latex.css"*/
 </style>

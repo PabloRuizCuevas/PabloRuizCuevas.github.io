@@ -4,17 +4,14 @@
     <div class="columns">
         <div id="pixelLeft"><Side class="side "/></div>
         <div id="bannerCenter">
-
-            <div >
-                <div v-if="page==1"> <Latexpage msg="First page"/> </div>
-                <div v-if="page==2"> <Latexpage2 msg="First page"/> </div>
-            </div>
-
+        
+            <component :is="comp"> </component>
+     
             <div class="buttons">
                 <button class="button1" @click="page += -1"> &lt; </button> 
                 <button class="button1" @click="page += 1">   >    </button>
             </div>
-            Page {{ page }}
+                Page {{ page }}
             </div>
         <div id="pixelRight" ></div>
     </div>
@@ -25,35 +22,40 @@
 <script>
 
     import Side from  '../components/Side.vue'
+    import { defineAsyncComponent } from 'vue'
+    //const { dict } = require('../pages.js')
 
-    import Latexpage from  '../components/Latexpage.vue'
-    import Latexpage2 from  '../components/Latexpage2.vue'
 
     export default {
         name: 'PageContainer',
         components: {
-            Latexpage,
-            Latexpage2,
             Side,
         },
         props: {
-            dict: Object,
+            path: String,
+            datakey: String,
         },
         data() {
-            return {
-                page1: true,
-                page: 1,
+            return{
+                page:1,
             }
         },
-        mounted() {
-
+        mounted(){
+            //let mathscript = document.createElement('script')
+            //mathscript.setAttribute('src',"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js")
+            //document.head.appendChild(mathscript)
         },
-        computed() {
+        computed: {
+            comp() {
+               console.log(this.path)
+               console.log(this.datakey)
+               const Latexpage = defineAsyncComponent(() => import(`@/components/pages/${this.path}`));
+               return Latexpage
+            }
         }
-
-
-
+        
     }
+
 
 </script>
 
