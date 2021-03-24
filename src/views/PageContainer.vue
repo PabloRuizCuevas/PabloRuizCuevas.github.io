@@ -18,7 +18,6 @@
 
 </template>
 
-
 <script>
 
     import Side from  '../components/Side.vue'
@@ -52,6 +51,7 @@
                const Latexpage = defineAsyncComponent(() => import(`@/components/pages/${this.path}`));
                return Latexpage
             }
+            
         }
         
     }

@@ -4,12 +4,11 @@
   
     <main>
         <div class="article">
-            <h2> MIEZE Theory</h2>
+            <h1> MIEZE Theory</h1>
             <h3> time..</h3>
+            
             <p>  As a time-of-flight like measurement technique, the quality of the MIEZE signal is sensitive to flight path differences of the neutrons scattered in the experimental setup. This destruction/damping of the MIEZE signal compared to the undisturbed, only elastically scattered neutron beam is expressed by the reduction factor \(R\), which unintuitively is supposed to be as high, close to 1, as possible.
-                <label for="sn-1" class="sidenote-toggle sidenote-number"></label>
-                <input type="checkbox" id="sn-1" class="sidenote-toggle" />
-                <span class="sidenote">This is a side note example</span>
+
             In this work we aim to calculate the reduction factor of a three-axis spectrometer (TAS) with enhanced energy resolution by means of an integrated MIEZE setup (MIEZETOP). Here, we consider solely the influence of instrument layout and sample geometry, which are the major contributions to the geometric reduction factor.
 
             The components of interest in a MIEZE-TAS instrument are the sample behind the precession devices, the analyzer crystal of the TAS and the CASCADE detector, a time resolved PSD. In particular this means, their shape, geometric configuration  and rotation with respect to each other.
@@ -36,14 +35,19 @@
 
 
     export default {
-
-        name: 'Latexpage2',
-        mounted() {
-            let prism = document.createElement('script')
-            prism.setAttribute('src',"https://cdn.jsdelivr.net/npm/prismjs/prism.min.js")
-            document.head.appendChild(prism)
+        name: "Latexpage2",
+        methods: {
+            reRender() {
+            if(window.MathJax) {
+                console.log('rendering mathjax');
+                window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub], () => console.log('done'));
+            }
+            }
         },
-    }
+        mounted() {
+            this.reRender();
+        },
+    };
 
 
 </script>
@@ -52,5 +56,14 @@
 
 <style scoped>
 
+.equation{
+    justify-content: center;
+    text-align: center;
+}
+
+h1{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
 </style>

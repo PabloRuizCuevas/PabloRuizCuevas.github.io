@@ -1,19 +1,24 @@
 
 <template>
+  <!-- <img alt="Vue logo" src="./assets/logo.png">-->
+  <!-- <HelloWorld msg="Welcome to Your Vue.js App"/>-->
 
-<!--
-    <div id="card">
-        <img alt="Vue logo" src="../images/profile5.png">
-        <div> <b> Pablo Ruiz </b>
+    <div class="columns">
+        <div id="pixelLeft"><Side class="side "/></div>
+        <div id="bannerCenter" >
+          <div class="content" style="margin-top:40px">
+            <p> This webpage is intended to summarize my work at FRMII, during the year I have worked at this great institution I have developed many useful python codes that deserve a proper documentation and explanation.
+            Moreover the complexity and interest of the research combined with the lack of information on regular sources of information ispired me to create a web to post all the content and its development.
+            </p>
+
+            <img src="../images/reactor.jpg">
+
+            <p> Moreover the complexity and interest of the research combined with the lack of information on regular sources of information ispired me to create a web to post all the content and its development. :)
+            </p>
+
+          </div>
         </div>
-        <div>Research at FRMII
-        </div>
-    </div>
--->
-
-    <div class="content">
-        not wroten  
-
+        <div id="pixelRight">&nbsp;</div>
     </div>
 
 </template>
@@ -21,153 +26,148 @@
 
 <script>
 
-    export default {
-        name: 'Contact_card',
-        components: {
-        },
-    }
+//import PageContainer from './components/PageContainer.vue'
+import Side from '../components/Side.vue'
+
+//import HelloWorld from './components/HelloWorld.vue'
+
+export default {
+  name: 'App',
+  components: {
+   // PageContainer,
+    Side,
+
+  },
+  props: {
+  },
+  methods:{
+    /*onClickButton(value) {
+       this.$emit('clicked', value)
+    }*/
+  },
+  data() {
+  },
+
+}
+
 
 </script>
 
 
 <style scoped>
-
-.content{
-    min-height: calc(100vh - 270px);
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
 }
 
-#card {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    width: 130px;
-    margin-left: 80px;
-    margin-top: 60px;
+/*
+body { 
+  min-width: 100%
 }
-
-img {
-  width: 100%;
-  padding-bottom: 20px ;
-}
-
-
-
-html {
-  font-size: 17px;
-  color: rgb(255, 255, 255);
-  font-family: 'Heebo', sans-serif;
-  /* font-family: "Source Sans Pro", sans-serif; */
-  background-color: #ffffff;
-}
-.front-side,
-.back-side {
-  width: 390px;
-  height: 220px;
-  display: grid;
-  grid-template-columns: 2% 96% 2%;
-  grid-template-rows: 4% 92% 4%;
-  position: relative;
-  margin: 20px auto;
-  overflow: hidden;
-  box-shadow: 2px 5px 15px 0px #17161694;
-  background-color: #122529;
-}
-.color-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 150px);
-  grid-template-rows: repeat(8, 50px);
-  grid-gap: 8px;
-  width: 150px;
-  height: 400px;
-  transform: rotate(-45deg);
-}
-.black {
-  background-color: #343536;
-  grid-column: 2 / span 2;
-  grid-row: 1 / span 3;
-}
-.red1 {
-  background-color: #e45e4f;
-  grid-row: 2 / span 5;
-}
-.red2 {
-  background-color: #e45e4f;
-  grid-column: 2 / span 2;
-  grid-row: 4/7;
-}
-.green {
-  background-color: #007e67;
-  grid-column: 2/4;
-  grid-row: 7/9;
-}
-
-.info-grid {
-  grid-column: 2/3;
-  grid-row: 2/3;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.363);
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.432);
-  border-radius: 6px;
-  font-size: 0.7rem; /*12px;*/
-  display: grid;
-  grid-template-columns: 15px repeat(3, 1fr) 15px;
-  grid-template-rows: repeat(3, 1fr);
-  line-height: 1px;
-}
-.info-grid .name {
-  grid-column: 2 / span 2;
-  grid-row: 1 / span 1;
-  font-size: 1.2em;
-  letter-spacing: .1rem;
-  margin-top: 8px;
-}
-.info-grid .name h5{
-  font-weight: unset;
-}
-.info-grid .addr {
-  grid-column: 2 / span 2;
-  grid-row: 3;
-}
-
-.info-grid .phoneNo {
-  grid-column: 3 / span 2;
-  grid-row: 2;
-  text-align: end;
-}
-.info-grid .emailId {
-  grid-column: 3 / span 2;
-  grid-row: 3;
-  text-align: end;
-  font-size: 1.1em;
-}
-
-.back-side .name-tag {
-  grid-column: 1 / span 4;
-  grid-row: 2 / span 1;
-  align-self: center;
-  z-index: 2;
-  width: 100%;
-  height: 40%;
+*/
+.columns{
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, 0.363);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.288);
-  font-size: 0.6rem; /*12px;*/
-  letter-spacing: .1rem;
-  text-align: center;
+  flex-direction: row;
+  /*align-content: center;*/
+  max-width: 100%
 }
-.name-tag h1,h3{
-  margin: 2px;
-  font-weight: unset;
+
+#pixelLeft, #pixelRight{
+  display: flex; 
+  flex:1;                      /* 3 */
 }
-.credits{
-  margin-top:40px;
-  text-align: center;
-  color: #343536;
+#bannerCenter{
+    display: flex;
+    flex-direction: column;
+    background:rgb(255, 255, 255);
+    min-width: 500px;
+    display: flex;
+    flex: 2;                       /* 3 */   
 }
+#pixelLeft{
+    background:rgb(255, 255, 255);
+}
+#pixelRight{
+    background:rgb(255, 255, 255);
+}
+#bannerCenter,#pixelLeft,#pixelRight{
+   
+}
+
+@media only screen and (max-width: 1000px) {
+  .side{
+    display: none;
+    min-width: 400px;
+  }
+  
+
+}
+
+@media only screen and (max-width: 550px) {
+  .side{
+    display: none;
+  }
+
+  #pixelLeft, #pixelRight{
+    display: none;
+  }
+
+  #bannerCenter{
+    margin-left: 20px; 
+    margin-right: 20px;
+    min-width: 20px;
+  }
+
+}
+
+    h1 {
+        font-size: 2.5rem;
+        line-height: 3.25rem;
+        margin-bottom: 1.625rem;
+        font-family: "Latin Modern";
+        box-sizing: border-box
+    }
+
+    .content{
+       min-height: calc(100vh - 270px);
+    }
+
+    .container{
+        display: flex;
+        flex-wrap:       wrap;
+        flex-direction: column;
+        max-width: 100%;
+        min-height: 100%;
+        border-bottom: solid rgb(218, 216, 216) ;
+        border-width: thin;
+        margin-top: 60px;
+    }
+
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    a {
+        display: flex;
+        height: auto;
+        color: #FFFFFF;
+        text-decoration: none;
+        margin-top: 15 px ; /* read two wimes */
+    }
+
+    p {
+        display: block;
+        text-align: justify;
+        hyphens: auto;
+        margin-top: 1rem;
+        text-rendering: optimizelegibility;
+    }
 
 
 </style>
+
+
+

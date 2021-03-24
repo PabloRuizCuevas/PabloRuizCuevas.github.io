@@ -9,10 +9,10 @@
 
         <router-link :to="{ name: 'PageContainer', params: { datakey:dict.datakey , path:dict.path } }" >
            
-            <div class="image">
-                <img alt="geometry" :src="`${dict.picture}`">
-            </div>
-      
+            <!--<div class="image_container">
+            </div>-->
+            <img  :src="`${dict.picture}`">
+
         </router-link>
 
         <p v-html= "`${dict.summary}`" >  </p>
@@ -39,6 +39,14 @@
 
 <style scoped>
 
+    h1 {
+        font-size: 2.5rem;
+        line-height: 3.25rem;
+        margin-bottom: 1.625rem;
+        font-family: "Latin Modern";
+        box-sizing: border-box
+    }
+
     .container{
         display: flex;
         flex-wrap:       wrap;
@@ -50,10 +58,27 @@
         margin-top: 60px;
     }
 
-    .image , img{
-        min-width: 100%;
-        margin-top: 15 px ; /* read two wimes */
+
+    img {
+        width: 100%;
         height: auto;
     }
+
+    a {
+        display: flex;
+        height: auto;
+        color: #FFFFFF;
+        text-decoration: none;
+        margin-top: 15 px ; /* read two wimes */
+    }
+
+    p {
+        display: block;
+        text-align: justify;
+        hyphens: auto;
+        margin-top: 1rem;
+        text-rendering: optimizelegibility;
+    }
+
 
 </style>

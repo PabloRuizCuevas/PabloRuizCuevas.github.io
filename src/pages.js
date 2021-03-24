@@ -1,5 +1,5 @@
 
-var publications=[1,2,3]
+var publications=[4,3,2,1]
 
 //var dict = new Object();
 
@@ -24,14 +24,33 @@ var dict = {
     },
     3: {
         datakey:3,
-        title: " Image analysis ",
-        date: "Jan 18 2021",
-        summary: "To calculate the reduction factor from a image (matrix) we have developed a algorithm inspired in the Boostrap statistical method. The method consist in calculating the reduction factor using a random shaped region inside our region of interest, then we will calculate the reduction factor of this region, and choose a new random shaped region...",
-        picture: "../../images/transmision.png",
+        title: " Reduction factor Monte Carlo",
+        date: "Jan 24 2021",
+        summary: "Monte Carlo can gives us a general approach to calculate the reduction factor whenever no analytical solution is possible. In this chapter we developed a code to calculate the reduction factor in a efficient way using python...",
+        picture: "../../images/plot0.00256.png",
         read_time: "8 min",
         path:'Latexpage3.vue'
     },
+    4: {
+        datakey:4,
+        title: " Image analysis ",
+        date: "Jan 18 2021",
+        summary: "To calculate the from a image (matrix) we have developed a algorithm inspired in the Boostrap statistical method. The method consist in calculating the reduction factor using a random shaped region inside our region of interest, then we will calculate the reduction factor of this region, and choose a new random shaped region...",
+        picture: "../../images/transmision.png",
+        read_time: "8 min",
+        path:'Latexpage4.vue'
+    },
+    5: {
+        datakey:5,
+        title: " Critical dynamics of ferromagnets ",
+        date: "Mar 23 2021",
+        summary: "The dynamic scaling functions for ferromagnets near the critical temperature are determined using the mode couplig theory...",
+        picture: "../../images/transmision.png",
+        read_time: "8 min",
+        path:'Latexpage5.vue'
+    },
   };
+  
 
 
 

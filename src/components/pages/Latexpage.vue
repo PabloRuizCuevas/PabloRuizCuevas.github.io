@@ -28,8 +28,12 @@
             <p> We can minimize this function obtaining the best \( \theta_D \)  for each   \( 2\theta \). that means, that we can tilt the detector in order to obtain the best Reduction possible factor.
             But in the most general case we can have the sample rotated by an angle of \(\theta_S \), in that case the reduction factor is given by: 
             </p>  
+            <div class="image_container">
+                <img alt="Figure" src="../../images/figure.svg">
+            </div> 
+            <p> 
+            </p>  
 
-            <img alt="Figure" src="../../images/figure.svg">
 
         </div>
     
@@ -42,22 +46,26 @@
 
 <script>
 
-
     export default {
-
-        name: 'Latexpage',
+        name: "Latexpage3",
+        methods: {
+            reRender() {
+            if(window.MathJax) {
+                console.log('rendering mathjax');
+                window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub], () => console.log('done'));
+            }
+            }
+        },
         mounted() {
 
-        //    let mathscript = document.createElement('script')
-        //    mathscript.setAttribute('src',"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js")
-        //    document.head.appendChild(mathscript)
+            this.reRender();
 
-  
             let prism = document.createElement('script')
             prism.setAttribute('src',"https://cdn.jsdelivr.net/npm/prismjs/prism.min.js")
             document.head.appendChild(prism)
         },
-    }
+    };
+
 
 
 </script>
@@ -68,4 +76,23 @@
 
 @import "../../style/latex.css";
  /*src="../style/latex.css"*/
+
+
+ .image_container{
+     display: flex;
+    flex-direction: column;
+     align-items: center;
+     justify-content: center;
+
+}
+
+.caption{
+    display: block;
+    font-size: 0;
+}
+
+img {
+    display: block;
+    width: 60%;
+}
 </style>
