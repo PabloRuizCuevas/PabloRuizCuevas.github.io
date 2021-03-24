@@ -7,13 +7,18 @@
         <div id="pixelLeft"><Side class="side "/></div>
         <div id="bannerCenter" >
           <div class="content" style="margin-top:40px">
-            <p> This webpage is intended to summarize my work at FRMII, during the year I have worked at this great institution I have developed many useful python codes that deserve a proper documentation and explanation.
-            Moreover the complexity and interest of the research combined with the lack of information on regular sources of information ispired me to create a web to post all the content and its development.
+            <p> This webpage is intended to summarize my work at FRMII, during the year I have worked at this great institution I have developed many useful skills both at python data analysis and compresension about fundamental physics. 
+              
+            The complexity of the topics and the deep implications on the fundamental physics motivated me to create this webpage. In this side I will try to share the knowdledge and the codes I build working at FRMII for over one year. 
             </p>
 
             <img src="../images/reactor.jpg">
 
-            <p> Moreover the complexity and interest of the research combined with the lack of information on regular sources of information ispired me to create a web to post all the content and its development. :)
+            <p> The information shared in this website is specially related to one of the many experiments at the FRMII, the MIRAII experiment and the amazing research of M.Sc. Lukas Beddrich and Dr. Robert Georgii. Despite most of the information can be applied to a wide range of neutron scatter experiments. Enjoy :)
+            </p>
+
+            <p>
+            You can find more information about MIRA at <a href="https://mlz-garching.de/mira" >https://mlz-garching.de/mira</a> and about the reactor at <a href="https://mlz-garching.de/mira">  https://www.frm2.tum.de/en/home/ </a>
             </p>
 
           </div>
@@ -151,11 +156,8 @@ body {
     }
 
     a {
-        display: flex;
-        height: auto;
-        color: #FFFFFF;
-        text-decoration: none;
-        margin-top: 15 px ; /* read two wimes */
+        color: #3c8cbb;
+
     }
 
     p {
