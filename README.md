@@ -1,5 +1,5 @@
 # frmii
-<<<<<<< HEAD
+ HEAD
 webpage
 =======
 
