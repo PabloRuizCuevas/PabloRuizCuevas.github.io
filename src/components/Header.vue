@@ -11,12 +11,15 @@
         <router-link id="inactive" class="header_letters" to="/about">About</router-link>
         <router-link id="inactive" class="header_letters" to="/contact">Contact</router-link>
 
-        <router-link to="/"> <img class="logo" alt="logo" src="../images/logo2.png">  </router-link> 
+        <router-link class="logo"  to="/"> <img  class="logo" alt="logo" src="../images/logo2.png">  </router-link> 
    
       </div>
-
+     
     </div>
+   
   </header>
+
+  <hr class="line" />
 
   <router-view/>
 
@@ -154,7 +157,7 @@
 
   @media screen and (max-width: 800px) {
     .logo {
-     display: none;
+     display: none !important;
     }
   }
 
@@ -176,5 +179,22 @@
 
   }
 
+  @keyframes line_animation {
+    from {
+        width: 0%;
+    }
+    to {
+        width:100%;
+    }
+    }
+    .line {
+    margin-top: 0%;
+    border-bottom: solid 3px #019fb6;
+    border-top-width: 0px;
+    animation-name: line_animation;
+    animation-duration: 1s;
+    animation-timing-function: linear; 
+    }
+    
 
 </style>

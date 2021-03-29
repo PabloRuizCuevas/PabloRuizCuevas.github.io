@@ -18,6 +18,7 @@
         <p v-html= "`${dict.summary}`" >  </p>
         <p> Read - {{dict.read_time}} </p>
         
+        
     </div>
 
 </template>
@@ -62,6 +63,7 @@
     img {
         width: 100%;
         height: auto;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     a {
@@ -70,6 +72,7 @@
         color: #FFFFFF;
         text-decoration: none;
         margin-top: 15 px ; /* read two wimes */
+        
     }
 
     p {

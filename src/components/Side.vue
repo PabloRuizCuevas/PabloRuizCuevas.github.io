@@ -2,7 +2,8 @@
 <template>
     <div id="side">
         <img alt="Vue logo" src="../images/profile5.png">
-        <div> <b> Pablo Ruiz </b>
+        <div style="margin-top: 20px"> 
+            <b> Pablo Ruiz </b>
         </div>
         <div>Research at FRMII
         </div>
@@ -33,7 +34,7 @@
 
 img {
   width: 100%;
-  padding-bottom: 20px ;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 </style>

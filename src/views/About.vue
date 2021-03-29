@@ -12,7 +12,10 @@
             The complexity of the topics and the deep implications on the fundamental physics motivated me to create this webpage. In this side I will try to share the knowdledge and the codes I build working at FRMII for over one year. 
             </p>
 
-            <img src="../images/reactor.jpg">
+            
+            <div class="image_container">
+                <img src="../images/reactor.jpg">          
+            </div> 
 
             <p> The information shared in this website is specially related to one of the many experiments at the FRMII, the MIRAII experiment and the amazing research of M.Sc. Lukas Beddrich and Dr. Robert Georgii. Despite most of the information can be applied to a wide range of neutron scatter experiments. Enjoy :)
             </p>
@@ -95,6 +98,7 @@ body {
 }
 #pixelRight{
     background:rgb(255, 255, 255);
+    z-index: -1;
 }
 #bannerCenter,#pixelLeft,#pixelRight{
    
@@ -150,10 +154,7 @@ body {
     }
 
 
-    img {
-        width: 100%;
-        height: auto;
-    }
+
 
     a {
         color: #3c8cbb;
@@ -168,6 +169,32 @@ body {
         text-rendering: optimizelegibility;
     }
 
+
+ .image_container{
+   margin-top: 20px;
+   margin-bottom: 20px;
+     display: flex;
+    flex-direction: column;
+     align-items: center;
+     justify-content: center;
+
+}
+
+.equation{
+    margin-top: 20px;
+    justify-content: center;
+    text-align: center;
+}
+
+.caption{
+    display: block;
+    font-size: 0;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
 
 </style>
 

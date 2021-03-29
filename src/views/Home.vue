@@ -3,12 +3,22 @@
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/>-->
 
     <div class="columns">
+        
+        <!--
+        <svg class="particles" viewBox="0 0 340 333">
+
+            <line class="path" x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(220,220,220);stroke-width:2" />
+            <line class="path" x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(220,220,220);stroke-width:2" />
+        </svg>
+        -->
+
         <div id="pixelLeft"><Side class="side "/></div>
         <div id="bannerCenter" >
           <div v-for="n in publications" :key="n">
             <Caratulall  v-bind:dict="dict[n]" />  <!-- v-on:click="onClickButton(1)"  dict[n]-->
           </div>
         </div>
+
         <div id="pixelRight">&nbsp;</div>
     </div>
 
@@ -51,7 +61,33 @@ export default {
 </script>
 
 
-<style soped>
+<style>
+
+@import "../style/latex.css";
+
+/*
+.particles{
+  position: absolute;
+  z-index: 0;
+}
+
+.path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 5s linear alternate infinite;
+}
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 822;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+*/
+
+
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -87,6 +123,7 @@ body {
 }
 #pixelRight{
     background:rgb(255, 255, 255);
+    z-index: -1;
 }
 #bannerCenter,#pixelLeft,#pixelRight{
    

@@ -38,6 +38,10 @@
             Fundamentally, the instruments consist of a neutron beam preparation stage, behind which the neutrons hit a sample get scattered with an angle of \(2\theta\) (for powders and single crystals given by the Bragg's law) then hit the analyzer (tilted  \(\gamma \) ), are reflected again and finally are absorbed in the CASCADE detector that is tilted with an angle of  \( \theta_I \).
             </p>
 
+            <div class="image_container">
+                <img alt="Figure" src="../../images/three_axis.jpg">             
+            </div> 
+
             <p>
             To calculate the reduction factor we will take into account the difference of path length given by the geometry and the one given due to the path length difference arising from the depth profile of the neutrons penetrating the analyzer before being scattered according to Bragg's law.
             </p>
@@ -58,8 +62,7 @@
             </p>
 
             <div class="image_container">
-                <img alt="Figure" src="../../images/figure.svg">
-                
+                <img alt="Figure" src="../../images/figure.svg">             
             </div> 
 
             <p>
@@ -138,9 +141,11 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
-<style scoped url="https://latex.now.sh/prism/prism.css">
+<style scoped>
 
-@import "../../style/latex.css";
+/* <style scoped url="https://latex.now.sh/prism/prism.css" @import "../../style/latex.css";*/
+
+
  /*src="../style/latex.css"*/
 
 

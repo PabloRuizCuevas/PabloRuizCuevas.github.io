@@ -13,6 +13,8 @@
 
     <div class="content">
 
+        <div id="pixelLeft"><Side class="side "/></div>
+
         <div class="front-side">
             <div class="color-grid">
                 <div class="black"></div>
@@ -65,7 +67,7 @@
                                 fill="#FFFFFF" />
                         </g>
                     </svg>
-                    <p>+34
+                    <p style="text-align: end;">+34
                         <strong>644353005</strong></p>
                 </div>
                 <div class="emailId">
@@ -116,8 +118,8 @@
         </div> 
         -->
 
-        <div class="text">
-            <p>Check my profile at:</p>
+        <div>
+            <p  class="text" >Check my profile at:</p>
         </div>
           
         <div class="soc">
@@ -175,9 +177,12 @@
 
 <script>
 
+/*import Side from '../components/Side.vue'*/
+
     export default {
-        name: 'Contact_card',
+        name: 'Contact_card',  
         components: {
+           /* Side,*/
         },
     }
 
@@ -185,6 +190,23 @@
 
 
 <style scoped>
+
+h2{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+h5{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.email{margin-top: 0px;text-align: end;}
+.web{margin-top: 15px;text-align: end;}
+
+p{
+    margin: 10 px;
+}
 
 .content{
     min-height: calc(100vh - 270px);

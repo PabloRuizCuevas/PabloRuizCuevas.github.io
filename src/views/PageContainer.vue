@@ -8,11 +8,13 @@
             <component :is="comp"> </component>
      
             <div class="buttons">
-                <button class="button1" @click="page += -1"> &lt; </button> 
-                <button class="button1" @click="page += 1">   >    </button>
+                <button class="button1" @click="page += -1"> <b> &lt;  </b>  </button> 
+                <i >Page {{ datakey }}</i>
+                <button class="button1" @click="page += 1">  <b>  >   </b> </button>
             </div>
-                Page {{ page }}
-            </div>
+
+
+        </div>
         <div id="pixelRight" ></div>
     </div>
 
@@ -36,7 +38,7 @@
         },
         data() {
             return{
-                page:1,
+                page: this.datakey,
             }
         },
         mounted(){
@@ -46,7 +48,8 @@
         },
         computed: {
             comp() {
-               console.log(this.path)
+                console.log("hola")
+                console.log(this.path)
                console.log(this.datakey)
                const Latexpage = defineAsyncComponent(() => import(`@/components/pages/${this.path}`));
                return Latexpage
@@ -72,13 +75,14 @@
     }
 
   #pixelRight{  
-        flex: 0.1
+        flex: 0.1;
+        z-index: -1;
     }
     
 @media screen and (max-width: 1200px) {
 
     #bannerCenter{
-        margin-right: 0px
+        margin-right: 20px
     }
 
     #pixelRight, #pixelLeft{  
@@ -91,7 +95,7 @@
 @media screen and (max-width: 1000px) {
 
     #bannerCenter{
-        margin-right: 0px
+        margin-right: 20px
     }
 
     #pixelRight, #pixelLeft{  
@@ -112,14 +116,19 @@
 
 
 .buttons{
-    flex-direction: column;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .button1 {
-    width: 50px;
+    width: 80px;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    background-color: #4CAF50; /* Green */
-    border: 2px solid #4CAF50; /* Green */
+    background-color: #557aac; /* Green */
+    border: 2px solid #557aac; /* Green */
+    border-radius: 4px;
 }
 
 </style>
