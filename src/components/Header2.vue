@@ -13,9 +13,6 @@
   </Header>
 
 
-
-
-
 <template >
 
     <div class="draggable-header-view" 

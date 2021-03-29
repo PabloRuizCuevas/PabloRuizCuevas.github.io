@@ -26,7 +26,8 @@
 
 <style scoped>
 
-p{
+p{  
+    margin-top:0px;
     color: honeydew;
     text-align: center;
 }

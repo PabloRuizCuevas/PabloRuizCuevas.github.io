@@ -3,74 +3,56 @@
   <header>
     <div class="header">
 
-      <a v-on:click="choose_page(), home=true" id="nombre"> Pablo Ruiz  <i style="color: #A28BE7;margin-left: 15px">  at FRMII </i>   </a>
-      
+      <router-link to="/" id="nombre"> Pablo Ruiz  <i style="color: #A28BE7;margin-left: 15px">  at FRMII </i>  </router-link> 
+
       <div class="header-right">
         <!--<a v-on:click="choose_page(), home=true" id="inactive">  </a>-->
-        <router-link to="/">Home</router-link> 
-        <router-link to="/about">Contact</router-link>
-        <a v-on:click="choose_page(), contact=true" id="inactive" href="#about">About</a>
-        <img v-on:click="choose_page(), home=true" class="logo" alt="logo" src="../images/logo2.png">
-   
-        
-      </div>
+        <router-link id="inactive" class="header_letters" to="/">Home</router-link> 
+        <router-link id="inactive" class="header_letters" to="/about">About</router-link>
+        <router-link id="inactive" class="header_letters" to="/contact">Contact</router-link>
 
+        <router-link class="logo"  to="/"> <img  class="logo" alt="logo" src="../images/logo2.png">  </router-link> 
+   
+      </div>
+     
     </div>
+   
   </header>
 
+  <hr class="line" />
 
   <router-view/>
 
-   <!--
-  <div v-if="home==1" class="content">
-    <Portal  @clicked="onClickChild" />
-  </div>
-
-  <div v-if="contact==1" class="content">
-    <Contact/>
-  </div>
+  <!--
+    <div v-if="page1==1" class="content" > 
+      <PageContainer/>
+    </div>
   -->
-
-  <div v-if="page1==1" class="content" > 
-    <PageContainer/>
-  </div>
-
 
 </template>
 
 <script>
 
-import PageContainer from "../components/PageContainer.vue"
+//import PageContainer from "../components/PageContainer.vue"
 
   export default {
-    name: 'header',
+    name: 'headervue',
     components: {
-      PageContainer,
+      //PageContainer,
     },
     props: {
       msg: String
     },
     data() {
       return {
-        home: false,
-        page: false,
-        contact: false,
-        page1:false,
       }
     },
     mounted() {
-
     },
     methods: {
       choose_page: function () {
-        this.home= false,
-        this.page=false,
-        this.contact= false,
-        this.page1 = false;
       },
       onClickChild (value) {
-        this.choose_page();
-        this.page1 = true;
         console.log(value) // someValue
       }
   }
@@ -175,7 +157,7 @@ import PageContainer from "../components/PageContainer.vue"
 
   @media screen and (max-width: 800px) {
     .logo {
-     display: none;
+     display: none !important;
     }
   }
 
@@ -197,5 +179,22 @@ import PageContainer from "../components/PageContainer.vue"
 
   }
 
+  @keyframes line_animation {
+    from {
+        width: 0%;
+    }
+    to {
+        width:100%;
+    }
+    }
+    .line {
+    margin-top: 0%;
+    border-bottom: solid 3px #019fb6;
+    border-top-width: 0px;
+    animation-name: line_animation;
+    animation-duration: 1s;
+    animation-timing-function: linear; 
+    }
+    
 
 </style>
