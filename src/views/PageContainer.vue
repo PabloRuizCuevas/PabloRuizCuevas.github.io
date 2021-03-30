@@ -13,7 +13,6 @@
                 <button class="button1" @click="page += 1">  <b>  >   </b> </button>
             </div>
 
-
         </div>
         <div id="pixelRight" ></div>
     </div>
