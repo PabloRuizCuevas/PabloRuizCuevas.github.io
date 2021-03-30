@@ -2,7 +2,7 @@
 <template>
 
     <div class="columns">
-        <div id="pixelLeft"><Side class="side "/></div>
+        <div id="pixelLeft"><Side_summary class="side "/></div>
         <div id="bannerCenter">
         
             <component :is="comp"> </component>
@@ -21,14 +21,14 @@
 
 <script>
 
-    import Side from  '../components/Side.vue'
+    import Side_summary from  '../components/Side_summary.vue'
     import { defineAsyncComponent } from 'vue'
     const { publications } = require('../pages.js')
 
     export default {
         name: 'PageContainer',
         components: {
-            Side,
+            Side_summary,
         },
         props: {
             path: String,

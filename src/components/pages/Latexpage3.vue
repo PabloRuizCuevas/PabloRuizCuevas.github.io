@@ -24,7 +24,7 @@
 
             <div class="image_container">
                 <img alt="Figure" src="../../images/Mc.png">
-                <caption>  MC simulations with different number of iterations vs the real analytic value, The shape chosen for this simulation it was a cylinder.</caption>
+                <figcaption>  MC simulations with different number of iterations vs the real analytic value, The shape chosen for this simulation it was a cylinder.</figcaption>
             </div>  
             <p>  The error of MC decays with the square root of the random points used, but as the reduction factor is often zero, the relative error is not a good measure of the precision of this method, in any case for most applications we have estimated that 1e5 are enough iterations to have a reasonably good convergence.
                  Finally we can calculate the reduction factor for different shapes and compare it with the theory
@@ -32,7 +32,7 @@
 
             <div class="image_container">
                 <img alt="Figure" src="../../images/RF_shapes.png">
-                <caption> Reduction factor for different shapes and comparation with theory. </caption>
+                <figcaption> Reduction factor for different shapes and comparation with theory. </figcaption>
             </div>  
 
         </div>
