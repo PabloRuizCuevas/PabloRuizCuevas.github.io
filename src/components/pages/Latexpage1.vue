@@ -116,7 +116,7 @@
 <script>
 
     export default {
-        name: "Latexpage3",
+        name: "Latexpage1",
         methods: {
             reRender() {
             if(window.MathJax) {

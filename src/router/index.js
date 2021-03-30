@@ -3,6 +3,10 @@ import Home from '../views/Home.vue'
 
 import PageContainer from "../views/PageContainer.vue"
 
+const { dict } = require('../pages.js')
+
+dict[0]
+
 
 const routes = [
   {

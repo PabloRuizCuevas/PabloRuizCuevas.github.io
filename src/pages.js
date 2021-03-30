@@ -1,5 +1,5 @@
 
-var publications=[4,3,2,1]
+var publications=[4,3,2,1];
 
 //var dict = new Object();
 
@@ -11,7 +11,7 @@ var dict = {
         summary: "The <b>M</b>odulation of <b>I</b>nt<b>E</b>nsity with <b>Z</b>ero <b>E</b>ffort (<b>MIEZE</b>) techinque is a neutron scattering method dedicated to inelastic measurements with low energy transfers that require a correspondingly high energy resolution. The MIEZE technique is closely related to time-of-flight methods based on the concept of Lamor-precession labeling in neutron resonance spin echo (NRSE)...",
         picture: "../../images/geometry.png",
         read_time: "7 min",
-        path:'Latexpage.vue'
+        path:'Latexpage1.vue'
     },
     2: {
         datakey:2,

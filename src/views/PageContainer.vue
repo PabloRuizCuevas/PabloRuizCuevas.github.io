@@ -8,9 +8,9 @@
             <component :is="comp"> </component>
      
             <div class="buttons">
-                <button class="button1" @click="page += -1"> <b> &lt;  </b>  </button> 
-                <i >Page {{ datakey }}</i>
-                <button class="button1" @click="page += 1">  <b>  >   </b> </button>
+                <button class="button1" @click="minusone"> <b> &lt;  </b>  </button> 
+                <i >Page {{ pagenum }}</i>
+                <button class="button1" @click="addone">  <b>  >   </b> </button>
             </div>
 
         </div>
@@ -23,8 +23,7 @@
 
     import Side from  '../components/Side.vue'
     import { defineAsyncComponent } from 'vue'
-    //const { dict } = require('../pages.js')
-
+    const { publications } = require('../pages.js')
 
     export default {
         name: 'PageContainer',
@@ -37,20 +36,27 @@
         },
         data() {
             return{
-                page: this.datakey,
+                pagenum: this.path.match(/\d+/g).map(Number)[0],
             }
         },
-        mounted(){
-            //let mathscript = document.createElement('script')
-            //mathscript.setAttribute('src',"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js")
-            //document.head.appendChild(mathscript)
-        },
+        methods:{
+            addone(){
+                this.pagenum =  Math.min( Math.max.apply(Math, publications), this.pagenum+1);
+            },
+            minusone(){
+                this.pagenum =  Math.max(1, this.pagenum-1);
+            },
+            scrollToTop(){
+                window.scrollTo(0,0);
+            },      
+        }
+        ,
         computed: {
             comp() {
-                console.log("hola")
-                console.log(this.path)
-               console.log(this.datakey)
-               const Latexpage = defineAsyncComponent(() => import(`@/components/pages/${this.path}`));
+               //var pagenum = this.path.match(/\d+/g).map(Number)[0]
+               var pahtpage = 'Latexpage' + this.pagenum +'.vue'
+               const Latexpage = defineAsyncComponent(() => import(`@/components/pages/${pahtpage}`));
+               //return _.orderBy(filtered , 'name')
                return Latexpage
             }
             

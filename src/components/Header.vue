@@ -53,7 +53,7 @@
       onClickChild (value) {
         console.log(value) // someValue
       }
-  }
+    }
   }
 
 </script>

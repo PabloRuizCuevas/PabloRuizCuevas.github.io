@@ -7,8 +7,9 @@
         
         <h1 >   {{dict.title}} </h1> 
 
-        <router-link :to="{ name: 'PageContainer', params: { datakey:dict.datakey , path:dict.path } }" >
-           
+        <!--<router-link :to="{ name: 'PageContainer', params: { datakey:dict.datakey , path:dict.path } }" >-->
+        <router-link :to="{ name: 'PageContainer', params: {path:dict.path, datakey:dict.datakey } }" >
+
             <!--<div class="image_container">
             </div>-->
             <img  :src="`${dict.picture}`">
