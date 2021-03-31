@@ -125,9 +125,7 @@ body {
     background:rgb(255, 255, 255);
     z-index: -1;
 }
-#bannerCenter,#pixelLeft,#pixelRight{
-   
-}
+
 
 @media only screen and (max-width: 1000px) {
   .side{

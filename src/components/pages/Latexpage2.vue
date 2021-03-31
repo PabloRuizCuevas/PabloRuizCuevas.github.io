@@ -4,7 +4,9 @@
   
     <main>
         <div class="article">
+
             <h1> MIEZE Theory</h1>
+
             <h3> time..</h3>
             
             <p>  As a time-of-flight like measurement technique, the quality of the MIEZE signal is sensitive to flight path differences of the neutrons scattered in the experimental setup. This destruction/damping of the MIEZE signal compared to the undisturbed, only elastically scattered neutron beam is expressed by the reduction factor \(R\), which unintuitively is supposed to be as high, close to 1, as possible.
@@ -18,9 +20,9 @@
             But in the most general case we can have the sample rotated by an angle of \(\theta_S \), in that case the reduction factor is given by: 
             </p>  
 
-        
-            <img alt="Figure" src="../../images/figure.svg">
-
+            <div class="image_container">
+                <img alt="Figure" src="../../images/figure.svg">
+            </div> 
             
         </div>
     
@@ -56,14 +58,40 @@
 
 <style scoped>
 
+p{
+    text-align: justify;
+}
+
 .equation{
     justify-content: center;
     text-align: center;
 }
 
 h1{
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.image_container{
+     display: flex;
+    flex-direction: column;
+     align-items: center;
+     justify-content: center;
+
+}
+
+.caption{
+    display: block;
+    font-size: 0;
+}
+
+img {
+    display: block;
+    width: 60%;
+}
+
+.article{
+    margin-bottom:40px ;
 }
 
 </style>

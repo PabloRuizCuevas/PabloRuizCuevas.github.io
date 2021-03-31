@@ -5,8 +5,10 @@
      
         <div> published on  {{dict.date}} </div>
         
-        <h1 >   {{dict.title}} </h1> 
+        <router-link :to="{ name: 'PageContainer', params: {path:dict.path, datakey:dict.datakey } }" >
 
+        <h1 style=" color: rgb(44, 62, 80);" >   {{dict.title}} </h1> 
+        </router-link>
         <!--<router-link :to="{ name: 'PageContainer', params: { datakey:dict.datakey , path:dict.path } }" >-->
         <router-link :to="{ name: 'PageContainer', params: {path:dict.path, datakey:dict.datakey } }" >
 

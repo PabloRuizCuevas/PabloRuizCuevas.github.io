@@ -32,12 +32,13 @@
             </p>  
 
             <div class="image_container">
-                <img alt="Figure" src="../../images/figure.svg">
-                <caption>  MC simulations with different number of iterations vs the real analytic value, The shape chosen for this simulation it was a cylinder.</caption>
+                <img alt="Figure" src="/images/ferromagnets.png">
+                <figcaption>  fitcap fig cap</figcaption>
             </div>  
-            
+
+
         </div>
-    
+
     </main>
   
   </div>

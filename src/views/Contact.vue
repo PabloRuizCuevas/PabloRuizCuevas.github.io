@@ -124,9 +124,6 @@
           
         <div class="soc">
             
-         
-
-
             <!--
              <a href="#" class="icon codepen" title="CodePen">
                 <svg viewBox="0 0 512 512">

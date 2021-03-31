@@ -2,7 +2,7 @@
 <template>
 
     <div class="columns">
-        <div id="pixelLeft"><Side_summary class="side "/></div>
+        <div id="pixelLeft"><Side2 class="side "/></div>
         <div id="bannerCenter">
         
             <component :is="comp"> </component>
@@ -21,14 +21,14 @@
 
 <script>
 
-    import Side_summary from  '../components/Side_summary.vue'
+    import Side2 from  '../components/Side_summary.vue'
     import { defineAsyncComponent } from 'vue'
     const { publications } = require('../pages.js')
 
     export default {
         name: 'PageContainer',
         components: {
-            Side_summary,
+            Side2,
         },
         props: {
             path: String,
@@ -42,11 +42,14 @@
         methods:{
             addone(){
                 this.pagenum =  Math.min( Math.max.apply(Math, publications), this.pagenum+1);
+                this.scrollToTop();
             },
             minusone(){
                 this.pagenum =  Math.max(1, this.pagenum-1);
+                this.scrollToTop();
             },
             scrollToTop(){
+                console.log("scroll to top")
                 window.scrollTo(0,0);
             },      
         }
@@ -54,9 +57,8 @@
         computed: {
             comp() {
                //var pagenum = this.path.match(/\d+/g).map(Number)[0]
-               var pahtpage = 'Latexpage' + this.pagenum +'.vue'
-               const Latexpage = defineAsyncComponent(() => import(`@/components/pages/${pahtpage}`));
-               //return _.orderBy(filtered , 'name')
+               var pahtpage = 'Latexpage' + this.pagenum +'.vue';
+               const Latexpage = defineAsyncComponent(() => import(`@/components/pages/${pahtpage}`));           
                return Latexpage
             }
             
@@ -119,7 +121,6 @@
 
 }
 
-
 .buttons{
     margin-top: 40px;
     display: flex;
@@ -131,9 +132,15 @@
 .button1 {
     width: 80px;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    background-color: #557aac; /* Green */
-    border: 2px solid #557aac; /* Green */
+    background-color: #557aac;
+    border: 2px solid #557aac; 
     border-radius: 4px;
 }
+
+.button1:hover {
+    background-color: #0b4188;
+    border: 2px solid #0b4188; 
+} 
+
 
 </style>

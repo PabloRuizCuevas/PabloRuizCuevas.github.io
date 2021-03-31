@@ -39,7 +39,8 @@
             </p>
 
             <div class="image_container">
-                <img alt="Figure" src="../../images/three_axis.jpg">             
+                <img alt="Figure" src="../../images/three_axis.jpg">   
+                <figcaption>  Three axis geometry at MIRAII </figcaption>                   
             </div> 
 
             <p>
@@ -62,7 +63,8 @@
             </p>
 
             <div class="image_container">
-                <img alt="Figure" src="../../images/figure.svg">             
+                <img alt="Figure" src="../../images/figure.svg"> 
+                <figcaption>  Three axis geometry and degrees of fredoom of the setup  \(\theta_2\) ,\(\theta_D\) and  \(\gamma\).  </figcaption>         
             </div> 
 
             <p>
@@ -101,9 +103,11 @@
             <p> 
                 To find the best reduction factor for this configuration we have developed an numerical optimizer, first we find the best possible \(\theta_S\) for each  \(\theta_D\), \(2\theta\) tuple and then we have find the best \(\theta_D\) for each \(2\theta\) conditioned to the previously calculated \(\theta_S\).
             </p>
-             <p> 
+            <p> 
                 For performing an accurate optimization without falling in a local minimum we have used n different equally spaced origins of each optimization problem and then we keep the best optimum.
             </p>
+
+
         </div>
     
     </main>
