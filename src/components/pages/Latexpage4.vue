@@ -28,14 +28,17 @@
  \( +v^{L}_{LT}(k,q,g,\eta) \frac{\chi^L(q,g)\chi^T(|q-k|,g)}{\Gamma^L(q,g)+\Gamma^T(|q-k|,g)} ]\) 
             </p> 
             <p>
-                In general to solve the set of integral coupled equeations will not be easy and we will make first a change of coordinates and make some aproximations
+                In general to solve the set of integral coupled equeations will not be easy and we will make first a change of coordinates and make some aproximations.
             </p>  
 
             <div class="image_container">
                 <img alt="Figure" src="/images/ferromagnets.png">
                 <figcaption>  fitcap fig cap</figcaption>
             </div>  
-
+            
+            <p>
+                In general to solve the set of integral coupled equeations will not be easy and we will make first a change of coordinates and make some aproximations.
+            </p>  
 
         </div>
 
