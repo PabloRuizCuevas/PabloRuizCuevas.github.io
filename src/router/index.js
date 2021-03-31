@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-
 import PageContainer from "../views/PageContainer.vue"
 
 //const { dict } = require('../pages.js')
@@ -37,8 +36,10 @@ const routes = [
 ]
 
 const router = createRouter({
+  mode: 'history',
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
 
 export default router
