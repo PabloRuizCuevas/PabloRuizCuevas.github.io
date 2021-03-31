@@ -133,9 +133,9 @@
 
             this.reRender();
 
-            let prism = document.createElement('script')
-            prism.setAttribute('src',"https://cdn.jsdelivr.net/npm/prismjs/prism.min.js")
-            document.head.appendChild(prism)
+            //let prism = document.createElement('script')
+            //prism.setAttribute('src',"https://cdn.jsdelivr.net/npm/prismjs/prism.min.js")
+            //document.head.appendChild(prism)
         },
     };
 
