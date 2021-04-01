@@ -2,15 +2,19 @@
 <template>
 
     <div class="columns">
-        <div id="pixelLeft"><Side2 class="side "/></div>
+        <div id="pixelLeft"><Side2 class="side" :code= code /></div>
         <div id="bannerCenter">
         
             <component :is="comp"> </component>
      
             <div class="buttons">
-                <button class="button1" @click="minusone"> <b> &lt;  </b>  </button> 
+                
+                <router-link :to="{ name: 'PageContainer', params: {datakey: Math.max(1,datakey-1) } }" >  
+                <button class="button1" @click="minusone"> <b> &lt;  </b>  </button></router-link>
+               
                 <i >Page {{ pagenum }}</i>
-                <button class="button1" @click="addone">  <b>  >   </b> </button>
+                <router-link :to="{ name: 'PageContainer', params: {datakey: Math.min( maxpub, parseInt(datakey)+1 )  } }" > 
+                <button class="button1" @click="addone">  <b>  >   </b> </button></router-link>
             </div>
 
         </div>
@@ -23,7 +27,7 @@
 
     import Side2 from  '../components/Side_summary.vue'
     import { defineAsyncComponent } from 'vue'
-    const { publications } = require('../pages.js')
+    const { publications ,dict } = require('../pages.js')
 
     export default {
         name: 'PageContainer',
@@ -31,12 +35,14 @@
             Side2,
         },
         props: {
-            path: String,
             datakey: String,
+            //code: String,
         },
         data() {
             return{
-                pagenum: this.path.match(/\d+/g).map(Number)[0],
+                pagenum: this.datakey,  // this.path.match(/\d+/g).map(Number)[0],
+                maxpub: Math.max.apply(Math, publications),
+                code: dict[this.datakey].code
             }
         },
         methods:{
@@ -56,13 +62,24 @@
         ,
         computed: {
             comp() {
+               //console.log("datakey y maxpub");
+               //console.log(this.path);
+               //console.log(this.datakey);
+               //console.log(this.maxpub);
+
                //var pagenum = this.path.match(/\d+/g).map(Number)[0]
                var pahtpage = 'Latexpage' + this.pagenum +'.vue';
+               
                const Latexpage = defineAsyncComponent(() => import(`@/components/pages/${pahtpage}`));           
                return Latexpage
             }
             
-        }
+        },
+     //   watch: {code
+      //      comments(value) {
+       //         this.allComments = value;
+       // }
+        //}
         
         
     }

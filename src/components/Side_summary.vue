@@ -1,9 +1,7 @@
 
 <template>
     <div id="Side_summary">
-       
-        <a href="../../Download/Minimize_path.ipynb" download><button class="dowloads"> <img  class="logo" alt="logo" src="python.png"> Download </button></a>
-        
+        <a :href=code  download><button class="dowloads"> <img  class="logo" alt="logo" src="/python.png"> Download </button></a>
     </div>
 </template>
 
@@ -16,6 +14,7 @@
         },
         props: {
             pythonpath: String,
+            code: String,
         },
 
     }
