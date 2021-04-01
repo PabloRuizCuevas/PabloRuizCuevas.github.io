@@ -53,8 +53,6 @@ export default {
        this.$emit('clicked', value)
     }*/
   },
-  data() {
-  },
 
 }
 

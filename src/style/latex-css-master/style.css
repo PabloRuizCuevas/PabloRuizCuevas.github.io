@@ -156,12 +156,15 @@ p {
   margin-top: 1rem;
 }
 
+
 /* A elements that don't have a class get default styles */
+/*
 a:not([class]) {
   text-decoration-skip-ink: auto;
 }
-
+*/
 /* Make links red */
+/*
 a,
 a:visited {
   color: #a00;
@@ -171,6 +174,7 @@ a:focus {
   outline-offset: 2px;
   outline: 2px solid hsl(220, 90%, 52%);
 }
+*/
 
 /* Make images easier to work with */
 img {

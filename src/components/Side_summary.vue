@@ -13,7 +13,6 @@
         components: {
         },
         props: {
-            pythonpath: String,
             code: String,
         },
 
