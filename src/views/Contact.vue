@@ -14,6 +14,7 @@
     <div class="columns">
         <div id="pixelLeft"><Side class="side "/></div>
         <div id="bannerCenter" >
+
             <div class="front-side">
                 <div class="color-grid">
                     <div class="black"></div>
@@ -211,7 +212,7 @@ p{
 }
 
 .text{
-    margin-top: 50px;
+    margin-top: 0px;
     text-align: center;
 }
 
@@ -244,7 +245,7 @@ html {
   grid-template-columns: 2% 96% 2%;
   grid-template-rows: 4% 92% 4%;
   position: relative;
-  margin: 20px auto;
+  margin: 60px auto;
   overflow: hidden;
   box-shadow: 2px 5px 15px 0px #17161694;
   background-color: #122529;
