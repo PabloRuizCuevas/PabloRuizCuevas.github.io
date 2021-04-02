@@ -96,18 +96,6 @@
 
 <style scoped>
 
-/*@import "../style/latex.css"; */
-
-
-   #bannerCenter{
-        flex: 2;
-    }
-
-  #pixelRight,#pixelLeft{  
-        flex: 1;
-        z-index: -1;
-    }
-    
 @media screen and (max-width: 1100px) {
 
    #bannerCenter{
@@ -135,10 +123,6 @@
     #pixelRight, #pixelLeft{  
         flex: 0.3
     }
-
-}
-
-@media screen and (max-width: 500px) {
 
 }
 

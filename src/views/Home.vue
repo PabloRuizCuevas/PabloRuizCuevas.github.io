@@ -94,16 +94,10 @@ export default {
   color: #2c3e50;
 }
 
-/*
-body { 
-  min-width: 100%
-}
-*/
 .columns{
   display: flex;
   flex-direction: row;
-  /*align-content: center;*/
-  max-width: 100%
+  max-width: 100%;
 }
 
 #pixelLeft, #pixelRight{
@@ -121,14 +115,13 @@ body {
 
 #pixelRight,#pixelLeft{
     background:rgb(255, 255, 255);
-    z-index: -1;
+    z-index: 1;
 }
 
 
 @media only screen and (min-width: 1500px) {
   #pixelRight,#pixelLeft{
       background:rgb(255, 255, 255);
-      z-index: -1;
       flex: 1.5;
   }
 
@@ -139,8 +132,6 @@ body {
     display: none;
     min-width: 400px;
   }
-  
-
 }
 
 @media only screen and (max-width: 550px) {
