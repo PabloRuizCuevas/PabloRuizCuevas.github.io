@@ -4,6 +4,8 @@
     <div class="columns">
         <div id="pixelLeft"><Side2 class="side" :code= code /></div>
         <div id="bannerCenter">
+
+            <!--<UP @click="scrollToTop" />-->
         
             <component :is="comp"> </component>
      
@@ -26,6 +28,7 @@
 <script>
 
     import Side2 from  '../components/Side_summary.vue'
+    import UP from  '../components/Go_up_button.vue'
     import { defineAsyncComponent } from 'vue'
     const { publications ,dict } = require('../pages.js')
 
@@ -33,6 +36,7 @@
         name: 'PageContainer',
         components: {
             Side2,
+            UP,
         },
         props: {
             datakey: String,
@@ -96,25 +100,24 @@
 
 
    #bannerCenter{
-        margin-right: 260px
+        flex: 2;
     }
 
-  #pixelRight{  
-        flex: 0.1;
+  #pixelRight,#pixelLeft{  
+        flex: 1;
         z-index: -1;
     }
     
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1100px) {
 
-    #bannerCenter{
-        margin-right: 20px
+   #bannerCenter{
+        flex: 2.5;
     }
 
-    #pixelRight, #pixelLeft{  
-        flex: 0.1
+  #pixelRight,#pixelLeft{  
+        flex: 1;
     }
 
-    
 }
 
 @media screen and (max-width: 1000px) {
