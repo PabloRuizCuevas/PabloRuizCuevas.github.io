@@ -118,14 +118,21 @@ body {
     display: flex;
     flex: 2;                       /* 3 */   
 }
-#pixelLeft{
-    background:rgb(255, 255, 255);
-}
-#pixelRight{
+
+#pixelRight,#pixelLeft{
     background:rgb(255, 255, 255);
     z-index: -1;
 }
 
+
+@media only screen and (min-width: 1500px) {
+  #pixelRight,#pixelLeft{
+      background:rgb(255, 255, 255);
+      z-index: -1;
+      flex: 1.5;
+  }
+
+}
 
 @media only screen and (max-width: 1000px) {
   .side{

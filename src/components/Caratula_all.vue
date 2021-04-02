@@ -13,7 +13,9 @@
         <router-link :to="{ name: 'PageContainer', params: {path:dict.path, datakey:dict.datakey } }" >
 
             <!--<div class="image_container">
+                 
             </div>-->
+
             <img  :src="`${dict.picture}`">
 
         </router-link>
@@ -61,17 +63,32 @@
         border-width: thin;
         margin-top: 60px;
     }
-
-
-    img {
+    /*
+    .image_container{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
         width: 100%;
-        height: auto;
+    }
+    */
+    img {
+        /*max-height:95px;*/
+        width: 100vw;
+        max-height: 400px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
+    @media screen and (max-width: 400px) { /* it looks good in iphone */
+        img {
+            width: 100vw;
+            max-height: 200px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    }  
+
+
     a {
         display: flex;
-        height: auto;
         color: #FFFFFF;
         text-decoration: none;
         margin-top: 15 px ; /* read two wimes */

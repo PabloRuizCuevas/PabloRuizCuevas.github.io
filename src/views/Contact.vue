@@ -206,8 +206,8 @@ p{
     margin: 10 px;
 }
 
-.content{
-    min-height: calc(100vh - 270px);
+.columns{
+    min-height: calc(100vh - 290px);
     margin-top: 50px;
 }
 
