@@ -7,19 +7,10 @@
 
       <div class="header-right">
         <!--<a v-on:click="choose_page(), home=true" id="inactive">  </a>-->
-<<<<<<< HEAD
-        <router-link id="inactive" class="header_letters" to="/">Home</router-link> 
-        <router-link id="inactive" class="header_letters" to="/about">About</router-link>
-        <router-link id="inactive" class="header_letters" to="/contact">Contact</router-link>
-
-        <router-link class="logo"  to="/"> <img  class="logo" alt="logo" src="../images/logo2.png">  </router-link> 
-   
-=======
         <router-link id="header_letters" to="/">Home</router-link> 
         <router-link id="header_letters" to="/about">About</router-link>
         <router-link id="header_letters" to="/contact">Contact</router-link>
         <router-link class="logo"  to="/"> <img  class="logo" alt="logo" src="../images/logo2.png">  </router-link> 
->>>>>>> main
       </div>
      
     </div>
@@ -190,9 +181,5 @@
     animation-duration: 1s;
     animation-timing-function: linear; 
     }
-<<<<<<< HEAD
-    
-=======
->>>>>>> main
 
 </style>

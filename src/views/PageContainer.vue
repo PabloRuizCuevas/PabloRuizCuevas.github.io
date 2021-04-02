@@ -2,24 +2,12 @@
 <template>
 
     <div class="columns">
-<<<<<<< HEAD
-        <div id="pixelLeft"><Side class="side "/></div>
-=======
         <div id="pixelLeft"><Side2 class="side" :code= code /></div>
->>>>>>> main
         <div id="bannerCenter">
         
             <component :is="comp"> </component>
      
             <div class="buttons">
-<<<<<<< HEAD
-                <button class="button1" @click="page += -1"> <b> &lt;  </b>  </button> 
-                <i >Page {{ datakey }}</i>
-                <button class="button1" @click="page += 1">  <b>  >   </b> </button>
-            </div>
-
-
-=======
                 
                 <router-link :to="{ name: 'PageContainer', params: {datakey: Math.max(1,datakey-1) } }" >  
                 <button class="button1" @click="minusone"> <b> &lt;  </b>  </button></router-link>
@@ -29,7 +17,6 @@
                 <button class="button1" @click="addone">  <b>  >   </b> </button></router-link>
             </div>
 
->>>>>>> main
         </div>
         <div id="pixelRight" ></div>
     </div>
@@ -38,48 +25,13 @@
 
 <script>
 
-<<<<<<< HEAD
-    import Side from  '../components/Side.vue'
-    import { defineAsyncComponent } from 'vue'
-    //const { dict } = require('../pages.js')
-
-=======
     import Side2 from  '../components/Side_summary.vue'
     import { defineAsyncComponent } from 'vue'
     const { publications ,dict } = require('../pages.js')
->>>>>>> main
 
     export default {
         name: 'PageContainer',
         components: {
-<<<<<<< HEAD
-            Side,
-        },
-        props: {
-            path: String,
-            datakey: String,
-        },
-        data() {
-            return{
-                page: this.datakey,
-            }
-        },
-        mounted(){
-            //let mathscript = document.createElement('script')
-            //mathscript.setAttribute('src',"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js")
-            //document.head.appendChild(mathscript)
-        },
-        computed: {
-            comp() {
-                console.log("hola")
-                console.log(this.path)
-               console.log(this.datakey)
-               const Latexpage = defineAsyncComponent(() => import(`@/components/pages/${this.path}`));
-               return Latexpage
-            }
-            
-        }
-=======
             Side2,
         },
         props: {
@@ -129,7 +81,6 @@
        // }
         //}
         
->>>>>>> main
         
     }
 
@@ -188,10 +139,6 @@
 
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .buttons{
     margin-top: 40px;
     display: flex;
@@ -203,13 +150,6 @@
 .button1 {
     width: 80px;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-<<<<<<< HEAD
-    background-color: #557aac; /* Green */
-    border: 2px solid #557aac; /* Green */
-    border-radius: 4px;
-}
-
-=======
     background-color: #557aac;
     border: 2px solid #557aac; 
     border-radius: 4px;
@@ -221,5 +161,4 @@
 } 
 
 
->>>>>>> main
 </style>

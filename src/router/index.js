@@ -2,13 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import PageContainer from "../views/PageContainer.vue"
 
-//const { dict } = require('../pages.js')
-//dict[0]
-
-
-import PageContainer from "../views/PageContainer.vue"
-
-
 const routes = [
   {
     path: '/',
@@ -29,20 +22,12 @@ const routes = [
     component: () => import('../views/Contact.vue')
   },
   {
-<<<<<<< HEAD
-    path: '/:path',
-=======
     path: '/Latexpage/:datakey',
->>>>>>> main
     name: 'PageContainer',
     component: PageContainer,
     //component: () => import('../views/PageContainer.vue'),
     props: true
-<<<<<<< HEAD
-  }
-=======
   },
->>>>>>> main
 
 ]
 
