@@ -53,6 +53,7 @@ export default {
        this.$emit('clicked', value)
     }*/
   },
+<<<<<<< HEAD
   data() {
   },
 
@@ -60,7 +61,13 @@ export default {
 
 
 </script>
+=======
 
+}
+
+>>>>>>> main
+
+</script>
 
 <style scoped>
 #app {
@@ -69,6 +76,7 @@ export default {
   color: #2c3e50;
 }
 
+<<<<<<< HEAD
 /*
 body { 
   min-width: 100%
@@ -111,6 +119,54 @@ body {
   }
   
 
+=======
+<style scoped>
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+
+/*
+body { 
+  min-width: 100%
+}
+*/
+.columns{
+  display: flex;
+  flex-direction: row;
+  /*align-content: center;*/
+  max-width: 100%
+}
+
+#pixelLeft, #pixelRight{
+  display: flex; 
+  flex:1;                      /* 3 */
+}
+#bannerCenter{
+    display: flex;
+    flex-direction: column;
+    background:rgb(255, 255, 255);
+    min-width: 500px;
+    display: flex;
+    flex: 2;                       /* 3 */   
+}
+#pixelLeft{
+    background:rgb(255, 255, 255);
+}
+#pixelRight{
+    background:rgb(255, 255, 255);
+    z-index: -1;
+}
+
+@media only screen and (max-width: 1000px) {
+  .side{
+    display: none;
+    min-width: 400px;
+  }
+  
+
+>>>>>>> main
 }
 
 @media only screen and (max-width: 550px) {
@@ -153,9 +209,12 @@ body {
         margin-top: 60px;
     }
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> main
     a {
         color: #3c8cbb;
 

@@ -7,12 +7,19 @@
 
       <div class="header-right">
         <!--<a v-on:click="choose_page(), home=true" id="inactive">  </a>-->
+<<<<<<< HEAD
         <router-link id="inactive" class="header_letters" to="/">Home</router-link> 
         <router-link id="inactive" class="header_letters" to="/about">About</router-link>
         <router-link id="inactive" class="header_letters" to="/contact">Contact</router-link>
 
         <router-link class="logo"  to="/"> <img  class="logo" alt="logo" src="../images/logo2.png">  </router-link> 
    
+=======
+        <router-link id="header_letters" to="/">Home</router-link> 
+        <router-link id="header_letters" to="/about">About</router-link>
+        <router-link id="header_letters" to="/contact">Contact</router-link>
+        <router-link class="logo"  to="/"> <img  class="logo" alt="logo" src="../images/logo2.png">  </router-link> 
+>>>>>>> main
       </div>
      
     </div>
@@ -55,7 +62,7 @@
       onClickChild (value) {
         console.log(value) // someValue
       }
-  }
+    }
   }
 
 </script>
@@ -82,7 +89,6 @@
     align-items: center;
     overflow: hidden;
     text-align: center;
-    
     height: 110px;
     min-width: 100%;
   }
@@ -99,7 +105,6 @@
   }
 
   .logo {
-    
     display: flex;
     align-items: center;
     height: 50px;
@@ -108,35 +113,26 @@
   }
 
   .header a {
-
+   
     text-align:center;
     text-decoration: none;
-
     line-height: 25px;
     border-radius: 8px;
-   
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     margin-left: 15px;
     margin-right: 15px;
-
   }
 
-  #inactive{
+  #header_letters {
     color: rgb(10, 102, 172);
 
   }
 
-  .header a:hover {
+  #header_letters:hover {
+    color: black;
    /* background-color: #ddd;
     color: black; */
-  }
-
-  .header a.active {
-
-   /* background-color: rgb(174, 174, 174);*/
-    color: white;
-
   }
 
   .header-right {
@@ -160,7 +156,6 @@
      display: none !important;
     }
   }
-
 
   @media screen and (max-width: 700px) {
     .header {
@@ -195,6 +190,9 @@
     animation-duration: 1s;
     animation-timing-function: linear; 
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> main
 
 </style>
