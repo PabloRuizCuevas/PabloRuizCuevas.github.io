@@ -1,5 +1,5 @@
 
-var publications=[4,3,2,1];
+var publications=[5,4,3,2,1];
 
 //var dict = new Object();
 
@@ -22,7 +22,7 @@ var dict = {
         summary: "To calculate the reduction factor from a image (matrix) we have developed a algorithm inspired in the Boostrap statistical method. The method consist in calculating the reduction factor using a random shaped region inside our region of interest, then we will calculate the reduction factor of this region, and choose a new random shaped region...",
         picture: "../../images/espiralweb2.png",
         code: "../../Download/Minimize_path.ipynb",
-        read_time: "12 min",
+        read_time: "8 min",
         path:'Latexpage2.vue'
     },
     3: {
@@ -32,26 +32,35 @@ var dict = {
         summary: "Monte Carlo can gives us a general approach to calculate the reduction factor whenever no analytical solution is possible. In this chapter we developed a code to calculate the reduction factor in a efficient way using python...",
         picture: "../../images/plot0.00256.png",
         code: "../../Download/Minimize_path.ipynb",
-        read_time: "8 min",
+        read_time: "6 min",
         path:'Latexpage3.vue'
     },
     4: {
         datakey:4,
         title: " Image analysis ",
         date: "Jan 18 2021",
-        summary: "To calculate the from a image (matrix) we have developed a algorithm inspired in the Boostrap statistical method. The method consist in calculating the reduction factor using a random shaped region inside our region of interest, then we will calculate the reduction factor of this region, and choose a new random shaped region...",
+        summary: "We can calculate the reduction factor of the real images we get in the detector by analyzing them.  First we need to take the image from the mira detector and convert it to a matrix, we crop the image in the place we observe most of the neutrons collide, in the case we analize here we can observe clearly the footprint of the cilinder of nikel we used as a sample...",
         picture: "../../images/transmision.png",
         code: "../../Download/Minimize_path.ipynb",
-        read_time: "8 min",
+        read_time: "7 min",
         path:'Latexpage4.vue'
+    },
+    6: {
+        datakey:6,
+        title: "Dynamics of ferromagnets ",
+        date: "Mar 27 2021",
+        summary: "The dynamic scaling functions for ferromagnets near the critical temperature are determined using the mode couplig theory...",
+        picture: "/images/ferromagnets.png",
+        read_time: "4 min",
+        path:'Latexpage5.vue'
     },
     5: {
         datakey:5,
-        title: " Critical dynamics of ferromagnets ",
+        title: "Dynamics of ferromagnets ",
         date: "Mar 23 2021",
         summary: "The dynamic scaling functions for ferromagnets near the critical temperature are determined using the mode couplig theory...",
-        picture: "../../images/transmision.png",
-        read_time: "8 min",
+        picture: "/images/iron.jpg",
+        read_time: "4 min",
         path:'Latexpage5.vue'
     },
   };

@@ -110,7 +110,8 @@ export default {
     background:rgb(255, 255, 255);
     min-width: 500px;
     display: flex;
-    flex: 2;                       /* 3 */   
+    flex: 2;                       /* 3 */  
+    z-index: 2;
 }
 
 #pixelRight,#pixelLeft{
