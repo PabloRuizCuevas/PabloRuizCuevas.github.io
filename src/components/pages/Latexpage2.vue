@@ -54,7 +54,41 @@
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+.equation{
+    justify-content: center;
+    text-align: center;
+}
+
+h1{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.image_container{
+     display: flex;
+    flex-direction: column;
+     align-items: center;
+     justify-content: center;
+
+}
+
+.article{
+    margin-bottom:40px ;
+}
+
+
+img {
+    display: block;
+    width: 60%;
+}
+
+
+</style>
+
+
+<!--
 
 <style scoped>
 
@@ -80,18 +114,21 @@ h1{
 
 }
 
+img {
+    display: block;
+    width: 60%;
+}
+
 .caption{
     display: block;
     font-size: 0;
 }
 
-img {
-    display: block;
-    width: 60%;
-}
+
 
 .article{
     margin-bottom:40px ;
 }
 
 </style>
+-->

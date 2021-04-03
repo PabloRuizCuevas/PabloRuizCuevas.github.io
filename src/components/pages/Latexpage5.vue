@@ -54,7 +54,7 @@
 
 
     export default {
-        name: "Latexpage4",
+        name: "Latexpage5",
         methods: {
             reRender() {
             if(window.MathJax) {
@@ -72,7 +72,6 @@
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style scoped>
 

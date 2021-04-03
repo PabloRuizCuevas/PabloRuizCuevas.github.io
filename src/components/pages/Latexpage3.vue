@@ -86,10 +86,6 @@
 
 <style scoped>
 
-p{
-    text-align: justify;
-}
-
 .equation{
     justify-content: center;
     text-align: center;
@@ -108,18 +104,14 @@ h1{
 
 }
 
-.caption{
-    display: block;
-    font-size: 0;
+.article{
+    margin-bottom:40px ;
 }
+
 
 img {
     display: block;
     width: 60%;
-}
-
-.article{
-    margin-bottom:40px ;
 }
 
 </style>

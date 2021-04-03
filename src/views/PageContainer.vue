@@ -11,7 +11,7 @@
      
             <div class="buttons">
                 
-                <router-link :to="{ name: 'PageContainer', params: {datakey: Math.max(1,datakey-1) } }" >  
+                <router-link :to="{ name: 'PageContainer', params: {datakey: Math.max(1, parseInt(datakey)-1) } }" >  
                 <button class="button1" @click="minusone"> <b> &lt;  </b>  </button></router-link>
                
                 <i >Page {{ pagenum }}</i>
@@ -51,11 +51,11 @@
         },
         methods:{
             addone(){
-                this.pagenum =  Math.min( Math.max.apply(Math, publications), this.pagenum+1);
+                this.pagenum =  Math.min( Math.max.apply(Math, publications),  parseInt(this.pagenum)+1);
                 this.scrollToTop();
             },
             minusone(){
-                this.pagenum =  Math.max(1, this.pagenum-1);
+                this.pagenum =  Math.max(1,  parseInt(this.pagenum)-1);
                 this.scrollToTop();
             },
             scrollToTop(){
