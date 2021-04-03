@@ -27,7 +27,7 @@
 
             <p class="equation">
             $$ A * sin(bx+c)$$ 
-             </p> 
+            </p> 
 
             <p> The reduction factor varies sligthly for each part of the image, but we can assume it more or less constant, taking the 16 images and summing up their intensity we can simply make a fit that will  
             </p>  

@@ -15,6 +15,10 @@
 
             The components of interest in a MIEZE-TAS instrument are the sample behind the precession devices, the analyzer crystal of the TAS and the CASCADE detector, a time resolved PSD. In particular this means, their shape, geometric configuration  and rotation with respect to each other.
             </p>
+
+            <p class="equation">
+            $$ A * sin(bx+c)$$ 
+            </p> 
        
             <p> We can minimize this function obtaining the best \(\theta_D\) for each \(2\theta\). that means, that we can tilt the detector in order to obtain the best Reduction possible factor.
             But in the most general case we can have the sample rotated by an angle of \(\theta_S \), in that case the reduction factor is given by: 
