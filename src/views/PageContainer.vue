@@ -73,7 +73,6 @@
 
                //var pagenum = this.path.match(/\d+/g).map(Number)[0]
                var pahtpage = 'Latexpage' + this.pagenum +'.vue';
-               
                const Latexpage = defineAsyncComponent(() => import(`@/components/pages/${pahtpage}`));           
                return Latexpage
             }
