@@ -27,33 +27,28 @@
     </main>
   
   </div>
- 
+
 </template>
 
-<script>
 
+
+<script>
+    
 
     export default {
         name: "Latexpage2",
         methods: {
             reRender() {
-                if(window.MathJax) {
-                    console.log('rendering mathjax');
-                    window.MathJax.Hub.Queue(
-                        ["resetEquationNumbers",window.MathJax.InputJax.TeX],
-                        ["PreProcess",window.MathJax.Hub],
-                        ["Reprocess",window.MathJax.Hub]
-                        );         
-                    //window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub], () => console.log('done'));
-                }
+            if(window.MathJax) {
+                console.log('rendering mathjax'); 
+                window.MathJax.Hub.Typeset()    
+            }
             }
         },
         mounted() {
             this.reRender();
         },
- 
     };
-
 
 </script>
 
@@ -73,7 +68,7 @@ h1{
 
 .image_container{
      display: flex;
-    flex-direction: column;
+     flex-direction: column;
      align-items: center;
      justify-content: center;
 

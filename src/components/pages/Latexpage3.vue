@@ -62,12 +62,7 @@
             reRender() {
             if(window.MathJax) {
                 console.log('rendering mathjax');
-                    console.log('rendering mathjax');
-                    window.MathJax.Hub.Queue(
-                        ["resetEquationNumbers",window.MathJax.InputJax.TeX],
-                        ["PreProcess",window.MathJax.Hub],
-                        ["Reprocess",window.MathJax.Hub]
-                        );       
+                window.MathJax.Hub.Typeset()
             }
             }
         },
