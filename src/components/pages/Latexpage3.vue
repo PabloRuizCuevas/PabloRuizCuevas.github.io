@@ -19,7 +19,6 @@
                 $$  R_{sample} =   \lim_{N\to\infty}  \frac{1}{N}\sum_{ i = 0 }^{N} cos( { \Delta\psi_D})_i $$
 
                 The last thing we need to do is ensure that our approach gives the same result in the cases that we have an analytical formula.
-
             </p>
 
             <div class="image_container">

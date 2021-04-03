@@ -18,7 +18,7 @@
             </p>  
 
             <div class="image_container">
-                <img alt="Figure" src="../../images/figure.svg">
+                <img alt="Figure" src="/images/figure.svg">
             </div> 
 
         </div>

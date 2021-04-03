@@ -37,7 +37,7 @@
             </p>
 
             <div class="image_container">
-                <img alt="Figure" src="../../images/three_axis.jpg">   
+                <img alt="Figure" src="/images/three_axis.jpg">   
                 <figcaption>  Three axis geometry at MIRAII </figcaption>                   
             </div> 
 
@@ -61,7 +61,7 @@
             </p>
 
             <div class="image_container">
-                <img alt="Figure" src="../../images/figure.svg"> 
+                <img alt="Figure" src="/images/figure.svg"> 
                 <figcaption>  Three axis geometry and degrees of fredoom of the setup  \(\theta_2\) ,\(\theta_D\) and  \(\gamma\).  </figcaption>         
             </div> 
 
