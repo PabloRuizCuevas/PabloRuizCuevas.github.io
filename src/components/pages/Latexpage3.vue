@@ -37,12 +37,12 @@
 
         </div>
 
-<!--
+
         <div id="app">
             <input v-model="latex"/><br>
             <div :key="latex">{{latex}}</div>
         </div>
--->
+
     </main>
   
   </div>
