@@ -93,6 +93,7 @@
     font-weight: bold;
     color: rgb(10, 102, 172);
     margin-left: 0px;
+    margin-top:5px;
   }
 
   .logo {
@@ -104,7 +105,6 @@
   }
 
   .header a {
-   
     text-align:center;
     text-decoration: none;
     line-height: 25px;
@@ -113,6 +113,7 @@
     font-size: 16px;
     margin-left: 15px;
     margin-right: 15px;
+    margin-top:5px;
   }
 
   #header_letters {
@@ -163,6 +164,18 @@
       padding-right: 20px;
     }
 
+  }
+
+  @media only screen and (min-width: 1800px) {
+    .header a{
+      font-size: 1.4rem;
+    }
+    #nombre{
+      font-size: 2rem;
+    }
+    .logo{
+      height: 60px;
+    }
   }
 
   @keyframes line_animation {

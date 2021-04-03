@@ -6,8 +6,7 @@
     <div class="abstract">
         <h2>Abstract</h2>
         <p>
-        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
-
+        In this pages we will give a brief explanation about neutron experiments using the <b>MIEZE</b> technique. This technique is used at the MIRA experiment at the FRMII to infer magnetic properties of ferromagnet materials such as Iron or Nikel, but in general can be used in a wide variety of neutron scattering experiments.
         </p>
     </div>
 
@@ -56,10 +55,10 @@
             <h3> Geometric Reduction Factor, three axis geometry</h3>
            
             <p>
-                In order to calculate the geometric reduction factor we will reduce our problem to the one that was already presented in the literature [REFERENCE-quotation].
+                In order to calculate the geometric reduction factor we will reduce our problem to the one that was already presented in the literature <!--[REFERENCE-quotation].-->
             </p>
             <p>
-                This approach is justified since the analyzer reflects the beam keeping the rays parallel to each other, so it is easy to simplify the problem using the virtual image of it and we obtain a geometry that is already solved by the literature [see figure 1].
+                This approach is justified since the analyzer reflects the beam keeping the rays parallel to each other, so it is easy to simplify the problem using the virtual image of it and we obtain a geometry that is already solved by the literature [figure 1].
             </p>
 
             <div class="image_container">
@@ -82,7 +81,7 @@
             <h3> Geometric Reduction Factor of a cuboid </h3>
 
             <p> 
-                The reduction factor for a cuboin can be calculated analyticaly and the solugion is given by the literature [quote]. The following equation describes the reduction factor for a not tilted cuboid:
+                The reduction factor for a cuboin can be calculated analyticaly and the solugion is given by the literature <!--[quote]-->. The following equation describes the reduction factor for a not tilted cuboid:
             </p>  
             <div class="equation">
                 \(R= sinc \left (\frac{\pi\omega}{\Lambda} \cdot \frac{\sin{\theta_D}}{\cos(2 \theta - \theta_D)}\right )  sinc \left (\frac{\pi t}{\Lambda} \cdot \left [ \frac{\sin{\theta_D}}{\cos(2 \theta - \theta_D)} -1 \right ] \right )\)

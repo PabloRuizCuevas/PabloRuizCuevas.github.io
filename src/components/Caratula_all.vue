@@ -3,7 +3,7 @@
 
     <div class="container" >
      
-        <div> published on  {{dict.date}} </div>
+        <p> published on  {{dict.date}} </p>
         
         <router-link :to="{ name: 'PageContainer', params: {datakey:dict.datakey } }" >
 
@@ -53,6 +53,19 @@
         box-sizing: border-box
     }
 
+    @media screen and (min-width: 1800px) { /* it looks good in iphone */
+ 
+    }  
+
+/*
+    @media (min-resolution: 341dpi) and (min-width: 767px) {
+        
+    }
+
+    @media (max-resolution: 131dpi) and (min-width: 767px) {
+
+    }
+*/
     .container{
         display: flex;
         flex-wrap:       wrap;
@@ -61,7 +74,7 @@
         min-height: 100%;
         border-bottom: solid rgb(218, 216, 216) ;
         border-width: thin;
-        margin-top: 60px;
+        margin-top: 30px;
     }
     /*
     .image_container{

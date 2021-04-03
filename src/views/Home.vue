@@ -65,29 +65,6 @@ export default {
 
 @import "../style/latex.css";
 
-/*
-.particles{
-  position: absolute;
-  z-index: 0;
-}
-
-.path {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: dash 5s linear alternate infinite;
-}
-
-@keyframes dash {
-  from {
-    stroke-dashoffset: 822;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-*/
-
-
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -100,10 +77,6 @@ export default {
   max-width: 100%;
 }
 
-#pixelLeft, #pixelRight{
-  display: flex; 
-  flex:1;                      /* 3 */
-}
 #bannerCenter{
     display: flex;
     flex-direction: column;
@@ -115,17 +88,35 @@ export default {
 }
 
 #pixelRight,#pixelLeft{
+    display: flex; 
+    flex:1;                      /* 3 */
     background:rgb(255, 255, 255);
     z-index: 1;
+    justify-content: center;
 }
 
+.side{
+  width: 9.5vw;  
+}
+
+
+@media only screen and (min-width: 1800px) {
+  h1 {
+      font-size: 3rem;
+  }
+  p {
+      font-size: 1.2rem;
+  }
+}
 
 @media only screen and (min-width: 1500px) {
   #pixelRight,#pixelLeft{
       background:rgb(255, 255, 255);
       flex: 1.5;
   }
-
+  .side{
+    width: 7.5vw;  
+  }
 }
 
 @media only screen and (max-width: 1000px) {

@@ -110,8 +110,8 @@ p{
 }
 
 .columns{
-    min-height: calc(100vh - 290px);
-    margin-top: 50px;
+    min-height: calc(100vh - 250px);
+    margin-top: 10px;
 }
 
 .text{
@@ -133,8 +133,20 @@ p{
         -webkit-transform: scale(0.9); 
         transform: scale(0.9); 
         -webkit-transform-origin: 50% 50%;
-        transform-origin: 50% 50%;
+        transform-origin: 50% 0%;
         margin-left: -9px ;
+    }
+}  
+
+
+@media screen and (min-width: 1800px) { /* it looks good in iphone */
+    .card {
+        -webkit-transform: scale(0.9); 
+        transform: scale(1.2); 
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 0%;
+       
+        margin-bottom: 80px;
     }
 }  
 

@@ -39,7 +39,6 @@
               </svg>
               <p> <!--  -->
                   <strong> München, </strong>
-                  <strong> Germany</strong>
               </p>
           </div>
           <div class="phoneNo">
@@ -71,8 +70,8 @@
               <p class="email">pablo.r.c@live.com
                   <!-- <strong>email</strong>.com  --> </p>
               <p class="web">
-                  <strong>www</strong>.pablo_frmii.
-                  <strong>com</strong>
+                  <strong>www</strong>pabloruizcuevas.github
+                  <strong>io</strong>
               </p>
           </div>
       </div>
@@ -257,5 +256,8 @@ html {
   color: #343536;
 }
 
+p{
+    font-size: 1rem;
+}
 
 </style>

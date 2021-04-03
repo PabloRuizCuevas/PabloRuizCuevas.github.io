@@ -27,8 +27,7 @@
         position: fixed;
         align-content: center;
         width: 130px;
-        margin-left: 80px;
-        margin-top: 60px;
+        bottom: 120px;
     }
 
     /* Style buttons */

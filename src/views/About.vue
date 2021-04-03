@@ -7,11 +7,10 @@
         <div id="pixelLeft"><Side class="side "/></div>
         <div id="bannerCenter" >
           <div class="content" style="margin-top:40px">
-            <p> This webpage is intended to summarize my work at FRMII, during the year I have worked at this great institution I have developed many useful skills both at python data analysis and compresension about fundamental physics. 
+            <p> This webpage is intended to summarize my work at FRMII, during the year I have worked at this great institution, I have developed many useful skills, such as python data analysis or compresension about fundamental physics. 
               
-            The complexity of the topics and the deep implications on the fundamental physics motivated me to create this webpage. In this side I will try to share the knowdledge and the codes I build working at FRMII for over one year. 
+            The complexity of the neutron physics topics and the deep implications in fundamental physics, motivated me to create this webpage. In this website, I will try to share the knowdledge and soxe exemplary codes that I build working at FRMII for over one year. 
             </p>
-
             
             <div class="image_container">
                 <img src="../images/reactor.jpg">          
