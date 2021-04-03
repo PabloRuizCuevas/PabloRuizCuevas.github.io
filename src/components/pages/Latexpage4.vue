@@ -7,7 +7,7 @@
 
             <h1> Image analysis</h1>
 
-            <p>  We can calculate the reduction factor of the real images we get in the detector by analyzing them.  First we need to take the image from the mira detector and convert it to a matrix, we crop the image in the place we observe most of the neutrons collide, in the case we analize here we can observe clearly the footprint of the cilinder of nikel we used as a sample.</p>
+            <p>  We can calculate the reduction factor $R$ or  \(\theta_S \)  \(\theta_S \)  \(\theta_S \) of the real images we get in the detector by analyzing them.  First we need to take the image from the mira detector and convert it to a matrix, we crop the image in the place we observe most of the neutrons collide, in the case we analize here we can observe clearly the footprint of the cilinder of nikel we used as a sample.</p>
 
             <div class="image_container">
                 <img alt="Figure" src="/images/image2.png">
