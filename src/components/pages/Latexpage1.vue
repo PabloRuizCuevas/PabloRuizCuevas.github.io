@@ -15,11 +15,10 @@
             <h2> Introduction</h2>
 
             <p>
-
-                The <b>M</b>odulation of <b>I</b>nt<b>E</b>nsity with <b>Z</b>ero <b>E</b>ffort (<b>MIEZE</b>) techinque is a neutron scattering method dedicated to inelastic measurements with low energy transfers that require a correspondingly high energy resolution. The MIEZE technique is closely related to time-of-flight methods based on the concept of Lamor-precession labeling in neutron resonance spin echo (NRSE)
+            The <b>M</b>odulation of <b>I</b>nt<b>E</b>nsity with <b>Z</b>ero <b>E</b>ffort (<b>MIEZE</b>) techinque is a neutron scattering method dedicated to inelastic measurements with low energy transfers that require a correspondingly high energy resolution. The MIEZE technique is closely related to time-of-flight methods based on the concept of Lamor-precession labeling in neutron resonance spin echo (NRSE)
             </p>
             <p>
-                As a time-of-flight like measurement technique, the quality of the MIEZE signal is sensitive to flight path differences of the neutrons scattered in the experimental setup. There are a few possible geometries for neutrom beam, the sample and the detector, but use the three axis geometry at MIRAII, depicted in the figure bellow, using three axis we have enough degrees of freedom to minimize the destructive interferences of the neutron beam.
+            As a time-of-flight like measurement technique, the quality of the MIEZE signal is sensitive to flight path differences of the neutrons scattered in the experimental setup. There are a few possible geometries for neutrom beam, the sample and the detector, but use the three axis geometry at MIRAII, depicted in the figure bellow, using three axis we have enough degrees of freedom to minimize the destructive interferences of the neutron beam.
             </p>
 
             <h3> Instrument geometry </h3>
@@ -55,10 +54,10 @@
             <h3> Geometric Reduction Factor, three axis geometry</h3>
            
             <p>
-                In order to calculate the geometric reduction factor we will reduce our problem to the one that was already presented in the literature <!--[REFERENCE-quotation].-->
+            In order to calculate the geometric reduction factor we will reduce our problem to the one that was already presented in the literature. <!--[REFERENCE-quotation].-->
             </p>
             <p>
-                This approach is justified since the analyzer reflects the beam keeping the rays parallel to each other, so it is easy to simplify the problem using the virtual image of it and we obtain a geometry that is already solved by the literature [figure 1].
+            This approach is justified since the analyzer reflects the beam keeping the rays parallel to each other, so it is easy to simplify the problem using the virtual image of it and we obtain a geometry that is already solved by the literature [figure 1].
             </p>
 
             <div class="image_container">
@@ -68,12 +67,10 @@
 
             <p>
                Note that with this notation  \(\theta_2\) ,\(\theta_D\) and  \(\gamma\)  is given by:
-
-                $$ 2\theta =\arcsin{\frac{ \lambda}{2d_S}}$$
-                $$\gamma=\arccos{\frac{ \lambda}{2d_A} } $$
-                $$\theta_D= 2\theta -\theta_D' $$
             </p>
-
+            <div class="equation">
+                $$ 2\theta =\arcsin{\frac{ \lambda}{2d_S}}$$ $$\gamma=\arccos{\frac{ \lambda}{2d_A} } $$ $$\theta_D= 2\theta -\theta_D' $$
+            </div>
             <p>
                 where \(\gamma\) is the angle of incidence of the neutron beam with the analyzer, so arccos is used instead of arcsin (that would be for the complementary angle). And \(\theta_D\) who belong to the virtual plane is expressed in terms of the angles \(2\theta\) and \(\theta_D'\) of the real plane.
             </p>
