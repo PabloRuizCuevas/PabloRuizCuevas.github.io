@@ -142,37 +142,28 @@
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-
 <style scoped>
 
-/* <style scoped url="https://latex.now.sh/prism/prism.css" @import "../../style/latex.css";*/
+    .image_container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; 
+    }
 
+    .equation{
+        margin-top: 20px;
+        justify-content: center;
+        text-align: center;
+    }
 
- /*src="../style/latex.css"*/
+    .caption{
+        display: block;
+        font-size: 0;
+    }
 
-
- .image_container{
-     display: flex;
-    flex-direction: column;
-     align-items: center;
-     justify-content: center;
-
-}
-
-.equation{
-    margin-top: 20px;
-    justify-content: center;
-    text-align: center;
-}
-
-.caption{
-    display: block;
-    font-size: 0;
-}
-
-img {
-    display: block;
-    width: 60%;
-}
+    img {
+        display: block;
+        width: 60%;
+    }
 </style>
