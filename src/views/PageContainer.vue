@@ -15,6 +15,7 @@
                 <button class="button1" @click="minusone"> <b> &lt;  </b>  </button></router-link>
                
                 <i >Page {{ pagenum }}</i>
+                <!--<input v-on:keyup.enter="addone">-->
                 <router-link :to="{ name: 'PageContainer', params: {datakey: Math.min( maxpub, parseInt(datakey)+1 )  } }" > 
                 <button class="button1" @click="addone">  <b>  >   </b> </button></router-link>
             </div>
