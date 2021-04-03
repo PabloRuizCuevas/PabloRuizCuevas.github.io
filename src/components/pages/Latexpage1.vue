@@ -120,25 +120,17 @@
         methods: {
             reRender() {
             if(window.MathJax) {
-                console.log('rendering mathjax'); 
-                window.MathJax.Hub.Queue(
-                    ["resetEquationNumbers",window.MathJax.InputJax.TeX],
-                    ["PreProcess",window.MathJax.Hub],
-                    ["Reprocess",window.MathJax.Hub]
-                    );     
+                console.log('rendering mathjax');
+                window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub], () => console.log('done'));
+                window.MathJax.Hub.Rerender()
             }
             }
         },
         mounted() {
-
             this.reRender();
-
-            //let prism = document.createElement('script')
-            //prism.setAttribute('src',"https://cdn.jsdelivr.net/npm/prismjs/prism.min.js")
-            //document.head.appendChild(prism)
         },
+ 
     };
-
 
 
 </script>
