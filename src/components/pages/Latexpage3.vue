@@ -1,6 +1,6 @@
 
 <template>
-  <div class="page">
+  <div v-once class="page">
   
     <main>
         <div class="article">
@@ -68,7 +68,6 @@
         },
         mounted() {
             this.reRender();
-            
         }
 
         /*      

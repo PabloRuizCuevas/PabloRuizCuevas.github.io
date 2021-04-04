@@ -6,9 +6,9 @@
         <div id="bannerCenter">
 
             <!--<UP @click="scrollToTop" />-->
-        
-            <component :is="comp"> </component>
-     
+            <keep-alive>
+                <component :is="comp"> </component>
+            </keep-alive>
             <div class="buttons">
                 
                 <router-link :to="{ name: 'PageContainer', params: {datakey: Math.max(1, parseInt(datakey)-1) } }" >  
@@ -53,17 +53,17 @@
         methods:{
             addone(){
                 this.pagenum =  Math.min( Math.max.apply(Math, publications),  parseInt(this.pagenum)+1);
-                this.scrollToTop();
+                //this.scrollToTop();
              
             },
             minusone(){
                 this.pagenum =  Math.max(1,  parseInt(this.pagenum)-1);
-                this.scrollToTop();
+                //this.scrollToTop();
                 
             },
             scrollToTop(){
                 console.log("scroll to top")
-                setTimeout(() =>  window.scrollTo(0,0), 100); //delay till component load
+                setTimeout(() =>  window.scrollTo(0,0), 300); //delay till component load
             },      
         }
         ,

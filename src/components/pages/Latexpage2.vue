@@ -1,6 +1,6 @@
 
 <template>
-  <div  v-once  class="page">
+  <div class="page">
   
     <main>
         <div class="article">
@@ -19,9 +19,9 @@
 
             <div class="image_container">
                 <img alt="Figure" src="/images/figure.svg">
-            </div> 
+            </div>    
 
-            00:08
+            00:10
         </div>
 
     </main>
@@ -45,8 +45,13 @@
             //}, 
         },
         mounted() {
+            console.log("hts")
+            console.log( window.MathJax.Hub.getAllJax().length )
+            if(  window.MathJax.Hub.getAllJax().length > 0 ) {
+                this.reRender();
+            }
             //this.reRender()
-            setTimeout(() =>  this.reRender(),150);     
+              
         },
  
     };
