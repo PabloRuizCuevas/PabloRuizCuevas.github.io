@@ -67,11 +67,15 @@
                 console.log("this.componentKey")  
                 console.log(this.componentKey)
                 var pahtpage = 'Latexpage' + this.datakey +'.vue';
-                const Latexpage = defineAsyncComponent(() => import(`@/components/pages/${pahtpage}`));        
+                const Latexpage = defineAsyncComponent(() => import(`@/components/pages/${pahtpage}`));     
                 return Latexpage
             }
-            
-        },       
+        }, 
+        updated: function () {
+        this.$nextTick(function () {
+            console.log("uptade")
+        })
+}
      //   watch: {code
       //      comments(value) {
        //         this.allComments = value;

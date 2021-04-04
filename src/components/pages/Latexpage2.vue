@@ -21,9 +21,7 @@
                 <img alt="Figure" src="/images/figure.svg">
             </div> 
 
-            
-
-            00:12
+            00:13
         </div>
 
     </main>
@@ -33,23 +31,25 @@
 </template>
 
 <script>
+
+
     export default {
         name: "Latexpage2",
         methods: {
-            Render() {
-                if(window.MathJax) {
-                    //console.log('rendering mathjax');
-                    window.MathJax.Hub.Typeset()
-                }
-            },
-        },
-        created() {     
-          //  console.log('created');
+            reRender() {
+            if(window.MathJax) {
+                console.log('rendering mathjax');
+                window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub], () => console.log('done'));
+            }
+            }
         },
         mounted() {
-            this.Render();
+            this.reRender();
         },
+ 
     };
+
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -78,9 +78,10 @@ h1{
     margin-bottom:40px ;
 }
 
+/*
 img {
     display: block;
     width: 60%;
 }
-
+*/
 </style>

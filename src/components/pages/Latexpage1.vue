@@ -115,21 +115,21 @@
 
 <script>
 
+
     export default {
         name: "Latexpage1",
         methods: {
-            Render() {
-                if(window.MathJax) {
-                    window.MathJax.Hub.Typeset();
-                }
-            },
-        },
-        created() {
-            //console.log("crecreated")
+            reRender() {
+            if(window.MathJax) {
+                console.log('rendering mathjax');
+                window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub], () => console.log('done'));
+            }
+            }
         },
         mounted() {
-            this.Render();  
+            this.reRender();
         },
+ 
     };
 
 

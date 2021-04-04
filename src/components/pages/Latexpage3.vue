@@ -15,7 +15,7 @@
                 And where  \( \Lambda  \)  is the distance traveled by a neutron of velocity v over one period of the oscillating signal. So the general equation for the reduction factor will be the integral over the  \( cos(\Delta \psi_D) \) over all possible neutron sample interaction points.
                 $$ R_{sample} =  \frac{ \int{ cos( { \Delta\psi_D} ) dV }}{V} $$
 
-                This integral, is has not always an analytical solution but is easy to calculate by a standard MC algorithm. First of all we will need a evenly distributed cluster of 3D random points inside our sample shape. And then we will average over all the $cos( { \Delta\psi_D} )$ of the random points. So we end up having the next equation:
+                This integral, is has not always an analytical solution but is easy to calculate by a standard MC algorithm. First of all we will need a evenly distributed cluster of 3D random points inside our sample shape. And then we will average over all the $cos(\Delta\psi_D)$ of the random points. So we end up having the next equation:
                 $$  R_{sample} =   \lim_{N\to\infty}  \frac{1}{N}\sum_{ i = 0 }^{N} cos( { \Delta\psi_D})_i $$
 
                 The last thing we need to do is ensure that our approach gives the same result in the cases that we have an analytical formula.
@@ -61,8 +61,8 @@
         methods: {
             reRender() {
                 if(window.MathJax) {
-                    console.log('rendering mathjax');
-                    window.MathJax.Hub.Typeset()
+                console.log('rendering mathjax');
+                //window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub], () => console.log('done'));
                 }
             },
         },
@@ -116,10 +116,10 @@ h1{
     margin-bottom:40px ;
 }
 
-
+/*
 img {
     display: block;
     width: 60%;
 }
-
+*/
 </style>
