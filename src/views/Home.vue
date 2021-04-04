@@ -63,6 +63,7 @@ export default {
 
 <style>
 
+
 @import "../style/latex.css";
 
 #app {
