@@ -1,6 +1,6 @@
 
 <template>
-  <div class="page">
+  <div  v-once  class="page">
   
     <main>
         <div class="article">
@@ -21,7 +21,7 @@
                 <img alt="Figure" src="/images/figure.svg">
             </div> 
 
-            00:07
+            00:08
         </div>
 
     </main>
@@ -35,16 +35,18 @@
         name: "Latexpage2",
         methods: {
             reRender() {
-            if(window.MathJax) {
-                console.log('rendering mathjax');
-                window.MathJax.Hub.Typeset()
-            }
-            }
+                if(window.MathJax) {
+                    console.log('rendering mathjax');
+                    window.MathJax.Hub.Typeset()
+                }
+            },
+            //scrollToTop(){
+            //    window.scrollTo(0,0)
+            //}, 
         },
         mounted() {
-            this.reRender();
-            //if(window.MathJax) {window.MathJax.Hub.Rerender() }
-            //MathJax.Hub.getAllJax()
+            //this.reRender()
+            setTimeout(() =>  this.reRender(),150);     
         },
  
     };

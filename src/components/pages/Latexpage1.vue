@@ -128,6 +128,7 @@
         },
         mounted() {
             this.reRender();
+            window.scrollTo(0,0);
         },
  
     };

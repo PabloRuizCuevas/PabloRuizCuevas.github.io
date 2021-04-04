@@ -54,16 +54,16 @@
             addone(){
                 this.pagenum =  Math.min( Math.max.apply(Math, publications),  parseInt(this.pagenum)+1);
                 this.scrollToTop();
-                window.MathJax.Hub.Rerender()
+             
             },
             minusone(){
                 this.pagenum =  Math.max(1,  parseInt(this.pagenum)-1);
                 this.scrollToTop();
-                window.MathJax.Hub.Rerender()
+                
             },
             scrollToTop(){
-                //console.log("scroll to top")
-                window.scrollTo(0,0);
+                console.log("scroll to top")
+                setTimeout(() =>  window.scrollTo(0,0), 100); //delay till component load
             },      
         }
         ,
@@ -76,7 +76,7 @@
 
                //var pagenum = this.path.match(/\d+/g).map(Number)[0]
                var pahtpage = 'Latexpage' + this.pagenum +'.vue';
-               const Latexpage = defineAsyncComponent(() => import(`@/components/pages/${pahtpage}`));           
+               const Latexpage = defineAsyncComponent(() => import(`@/components/pages/${pahtpage}`));        
                return Latexpage
             }
             
