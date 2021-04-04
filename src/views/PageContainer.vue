@@ -54,10 +54,12 @@
             addone(){
                 this.pagenum =  Math.min( Math.max.apply(Math, publications),  parseInt(this.pagenum)+1);
                 this.scrollToTop();
+                window.MathJax.Hub.Rerender()
             },
             minusone(){
                 this.pagenum =  Math.max(1,  parseInt(this.pagenum)-1);
                 this.scrollToTop();
+                window.MathJax.Hub.Rerender()
             },
             scrollToTop(){
                 //console.log("scroll to top")

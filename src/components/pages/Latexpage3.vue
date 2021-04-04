@@ -68,6 +68,12 @@
         },
         mounted() {
             this.reRender();
+            
+        }
+
+        /*      
+        mounted() {
+            this.reRender();
         },
         watch: {
             latex: function() {
@@ -77,6 +83,7 @@
             });
             }
         }
+        */
     };
 
 </script>
