@@ -120,8 +120,10 @@
         methods: {
             reRender() {
             if(window.MathJax) {
-                console.log('rendering mathjax');
                 window.MathJax.Hub.Rerender()
+                console.log('rendering mathjax');
+                window.MathJax.Hub.Typeset()
+               
             }
             }
         },
