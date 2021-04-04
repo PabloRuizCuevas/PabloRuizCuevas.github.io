@@ -21,7 +21,7 @@
                 <img alt="Figure" src="/images/figure.svg">
             </div> 
 
-            00:06
+            00:07
         </div>
 
     </main>
@@ -37,13 +37,14 @@
             reRender() {
             if(window.MathJax) {
                 console.log('rendering mathjax');
-                window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub], () => console.log('done'));
+                window.MathJax.Hub.Typeset()
             }
             }
         },
         mounted() {
             this.reRender();
-            window.MathJax.Hub.Rerender()
+            //if(window.MathJax) {window.MathJax.Hub.Rerender() }
+            //MathJax.Hub.getAllJax()
         },
  
     };
@@ -75,5 +76,9 @@ h1{
     margin-bottom:40px ;
 }
 
+img {
+    display: block;
+    width: 60%;
+}
 
 </style>
