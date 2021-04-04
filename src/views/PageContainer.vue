@@ -7,7 +7,7 @@
 
             <!--<UP @click="scrollToTop" />-->
             
-            <component :is="comp"> </component>
+            <component :is="comp" :key="componentKey"> </component>
             
             <div class="buttons">
                 
@@ -46,7 +46,8 @@
         data() {
             return{
                 maxpub: Math.max.apply(Math, publications),
-                code: dict[this.datakey].code
+                code: dict[this.datakey].code,
+                componentKey: 0,
             }
         },
         methods:{
@@ -54,14 +55,20 @@
                 console.log("scroll to top")
                 //setTimeout(() =>  window.scrollTo(0,0), 250); //delay till component load
                 window.scrollTo(0,0)
-            },      
+            },
+            forceRerender() {
+                this.componentKey += 1;
+            }
         }
         ,
         computed: {
             comp() {
-               var pahtpage = 'Latexpage' + this.datakey +'.vue';
-               const Latexpage = defineAsyncComponent(() => import(`@/components/pages/${pahtpage}`));        
-               return Latexpage
+                this.forceRerender() 
+                console.log("this.componentKey")  
+                console.log(this.componentKey)
+                var pahtpage = 'Latexpage' + this.datakey +'.vue';
+                const Latexpage = defineAsyncComponent(() => import(`@/components/pages/${pahtpage}`));        
+                return Latexpage
             }
             
         },       
