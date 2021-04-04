@@ -11,12 +11,12 @@
             
             <div class="buttons">
                 
-                <router-link @click="scrollToTop" :to="{ name: 'PageContainer', params: {datakey: Math.max(1, parseInt(datakey)-1) } }" >  
+                <router-link :to="{ name: 'PageContainer', params: {datakey: Math.max(1, parseInt(datakey)-1) } }">  
                 <button class="button1"> <b> &lt;  </b>  </button></router-link>
                
                 <i >Page {{ datakey }}</i>
-                <!--<input v-on:keyup.enter="addone">-->
-                <router-link @click="scrollToTop" :to="{ name: 'PageContainer', params: {datakey: Math.min( maxpub, parseInt(datakey)+1 )  } }" > 
+                <!--<input v-on:keyup.enter="addone">   @click="scrollToTop"   -->
+                <router-link :to="{ name: 'PageContainer', params: {datakey: Math.min( maxpub, parseInt(datakey)+1 )  } }" > 
                 <button class="button1">  <b>  >   </b> </button></router-link>
                 <!--  <button class="button1" @click="addone">  <b>  >   </b> </button> -->
             </div>
@@ -30,7 +30,7 @@
 <script>
 
     import Side2 from  '../components/Side_summary.vue'
-    import UP from  '../components/Go_up_button.vue'
+   // import UP from  '../components/Go_up_button.vue'
     import { defineAsyncComponent } from 'vue'
     const { publications ,dict } = require('../pages.js')
 
@@ -38,7 +38,6 @@
         name: 'PageContainer',
         components: {
             Side2,
-            UP,
         },
         props: {
             datakey: String,
