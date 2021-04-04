@@ -118,19 +118,18 @@
     export default {
         name: "Latexpage1",
         methods: {
-            reRender() {
-            if(window.MathJax) {
-                console.log('rendering mathjax');
-                window.MathJax.Hub.Typeset()
-               
-            }
-            }
+            Render() {
+                if(window.MathJax) {
+                    window.MathJax.Hub.Typeset();
+                }
+            },
+        },
+        created() {
+            //console.log("crecreated")
         },
         mounted() {
-            this.reRender();
-            window.scrollTo(0,0);
+            this.Render();  
         },
- 
     };
 
 

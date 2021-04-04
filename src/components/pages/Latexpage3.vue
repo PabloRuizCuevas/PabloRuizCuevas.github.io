@@ -60,20 +60,18 @@
         },
         methods: {
             reRender() {
-            if(window.MathJax) {
-                console.log('rendering mathjax');
-                window.MathJax.Hub.Typeset()
-            }
+                if(window.MathJax) {
+                    console.log('rendering mathjax');
+                    window.MathJax.Hub.Typeset()
+                }
             },
-            scrollToTop(){
-                console.log("scroll to top page")
-                setTimeout(() =>  window.scrollTo(0,0), 100); //delay till component load
-            },      
+        },
+        created() {
+               
         },
         mounted() {
-            this.reRender();
-            this.scrollToTop();
-        }
+            this.reRender();  
+        },
 
         /*      
         mounted() {

@@ -6,18 +6,19 @@
         <div id="bannerCenter">
 
             <!--<UP @click="scrollToTop" />-->
-            <keep-alive>
-                <component :is="comp"> </component>
-            </keep-alive>
+            
+            <component :is="comp"> </component>
+            
             <div class="buttons">
                 
-                <router-link :to="{ name: 'PageContainer', params: {datakey: Math.max(1, parseInt(datakey)-1) } }" >  
-                <button class="button1" @click="minusone"> <b> &lt;  </b>  </button></router-link>
+                <router-link @click="scrollToTop" :to="{ name: 'PageContainer', params: {datakey: Math.max(1, parseInt(datakey)-1) } }" >  
+                <button class="button1"> <b> &lt;  </b>  </button></router-link>
                
-                <i >Page {{ pagenum }}</i>
+                <i >Page {{ datakey }}</i>
                 <!--<input v-on:keyup.enter="addone">-->
-                <router-link :to="{ name: 'PageContainer', params: {datakey: Math.min( maxpub, parseInt(datakey)+1 )  } }" > 
-                <button class="button1" @click="addone">  <b>  >   </b> </button></router-link>
+                <router-link @click="scrollToTop" :to="{ name: 'PageContainer', params: {datakey: Math.min( maxpub, parseInt(datakey)+1 )  } }" > 
+                <button class="button1">  <b>  >   </b> </button></router-link>
+                <!--  <button class="button1" @click="addone">  <b>  >   </b> </button> -->
             </div>
 
         </div>
@@ -45,42 +46,26 @@
         },
         data() {
             return{
-                pagenum: this.datakey,  // this.path.match(/\d+/g).map(Number)[0],
                 maxpub: Math.max.apply(Math, publications),
                 code: dict[this.datakey].code
             }
         },
         methods:{
-            addone(){
-                this.pagenum =  Math.min( Math.max.apply(Math, publications),  parseInt(this.pagenum)+1);
-                this.scrollToTop();
-             
-            },
-            minusone(){
-                this.pagenum =  Math.max(1,  parseInt(this.pagenum)-1);
-                this.scrollToTop();
-                
-            },
             scrollToTop(){
                 console.log("scroll to top")
-                setTimeout(() =>  window.scrollTo(0,0), 250); //delay till component load
+                //setTimeout(() =>  window.scrollTo(0,0), 250); //delay till component load
+                window.scrollTo(0,0)
             },      
         }
         ,
         computed: {
             comp() {
-               //console.log("datakey y maxpub");
-               //console.log(this.path);
-               //console.log(this.datakey);
-               //console.log(this.maxpub);
-
-               //var pagenum = this.path.match(/\d+/g).map(Number)[0]
-               var pahtpage = 'Latexpage' + this.pagenum +'.vue';
+               var pahtpage = 'Latexpage' + this.datakey +'.vue';
                const Latexpage = defineAsyncComponent(() => import(`@/components/pages/${pahtpage}`));        
                return Latexpage
             }
             
-        },
+        },       
      //   watch: {code
       //      comments(value) {
        //         this.allComments = value;

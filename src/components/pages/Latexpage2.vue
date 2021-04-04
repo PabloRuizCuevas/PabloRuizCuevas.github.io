@@ -19,7 +19,9 @@
 
             <div class="image_container">
                 <img alt="Figure" src="/images/figure.svg">
-            </div>    
+            </div> 
+
+            
 
             00:11
         </div>
@@ -34,26 +36,19 @@
     export default {
         name: "Latexpage2",
         methods: {
-            reRender() {
+            Render() {
                 if(window.MathJax) {
-                    console.log('rendering mathjax');
+                    //console.log('rendering mathjax');
                     window.MathJax.Hub.Typeset()
                 }
             },
-            //scrollToTop(){
-            //    window.scrollTo(0,0)
-            //}, 
+        },
+        created() {     
+          //  console.log('created');
         },
         mounted() {
-            console.log("hts")
-            console.log( window.MathJax.Hub.getAllJax().length )
-            if(  window.MathJax.Hub.getAllJax().length == 0 ) {
-                this.reRender();
-            
-            //this.reRender()
-              
+            this.Render();
         },
- 
     };
 </script>
 
