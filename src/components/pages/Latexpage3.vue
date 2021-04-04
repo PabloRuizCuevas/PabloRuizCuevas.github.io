@@ -1,6 +1,6 @@
 
 <template>
-  <div v-once class="page">
+  <div class="page">
   
     <main>
         <div class="article">
@@ -64,10 +64,15 @@
                 console.log('rendering mathjax');
                 window.MathJax.Hub.Typeset()
             }
-            }
+            },
+            scrollToTop(){
+                console.log("scroll to top page")
+                setTimeout(() =>  window.scrollTo(0,0), 100); //delay till component load
+            },      
         },
         mounted() {
             this.reRender();
+            this.scrollToTop();
         }
 
         /*      

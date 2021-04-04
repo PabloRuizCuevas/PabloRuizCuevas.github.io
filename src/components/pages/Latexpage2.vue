@@ -47,9 +47,9 @@
         mounted() {
             console.log("hts")
             console.log( window.MathJax.Hub.getAllJax().length )
-            if(  window.MathJax.Hub.getAllJax().length > 0 ) {
+            if(  window.MathJax.Hub.getAllJax().length == 0 ) {
                 this.reRender();
-            }
+            
             //this.reRender()
               
         },
