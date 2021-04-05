@@ -30,6 +30,8 @@
 
 </template>
 
+
+
 <script>
 
 
@@ -78,10 +80,10 @@ h1{
     margin-bottom:40px ;
 }
 
-/*
+
 img {
     display: block;
     width: 60%;
 }
-*/
+
 </style>

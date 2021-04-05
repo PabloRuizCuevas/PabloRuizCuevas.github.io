@@ -36,11 +36,12 @@
 
         </div>
 
-
+        <!--
         <div id="app">
             <input v-model="latex"/><br>
             <div :key="latex">{{latex}}</div>
         </div>
+        -->
 
     </main>
   
@@ -48,6 +49,8 @@
 
  
 </template>
+
+
 
 <script>
 
@@ -59,18 +62,13 @@
             }
         },
         methods: {
-            reRender() {
-                if(window.MathJax) {
-                console.log('rendering mathjax');
-                //window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub], () => console.log('done'));
-                }
-            },
+
         },
         created() {
                
         },
         mounted() {
-            this.reRender();  
+             
         },
 
         /*      
@@ -116,10 +114,10 @@ h1{
     margin-bottom:40px ;
 }
 
-/*
+
 img {
     display: block;
     width: 60%;
 }
-*/
+
 </style>

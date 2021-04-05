@@ -71,11 +71,16 @@
                 return Latexpage
             }
         }, 
+        
+        /*
         updated: function () {
         this.$nextTick(function () {
             console.log("uptade")
         })
-}
+        
+        }
+        */
+
      //   watch: {code
       //      comments(value) {
        //         this.allComments = value;
