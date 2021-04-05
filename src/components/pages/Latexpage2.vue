@@ -21,7 +21,7 @@
                 <img alt="Figure" src="/images/figure.svg">
             </div> 
 
-            00:13
+            <p>00:13</p>
         </div>
 
     </main>
