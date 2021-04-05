@@ -7,7 +7,7 @@
 
             <h1> MIEZE Theory</h1>
 
-            <p>  As a time-of-flight like measurement technique, the quality of the MIEZE signal is sensitive to flight path differences of the neutrons scattered in the experimental setup. This destruction/damping of the MIEZE signal compared to the undisturbed, only elastically scattered neutron beam is expressed by the reduction factor $R$, which unintuitively is supposed to be as high, close to 1, as possible. In this work we aim to calculate the reduction factor of a three-axis spectrometer (TAS) with enhanced energy resolution by means of an integrated MIEZE setup (MIEZETOP). Here, we consider solely the influence of instrument layout and sample geometry, which are the major contributions to the geometric reduction factor. The components of interest in a MIEZE-TAS instrument are the sample behind the precession devices, the analyzer crystal of the TAS and the CASCADE detector, a time resolved PSD. In particular this means, their shape, geometric configuration  and rotation with respect to each other.
+            <p>  As a time-of-flight {{latex2}} like measurement technique, the quality of the MIEZE signal is sensitive to flight path differences of the neutrons scattered in the experimental setup. This destruction/damping of the MIEZE signal compared to the undisturbed, only elastically scattered neutron beam is expressed by the reduction factor $R$, which unintuitively is supposed to be as high, close to 1, as possible. In this work we aim to calculate the reduction factor of a three-axis spectrometer (TAS) with enhanced energy resolution by means of an integrated MIEZE setup (MIEZETOP). Here, we consider solely the influence of instrument layout and sample geometry, which are the major contributions to the geometric reduction factor. The components of interest in a MIEZE-TAS instrument are the sample behind the precession devices, the analyzer crystal of the TAS and the CASCADE detector, a time resolved PSD. In particular this means, their shape, geometric configuration  and rotation with respect to each other.
             </p>
 
             <p class="equation">
@@ -21,7 +21,7 @@
                 <img alt="Figure" src="/images/figure.svg">
             </div> 
 
-            <p>00:13</p>
+            <p>00:14</p>
         </div>
 
     </main>
