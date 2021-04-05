@@ -39,7 +39,7 @@
         name: "Latexpage2",
         data() {
             return {
-            latex2: '$\frac{ |A| }{c}$'
+                latex2: '$$'
             }
         },
         methods: {

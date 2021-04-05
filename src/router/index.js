@@ -6,7 +6,6 @@ import PageContainer from "../views/PageContainer.vue"
 //const { dict } = require('../pages.js')
 //dict[0]
 
-
 const routes = [
   {
     path: '/',
@@ -53,18 +52,10 @@ const router = createRouter({
       return { x: 0, y: 0 }
     }
   }
-
-
-
   //scrollBehavior () {
   //  return { x: 0, y: 0 }
  // }
-  
-  
-  
-  
 })
 
 
 export default router
-

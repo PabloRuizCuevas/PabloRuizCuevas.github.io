@@ -36,7 +36,7 @@ export default {
 
 </script>
 
-<style soped>
+<style>
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
