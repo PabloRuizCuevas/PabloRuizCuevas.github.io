@@ -37,6 +37,11 @@
 
     export default {
         name: "Latexpage2",
+        data() {
+            return {
+            latex2: '$\frac{ |A| }{c}$'
+            }
+        },
         methods: {
             reRender() {
             if(window.MathJax) {
