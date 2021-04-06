@@ -9,7 +9,7 @@
         <div  class="Slider" dir="">
             
             <Slider v-model="theta2" :min="0" :max="90"/>
-            <div style="text-align: center;">$\theta_2$</div>
+            <div style="text-align: center;">$\theta_2${{}}</div>
         </div>
         <div class="Slider">
             <Slider v-model="gamma" :min="12" :max="70" />
