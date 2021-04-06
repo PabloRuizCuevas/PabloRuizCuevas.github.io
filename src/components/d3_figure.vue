@@ -8,15 +8,15 @@
     <div class="slidercontainer">
         <div  class="Slider" dir="">
             <Slider v-model="theta2" :min="0" :max="90"/>
-            <div style="text-align: center;">$\theta_2$</div>
+            <div style="text-align: center;">{{theta2s}}</div>
         </div>
         <div class="Slider">
             <Slider v-model="gamma" :min="12" :max="70" />
-            <div style="text-align: center;">$\gamma$</div>
+            <div style="text-align: center;">{{gammas}}</div>
         </div>
         <div class="Slider">
             <Slider v-model="thetaD" :min="-70" :max="70" />
-            <div style="text-align: center;">$\theta_D$</div>
+            <div style="text-align: center;">{{theta_Ds}}</div>
         </div>
     </div>
     
@@ -65,6 +65,9 @@
     export default {
         name: "D3component",
         props:{
+            theta2s: String,
+            gammas: String,
+            theta_Ds: String,
 
         },
         data() {
