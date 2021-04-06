@@ -5,7 +5,7 @@
     .slider-connect,.slider-origin{will-change:transform;position:absolute;z-index:1;top:0;right:0;-ms-transform-origin:0 0;-webkit-transform-origin:0 0;-webkit-transform-style:preserve-3d;transform-origin:0 0;transform-style:flat}
     .slider-connect{height:100%;width:100%}.slider-origin{height:10%;width:10%}
     .slider-txt-dir-rtl.slider-horizontal .slider-origin{left:0;right:auto}
-    .slider-vertical .slider-origin{width:0}.
+    .slider-vertical .slider-origin{width:0}
     .slider-horizontal .slider-origin{height:0}
     .slider-handle{-webkit-backface-visibility:hidden;backface-visibility:hidden;position:absolute}
     .slider-touch-area{height:100%;width:100%}
