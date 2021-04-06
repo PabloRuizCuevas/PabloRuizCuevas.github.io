@@ -103,7 +103,6 @@
                 For performing an accurate optimization without falling in a local minimum we have used n different equally spaced origins of each optimization problem and then we keep the best optimum.
             </p>
 
-
         </div>
     
     </main>
@@ -114,10 +113,17 @@
 </template>
 
 <script>
-
-
+    
     export default {
         name: "Latexpage1",
+        components: {
+          
+        },
+        data() {
+            return {
+            data: [10, 40, 15, 25, 50],
+            };
+        },
         methods: {
             reRender() {
             if(window.MathJax) {

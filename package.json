@@ -9,8 +9,10 @@
     "deploy": "node scripts/gh-pages-deploy.js"
   },
   "dependencies": {
+    "@vueform/slider": "^1.0.3",
     "core-js": "^3.6.5",
     "createServer": "^3.0.0",
+    "d3": "^6.6.2",
     "dynamics.js": "^1.1.5",
     "fs": "^0.0.1-security",
     "http": "^0.0.1-security",
