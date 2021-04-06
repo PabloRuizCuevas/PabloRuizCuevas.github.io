@@ -52,7 +52,7 @@
             }
         },
         mounted() {
-            this.reRender();
+           // this.reRender();
         },
  
     };
