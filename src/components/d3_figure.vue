@@ -6,9 +6,7 @@
     <input v-model="thetaD" placeholder="edit me"> -->
 
     <div class="slidercontainer">
-        {{}}
         <div  class="Slider" dir="">
-            
             <Slider v-model="theta2" :min="0" :max="90"/>
             <div style="text-align: center;">$\theta_2$</div>
         </div>
@@ -94,15 +92,10 @@
             Slider
         },
         methods: {
-            reRender() {
-            if(window.MathJax) {
-                console.log('rendering mathjax');
-                window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub], () => console.log('done'));
-            }
-            }
+
         },
         mounted() {
-            this.reRender();
+       
         },
         computed:{
             y1() {
