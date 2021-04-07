@@ -11,7 +11,7 @@
             </p>
 
             <p class="equation">
-                $$R = \frac{ |A| }{c}$$
+               {{latex3}}
             </p> 
  
             <p> We can minimize this function obtaining the best $\theta_D$ for each $2\theta$. that means, that we can tilt the detector in order to obtain the best Reduction possible factor. But in the most general case we can have the sample rotated by an angle of $\theta_S$, in that case the reduction factor is given by: 
@@ -38,6 +38,7 @@
         data() {
             return {
                 latex2:'$1$',
+                latex3: '$$R = \\frac{ |A| }{c}$$ ',
                 theta2s: '$\\theta_2$',
                 gammas: '$\\gamma$',
                 theta_Ds: '$\\theta_D$',
@@ -67,32 +68,39 @@
 
 <style scoped>
 
-.equation{
-    justify-content: center;
-    text-align: center;
-}
+    .equation{
+        justify-content: center;
+        text-align: center;
+    }
 
-h1{
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
+    h1{
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
 
-.image_container{
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
+    .image_container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; 
+    }
 
-}
+    .equation{
+        margin-top: 20px;
+        justify-content: center;
+        text-align: center;
+    }
 
-.article{
-    margin-bottom:40px ;
-}
+    figcaption{
+        display: block;
+        width: 80%;
+        text-align: center;
+        font-size: 0.9rem;
+    }
 
-
-img {
-    display: block;
-    width: 60%;
-}
+    img {
+        display: block;
+        max-width: 60%;
+    }
 
 </style>

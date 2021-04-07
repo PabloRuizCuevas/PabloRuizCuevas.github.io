@@ -33,7 +33,7 @@
             The components of interest in a MIEZE-TAS instrument are the sample behind the precession devices, the analyzer crystal of the TAS and the CASCADE detector, a time resolved PSD. In particular this means, their shape, geometric configuration  and rotation with respect to each other.
             </p>
             <p> 
-            Fundamentally, the instruments consist of a neutron beam preparation stage, behind which the neutrons hit a sample get scattered with an angle of \(2\theta\) (for powders and single crystals given by the Bragg's law) then hit the analyzer (tilted  \(\gamma \) ), are reflected again and finally are absorbed in the CASCADE detector that is tilted with an angle of  \( \theta_I \).
+            Fundamentally, the instruments consist of a neutron beam preparation stage, behind which the neutrons hit a sample get scattered with an angle of \(2\theta\) (for powders and single crystals given by the Bragg's law) then hit the analyzer (tilted  \(\gamma \) ), are reflected again and finally are absorbed in the CASCADE detector that is tilted with an angle of  \( \theta_D \).
             </p>
 
             <div class="image_container">
@@ -57,28 +57,28 @@
             In order to calculate the geometric reduction factor we will reduce our problem to the one that was already presented in the literature. <!--[REFERENCE-quotation].-->
             </p>
             <p>
-            This approach is justified since the analyzer reflects the beam keeping the rays parallel to each other, so it is easy to simplify the problem using the virtual image of it and we obtain a geometry that is already solved by the literature [figure 1].
+            This approach is justified since the analyzer reflects the beam keeping the rays parallel to each other, so it is easy to simplify the problem. We will use the virtual image of the detector to obtain a two axis geometry that is already solved by the literature [figure 1].
             </p>
 
             <div class="image_container">
                 <img alt="Figure" src="/images/figure.svg"> 
-                <figcaption>  Three axis geometry and degrees of fredoom of the setup  \(\theta_2\) ,\(\theta_D\) and  \(\gamma\).  </figcaption>         
+                <figcaption>  Three axis geometry and degrees of fredoom of the setup  \(\theta_2\) ,\(\theta_D\) and  \(\gamma\), the real detector in blue is projected to his virtual image at the top of the image.  </figcaption>         
             </div> 
 
             <p>
                Note that with this notation  \(\theta_2\) ,\(\theta_D\) and  \(\gamma\)  is given by:
             </p>
             <div class="equation">
-                $$ 2\theta =\arcsin{\frac{ \lambda}{2d_S}}$$ $$\gamma=\arccos{\frac{ \lambda}{2d_A} } $$ $$\theta_D= 2\theta -\theta_D' $$
+                $$ \theta_2 =\arcsin{\frac{ \lambda}{2d_S}}$$ $$\gamma=\arccos{\frac{ \lambda}{2d_A} } $$ $$\theta_D= 2\theta -\theta_D' $$
             </div>
             <p>
-                where \(\gamma\) is the angle of incidence of the neutron beam with the analyzer, so arccos is used instead of arcsin (that would be for the complementary angle). And \(\theta_D\) who belong to the virtual plane is expressed in terms of the angles \(2\theta\) and \(\theta_D'\) of the real plane.
+                Where \(\gamma\) is the angle of incidence of the neutron beam with the analyzer, so arccos is used instead of arcsin (that would be for the complementary angle). And \(\theta_D\) who belong to the virtual plane is expressed in terms of the angles \(2\theta\) and \(\theta_D'\) of the real plane.
             </p>
 
             <h3> Geometric Reduction Factor of a cuboid </h3>
 
             <p> 
-                The reduction factor for a cuboin can be calculated analyticaly and the solugion is given by the literature <!--[quote]-->. The following equation describes the reduction factor for a not tilted cuboid:
+                The reduction factor for a cuboid can be calculated analyticaly and the solugion is given by the literature <!--[quote]-->. The following equation describes the reduction factor for a not tilted cuboid:
             </p>  
             <div class="equation">
                 \(R= sinc \left (\frac{\pi\omega}{\Lambda} \cdot \frac{\sin{\theta_D}}{\cos(2 \theta - \theta_D)}\right )  sinc \left (\frac{\pi t}{\Lambda} \cdot \left [ \frac{\sin{\theta_D}}{\cos(2 \theta - \theta_D)} -1 \right ] \right )\)
@@ -117,7 +117,7 @@
     export default {
         name: "Latexpage1",
         components: {
-          
+
         },
         data() {
             return {
@@ -156,9 +156,11 @@
         text-align: center;
     }
 
-    .caption{
+    figcaption{
         display: block;
-        font-size: 0;
+        width: 80%;
+        text-align: center;
+        font-size: 0.9rem;
     }
 
     img {

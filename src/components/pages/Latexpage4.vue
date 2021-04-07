@@ -97,27 +97,62 @@
 
 <style scoped>
 
-.equation{
-    justify-content: center;
-    text-align: center;
-}
+    .equation{
+        justify-content: center;
+        text-align: center;
+    }
 
-h1{
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
+    h1{
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
 
-.image_container{
-     display: flex;
-    flex-direction: column;
-     align-items: center;
-     justify-content: center;
+    .image_container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
-}
+    }
 
-.article{
-    margin-bottom:40px ;
-}
+    .article{
+        margin-bottom:40px ;
+    }
 
+
+    .equation{
+        justify-content: center;
+        text-align: center;
+    }
+
+    h1{
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .image_container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; 
+    }
+
+    .equation{
+        margin-top: 20px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    figcaption{
+        display: block;
+        width: 80%;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    img {
+        display: block;
+        max-width: 60%;
+    }
 
 </style>
