@@ -11,7 +11,7 @@
             <div style="text-align: center;">{{theta2s}}</div>
         </div>
         <div class="Slider">
-            <Slider v-model="gamma" :min="12" :max="70" />
+            <Slider v-model="gamma" :min="18" :max="70" />
             <div style="text-align: center;">{{gammas}}</div>
         </div>
         <div class="Slider">
@@ -28,7 +28,6 @@
 
             <rect  class="sample" :width="sample.width" :height="sample.height" 
             fill-opacity="0.8" :x="sample.xc" :y="sample.yc"/>
-            <!--<circle class="sample" :cx="x2" :cy="y1" :r="radius"/>-->.
 
             <rect class="sample analyzer" :width="analyzer.width" :height="analyzer.height" 
              :x="analyzer.x" :y="analyzer.y" :transform="analyzer.transform"/>
@@ -36,25 +35,16 @@
             <rect class="detector" :width="detector.width" :height="detector.height" 
             :x="detector.x" :y="detector.y" :transform="detector.transform"/>
 
-            <line class="dashline x" :x1="x2" :y1="y1" :x2="width" :y2="y1"  />
-            <line class="dashline y" :x1="x2" :y1="y1" :x2="x2" :y2="0" />
-            <!--<line class="dashline y2" :x1="l4X[0]" :y1="y1" :x2="l4X[0]" :y2="0" />-->
+            <line class="dashline x" :x1="sample.x" :y1="sample.y" :x2="width" :y2="sample.y"  />
+            <line class="dashline y" :x1="sample.x" :y1="sample.y" :x2="sample.x" :y2="0" />
 
-            <text :x="x2-10" y="15" fill="black"> y </text>
-            <text :x="width-10" :y="y1+10" fill="black"> x </text>
+            <text :x="sample.x-10" y="15" fill="black"> y </text>
+            <text :x="width-10" :y="sample.y+10" fill="black"> x </text>
             
-            <line class="line 1" :x1="l1X0[0]" :y1="l1X0[1]-d_2_ry" :x2="l1X[0]-d_2_rx" :y2="l1X[1]-d_2_ry"/>
-            <!--<line class="line 1" :x1="l1X0[0]" :y1="l1X0[1]" :x2="l1X[0]" :y2="l1X[1]"  />-->
-            <line class="line 1p" :x1="x1" :y1="y1+d_2_ry" :x2="x2" :y2="y1+d_2_ry"/>
-
-            <line class="line 2p" :x1="x2-d_2_rx" :y1="y1-d_2_ry" :x2="l4Xp[0]" :y2="l4Xp[1]" /> 
-            <!--<line class="line 2" :x1="x2" :y1="y1" :x2="l2X[0]" :y2="l2X[1]" />-->
-            <line class="line 2p" :x1="x2" :y1="y1+d_2_ry" :x2="l4X[0]" :y2="l4X[1]" />
-
-            <line class="line 2p" :x1="l4Xp[0]" :y1="l4Xp[1]" :x2="l5Xp[0]" :y2="l5Xp[1]" /> 
-            <!--<line class="line 3" :x1="l2X[0]" :y1="l2X[1]" :x2="l3X[0]" :y2="l3X[1]" />-->
-            <line class="line 3p" :x1="l4X[0]" :y1="l4X[1]" :x2="l5X[0]" :y2="l5X[1]" />
-            
+            <polyline class="line 0"    :points="`${line1.x0},${line1.y0}      ${line1.x1},${line1.y1}     ${line1.x2},${line1.y2}   ${line1.x3},${line1.y3}`" fill="none"/>
+            <polyline class="line up"    :points="`${line2.x0},${line2.y0}      ${line2.x1},${line2.y1}     ${line2.x2},${line2.y2}   ${line2.x3},${line2.y3}`" fill="none"/>
+            <polyline class="line down"    :points="`${line3.x0},${line3.y0}      ${line3.x1},${line3.y1}     ${line3.x2},${line3.y2}   ${line3.x3},${line3.y3}`" fill="none"/>
+-->
         </svg>
     </div>
 
@@ -76,43 +66,63 @@
         },
         data() {
             return {
-                x1:0,
-                //r1:100,
-                //l1y1:-10,
-                x2: 180,
-                r2:100,
                 theta2:30,
                 gamma: 50,
+                thetaD:20,
                 height: 200,
                 width: 400,
                 radius:20,
+                center_line:200*0.6,
+                r0:180,
+                r1:100,
+                r2:100,
                 monocromator: {height:60,width:6, x:0,y:200*0.6,
                     get xc(){return this.x}, get yc(){return this.y-this.height/2}},
                 sample: {height:60,width:15, x:180,y:200*0.6,
                     get xc(){return this.x-this.width/2}, get yc(){return this.y-this.height/2}},
-                analyzer0: {height:60,width:6, r:100},
-                detector0: {height:60,width:6, r2:100},
-                //thetaD_real:20,
-                thetaD:20,
-                value: 20,
-                d_2_ry:5,
-                d_2_rx:0,
+                analyzer0: {height:60,width:6, },
+                detector0: {height:60,width:6, },
+                line10: { x0:0 },
+                //line2: () => line_data(100),
             }
         },
-        created: function() {
-            //this.analyzerc()
+        //created: function() {
 
-        },
+        //},
         components: {
             Slider
         },
         methods: {
 
-          //  get_data: function() {
-        //    }
+            line_data(x1_offset,y1_offset) {
+                var line1 = {}
+                line1.x0 =0 
+                
+                line1.y0 = this.center_line - y1_offset
+                line1.x1 = this.r0  - x1_offset
+                line1.y1 = line1.y0  //// Math.sign
+
+                var offset1 = Math.sqrt(x1_offset**2 +y1_offset**2 )
+                var beta =  (90-this.theta2)*Math.PI/180 - Math.atan( ((y1_offset/x1_offset)?(y1_offset/x1_offset) : 0 )  ) 
+                var liner1   =  this.r1 + Math.sign(x1_offset)* offset1*( Math.sin(beta) - Math.cos(beta) * Math.tan(this.gamma*Math.PI/180))
+                line1.x2 = line1.x1 + liner1 *Math.cos(this.theta2*Math.PI/180) 
+                line1.y2 = line1.y1 - liner1*Math.sin(this.theta2*Math.PI/180) 
+                
+                var angle2 = 180-2*this.gamma-this.theta2
+                var angle3 = -90+angle2-this.thetaD  //
+                var ray_d_reflec =  (y1_offset * Math.cos(this.theta2*Math.PI/180) + x1_offset * Math.sin(this.theta2*Math.PI/180)) /Math.cos( this.thetaD*Math.PI/180) 
+                line1.x3 =  this.detector.xcent - ray_d_reflec * Math.cos(angle3*Math.PI/180 )
+                line1.y3 =  this.detector.ycent - ray_d_reflec * Math.sin(angle3*Math.PI/180 )
+                //console.log(line1)
+                return line1
+            }
+
         },
-        mounted() {
-       
+        created() {
+            return {
+               // line2:this.line_data(100)
+            }
+
         },
         computed:{
             // thetaD(){
@@ -120,60 +130,25 @@
             //},
 
             analyzer(){
+                //console.log(this.line_data)
                 var analyzer = this.analyzer0
-                analyzer.xcent = this.sample.x + analyzer.r*Math.cos(this.theta2*Math.PI/180 )
-                analyzer.ycent = this.sample.y - analyzer.r*Math.sin(this.theta2*Math.PI/180 )
+                analyzer.xcent = this.sample.x + this.r1*Math.cos(this.theta2*Math.PI/180 )
+                analyzer.ycent = this.sample.y - this.r1*Math.sin(this.theta2*Math.PI/180 )
                 analyzer.x = analyzer.xcent -analyzer.width/2; analyzer.y = analyzer.ycent -analyzer.height/2
                 analyzer.transform = `rotate(${-this.gamma-this.theta2} ${analyzer.xcent} ${analyzer.ycent})` 
                 return analyzer
             },
             detector(){
                 var detector = this.detector0
-                detector.xcent = this.analyzer.xcent  - detector.r2 *Math.cos( (-this.theta2 -2*this.gamma)*Math.PI/180 ) 
-                detector.ycent = this.analyzer.ycent  - detector.r2 *Math.sin( (-this.theta2 -2*this.gamma)*Math.PI/180 ) 
+                detector.xcent = this.analyzer.xcent  - this.r2 *Math.cos( (-this.theta2 -2*this.gamma)*Math.PI/180 ) 
+                detector.ycent = this.analyzer.ycent  - this.r2 *Math.sin( (-this.theta2 -2*this.gamma)*Math.PI/180 ) 
                 detector.x = detector.xcent - detector.width/2; detector.y = detector.ycent-detector.height/2
                 detector.transform = `rotate(${-this.thetaD-2*this.gamma-this.theta2} ${detector.xcent } ${detector.ycent })`
                 return detector
             },
-
-
-            y1() {
-                return (this.height*0.6)
-            },
-            l1X0() {
-                return [0,this.height*0.6]
-            },
-            l1X() {
-                return [this.x2,this.height*0.6]
-            },
-            l2X() {
-                return [this.l1X[0] + this.r2 *Math.cos(this.theta2*Math.PI/180 ),this.l1X[1] - this.r2 *Math.sin(this.theta2*Math.PI/180 )]
-            },
-            l3X() {
-                return [this.l2X[0] - this.r2 *Math.cos( (-this.theta2 -2*this.gamma)*Math.PI/180 ),this.l2X[1] - this.r2 *Math.sin( (-this.theta2 -2*this.gamma)*Math.PI/180 ) ]
-            },
-            ray_d_reflec(){ //D=sqrt(x**2+y**2)/cos(theta2-gamma)    // soguro que puedes quitar el coseno al poner el r
-                return  Math.sqrt(this.d_2_ry**2) *Math.cos(this.theta2*Math.PI/180) / Math.cos(this.gamma*Math.PI/180)
-            },
-            l4X(){
-                return [(this.l2X[0] + this.ray_d_reflec * Math.cos((90-this.gamma-this.theta2)*Math.PI/180) ),(this.l2X[1] + this.ray_d_reflec * Math.sin((90-this.gamma-this.theta2)*Math.PI/180) )]
-            },
-            l4Xp(){
-                return [(this.l2X[0] - this.ray_d_reflec * Math.cos((90-this.gamma-this.theta2)*Math.PI/180) ),(this.l2X[1] - this.ray_d_reflec * Math.sin((90-this.gamma-this.theta2)*Math.PI/180) )]
-            },
-            l5X(){
-                var angle2 = 180-2*this.gamma-this.theta2
-                var angle3 = -90+angle2-this.thetaD
-                var ray_d2_reflec =this.ray_d_reflec *Math.cos((this.gamma)*Math.PI/180) / Math.cos( (this.thetaD  )*Math.PI/180)
-                return  [(this.l3X[0] + ray_d2_reflec * Math.cos( angle3*Math.PI/180 )),(this.l3X[1] + ray_d2_reflec * Math.sin(angle3*Math.PI/180 ))]
-            },
-            l5Xp(){
-                var angle2 = 180-2*this.gamma-this.theta2
-                var angle3 = -90+angle2-this.thetaD
-                var ray_d2_reflec =this.ray_d_reflec *Math.cos((this.gamma)*Math.PI/180) / Math.cos( (this.thetaD  )*Math.PI/180)
-                return  [(this.l3X[0] - ray_d2_reflec * Math.cos( angle3*Math.PI/180 )),(this.l3X[1] - ray_d2_reflec * Math.sin(angle3*Math.PI/180 ))]
-            },
-
+            line1(){ return this.line_data(4,10)  },
+            line2(){ return this.line_data(-2,-10)},
+            line3(){ return this.line_data(0,0)   },
         }
  
     };
