@@ -6,17 +6,13 @@
     <input v-model="thetaD" placeholder="edit me"> -->
 
     <div class="slidercontainer">
-        <div  class="Slider" dir="">
+        <div  class="Slider" >
+            <Slider v-model="thetaS" :min="0" :max="45"/>
+        <div style="text-align: center;">{{theta_Ss}}</div>
+        </div>
+        <div  class="Slider" >
             <Slider v-model="theta2" :min="0" :max="90"/>
             <div style="text-align: center;">{{theta2s}}</div>
-        </div>
-        <div class="Slider">
-            <Slider v-model="gamma" :min="18" :max="70" />
-            <div style="text-align: center;">{{gammas}}</div>
-        </div>
-        <div class="Slider">
-            <Slider v-model="thetaD" :min="-70" :max="70" />
-            <div style="text-align: center;">{{theta_Ds}}</div>
         </div>
     </div>
     
@@ -27,7 +23,7 @@
             fill-opacity="0.4" :x="monocromator.xc" :y="monocromator.yc"/>
 
             <rect  class="sample" :width="sample.width" :height="sample.height" 
-            fill-opacity="0.8" :x="sample.xc" :y="sample.yc"/>
+            fill-opacity="0.8" :x="sample.xc" :y="sample.yc" :transform="sample.transform"/>
 
             <rect class="sample analyzer" :width="analyzer.width" :height="analyzer.height" 
              :x="analyzer.x" :y="analyzer.y" :transform="analyzer.transform"/>
@@ -40,12 +36,33 @@
 
             <text :x="sample.x-10" y="15" fill="black"> y </text>
             <text :x="width-10" :y="sample.y+10" fill="black"> x </text>
-            
-            <polyline class="line 0"    :points="`${line1.x0},${line1.y0}      ${line1.x1},${line1.y1}     ${line1.x2},${line1.y2}   ${line1.x3},${line1.y3}`" fill="none"/>
-            <polyline class="line up"    :points="`${line2.x0},${line2.y0}      ${line2.x1},${line2.y1}     ${line2.x2},${line2.y2}   ${line2.x3},${line2.y3}`" fill="none"/>
-            <polyline class="line down"    :points="`${line3.x0},${line3.y0}      ${line3.x1},${line3.y1}     ${line3.x2},${line3.y2}   ${line3.x3},${line3.y3}`" fill="none"/>
--->
+
+            <polyline class="line 0"   :points="`${line1.x0},${line1.y0}  ${line1.x1},${line1.y1}  ${line1.x2},${line1.y2}   ${line1.x3},${line1.y3}`" fill="none"/>
+
+            <polyline class="line up"  :points="`${line2.x0},${line2.y0}  ${line2.x1},${line2.y1}  ${line2.x2},${line2.y2}   ${line2.x3},${line2.y3}`" fill="none"/>
+
+            <polyline class="line down" :points="`${line3.x0},${line3.y0}  ${line3.x1},${line3.y1}  ${line3.x2},${line3.y2}   ${line3.x3},${line3.y3}`" fill="none"/>
+
+            <!--
+            <linearGradient id="ReflectGradient" spreadMethod="reflect"  gradientUnits="userSpaceOnUse"  x1="0" x2="20" y1="0" y2="0" >  :x2="0.1*line3.tot_distance/ref_distance" 
+                <stop offset="0%"  stop-color="blue"/><stop offset="100%" stop-color="orange"/>
+            </linearGradient>  stroke="url(#ReflectGradient)"  -->
+            <!--<polyline class="dash"   :points="`${line1.x0},${line1.y0}  ${line1.x1},${line1.y1}  ${line1.x2},${line1.y2}   ${line1.x3},${line1.y3}`" fill="none"/>-->
+
         </svg>
+    </div>
+    <div class="slidercontainer">
+        <div class="Slider">
+            <Slider v-model="gamma" :min="18" :max="70" />
+            <div style="text-align: center;">{{gammas}}</div>
+        </div>
+        <div class="Slider">
+            <Slider v-model="thetaD" :min="-70" :max="70" />
+            <div style="text-align: center;">{{theta_Ds}}</div>
+        </div>
+    </div>
+    <div>
+        <div style="text-align: center; font-size: 1.1rem;">R: {{Reduction}}</div>
     </div>
 
 </template>
@@ -62,13 +79,14 @@
             theta2s: String,
             gammas: String,
             theta_Ds: String,
-
+            theta_Ss:String,
         },
         data() {
             return {
                 theta2:30,
                 gamma: 50,
                 thetaD:20,
+                thetaS:5,                
                 height: 200,
                 width: 400,
                 radius:20,
@@ -78,11 +96,12 @@
                 r2:100,
                 monocromator: {height:60,width:6, x:0,y:200*0.6,
                     get xc(){return this.x}, get yc(){return this.y-this.height/2}},
-                sample: {height:60,width:15, x:180,y:200*0.6,
-                    get xc(){return this.x-this.width/2}, get yc(){return this.y-this.height/2}},
-                analyzer0: {height:60,width:6, },
-                detector0: {height:60,width:6, },
+                sample0:   {height:40,width:40},
+                analyzer0: {height:60,width:6},
+                detector0: {height:60,width:6},
                 line10: { x0:0 },
+              
+                //stroke:"url(#ReflectGradient)",
                 //line2: () => line_data(100),
             }
         },
@@ -113,7 +132,7 @@
                 var ray_d_reflec =  (y1_offset * Math.cos(this.theta2*Math.PI/180) + x1_offset * Math.sin(this.theta2*Math.PI/180)) /Math.cos( this.thetaD*Math.PI/180) 
                 line1.x3 =  this.detector.xcent - ray_d_reflec * Math.cos(angle3*Math.PI/180 )
                 line1.y3 =  this.detector.ycent - ray_d_reflec * Math.sin(angle3*Math.PI/180 )
-                //console.log(line1)
+                line1.tot_distance = ray_d_reflec +  liner1 +  line1.x1
                 return line1
             }
 
@@ -128,7 +147,15 @@
             // thetaD(){
             //    return this.thetaD_real-this.theta2
             //},
-
+            sample(){ 
+                var sample = this.sample0
+                sample.x   = this.r0
+                sample.y   = this.center_line
+                sample.xc  = sample.x-sample.width/2
+                sample.yc  = sample.y-sample.height/2
+                sample.transform =  `rotate(${-this.thetaS} ${sample.x} ${sample.y})` 
+                return sample
+            },
             analyzer(){
                 //console.log(this.line_data)
                 var analyzer = this.analyzer0
@@ -149,6 +176,13 @@
             line1(){ return this.line_data(4,10)  },
             line2(){ return this.line_data(-2,-10)},
             line3(){ return this.line_data(0,0)   },
+            ref_distance(){ return this.r0+this.r1 +this.r2 },
+            Reduction(){ 
+                var lambda =40*1.28
+                var eps= 0.000001
+                var a = Math.PI*this.sample.width/lambda* (Math.cos( this.thetaS*Math.PI/180)- Math.cos((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((this.theta2-this.thetaD)*Math.PI/180)   )
+                var b = Math.PI*this.sample.height/lambda* (Math.sin( this.thetaS*Math.PI/180)+ Math.sin((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((this.theta2-this.thetaD)*Math.PI/180)   )
+                return Math.sin(a+eps)/(a+eps)*Math.sin(b+eps)/(b+eps) }
         }
  
     };
@@ -161,14 +195,28 @@
 
 <style scoped>
 
-
+  /*  polyline{
+       
+    }*/
 
     .line{
-        opacity: 0.6;
         stroke-width:2;
         stroke: #557aac;
         stroke-linecap:round;
+        opacity: 0.6; 
+        /*opacity:1: 
+         stroke-dasharray: 20, 0, 0 ;
+         stroke: var(stroke); */
     }
+    /*
+    .dash{
+        opacity: 0.5;
+        stroke-width:2;
+        stroke: grey;
+        stroke-dasharray: 0, 22, 18, 0 ; 
+        stroke-linecap:round;
+    }
+    */ /*stroke: var(stroke); */
 
     .dashline{
         stroke: grey;
@@ -199,7 +247,7 @@
     .Slider{
         margin: 10px;
         display: block;
-        width: 30%;
+        width: 50%;
     }
 
     .slidercontainer{

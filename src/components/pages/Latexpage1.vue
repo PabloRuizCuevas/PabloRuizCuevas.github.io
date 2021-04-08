@@ -75,33 +75,8 @@
                 Where \(\gamma\) is the angle of incidence of the neutron beam with the analyzer, so arccos is used instead of arcsin (that would be for the complementary angle). And \(\theta_D\) who belong to the virtual plane is expressed in terms of the angles \(2\theta\) and \(\theta_D'\) of the real plane.
             </p>
 
-            <h3> Geometric Reduction Factor of a cuboid </h3>
 
-            <p> 
-                The reduction factor for a cuboid can be calculated analyticaly and the solugion is given by the literature <!--[quote]-->. The following equation describes the reduction factor for a not tilted cuboid:
-            </p>  
-            <div class="equation">
-                \(R= sinc \left (\frac{\pi\omega}{\Lambda} \cdot \frac{\sin{\theta_D}}{\cos(2 \theta - \theta_D)}\right )  sinc \left (\frac{\pi t}{\Lambda} \cdot \left [ \frac{\sin{\theta_D}}{\cos(2 \theta - \theta_D)} -1 \right ] \right )\)
-            </div>
-
-            <p> 
-                We can minimize this function obtaining the best $\theta_D$ for each  $2\theta$. that means, that we can tilt the detector in order to obtain the best Reduction possible factor.
-            </p>
-            <p> 
-                But in the most general case we can have the sample rotated by an angle of $\theta_S$, in that case the reduction factor is given by:
-            </p>
-
-
-            <div class="equation">
-                \( R=sinc \left (\frac{\pi t}{\Lambda} \cdot \left [ \cos \theta_S-\frac{\cos{(\theta_D-\theta_S)}}{\cos(2 \theta - \theta_D)} \right ] \right )\)   \(sinc \left (\frac{\pi \omega}{\Lambda} \cdot \left [\sin \theta_S +  \frac{\sin{(\theta_D-\theta_S)}}{\cos(2 \theta - \theta_D)}  \right ] \right )\)
-            </div>
-
-            <p> 
-                To find the best reduction factor for this configuration we have developed an numerical optimizer, first we find the best possible \(\theta_S\) for each  \(\theta_D\), \(2\theta\) tuple and then we have find the best \(\theta_D\) for each \(2\theta\) conditioned to the previously calculated \(\theta_S\).
-            </p>
-            <p> 
-                For performing an accurate optimization without falling in a local minimum we have used n different equally spaced origins of each optimization problem and then we keep the best optimum.
-            </p>
+            <D3component :theta2s="theta2s" :gammas="gammas" :theta_Ds="theta_Ds"  />
 
         </div>
     
@@ -114,15 +89,21 @@
 
 <script>
     
+    import D3component from "../d3_figure2.vue"
+
     export default {
         name: "Latexpage1",
-        components: {
-
-        },
         data() {
             return {
-            data: [10, 40, 15, 25, 50],
-            };
+                latex2:'$1$',
+                latex3: '$$R = \\frac{ |A| }{c}$$ ',
+                theta2s: '$\\theta_2$',
+                gammas: '$\\gamma$',
+                theta_Ds: '$\\theta_D$',
+            }
+        },
+        components: {
+            D3component
         },
         methods: {
             reRender() {
