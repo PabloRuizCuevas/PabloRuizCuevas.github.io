@@ -1,18 +1,23 @@
 
-<template>
+<template >
     <!--
     <input v-model="theta2" placeholder="edit me">
     <input v-model="gamma" placeholder="edit me">
     <input v-model="thetaD" placeholder="edit me"> -->
+    <div style=" width: 100%;">
 
     <div class="slidercontainer">
-        <div  class="Slider" >
-            <Slider v-model="thetaS" :min="0" :max="45"/>
-        <div style="text-align: center;">{{theta_Ss}}</div>
-        </div>
-        <div  class="Slider" >
+        <div  class="Slider">
             <Slider v-model="theta2" :min="0" :max="90"/>
             <div style="text-align: center;">{{theta2s}}</div>
+        </div>
+        <div class="Slider">
+            <Slider v-model="gamma" :min="18" :max="70" />
+            <div style="text-align: center;">{{gammas}}</div>
+        </div>
+        <div class="Slider">
+            <Slider v-model="thetaD" :min="-70" :max="70" />
+            <div style="text-align: center;">{{theta_Ds}}</div>
         </div>
     </div>
     
@@ -51,18 +56,6 @@
 
         </svg>
     </div>
-    <div class="slidercontainer">
-        <div class="Slider">
-            <Slider v-model="gamma" :min="18" :max="70" />
-            <div style="text-align: center;">{{gammas}}</div>
-        </div>
-        <div class="Slider">
-            <Slider v-model="thetaD" :min="-70" :max="70" />
-            <div style="text-align: center;">{{theta_Ds}}</div>
-        </div>
-    </div>
-    <div>
-        <div style="text-align: center; font-size: 1.1rem;">R: {{Reduction}}</div>
     </div>
 
 </template>
@@ -96,18 +89,14 @@
                 r2:100,
                 monocromator: {height:60,width:6, x:0,y:200*0.6,
                     get xc(){return this.x}, get yc(){return this.y-this.height/2}},
-                sample0:   {height:40,width:40},
+                sample0:   {height:60,width:15},
                 analyzer0: {height:60,width:6},
                 detector0: {height:60,width:6},
                 line10: { x0:0 },
-              
-                //stroke:"url(#ReflectGradient)",
                 //line2: () => line_data(100),
+                //stroke:"url(#ReflectGradient)",
             }
         },
-        //created: function() {
-
-        //},
         components: {
             Slider
         },
@@ -134,12 +123,6 @@
                 line1.y3 =  this.detector.ycent - ray_d_reflec * Math.sin(angle3*Math.PI/180 )
                 line1.tot_distance = ray_d_reflec +  liner1 +  line1.x1
                 return line1
-            }
-
-        },
-        created() {
-            return {
-               // line2:this.line_data(100)
             }
 
         },
@@ -176,13 +159,7 @@
             line1(){ return this.line_data(4,10)  },
             line2(){ return this.line_data(-2,-10)},
             line3(){ return this.line_data(0,0)   },
-            ref_distance(){ return this.r0+this.r1 +this.r2 },
-            Reduction(){ 
-                var lambda =40*1.28
-                var eps= 0.000001
-                var a = Math.PI*this.sample.width/lambda* (Math.cos( this.thetaS*Math.PI/180)- Math.cos((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((this.theta2-this.thetaD)*Math.PI/180)   )
-                var b = Math.PI*this.sample.height/lambda* (Math.sin( this.thetaS*Math.PI/180)+ Math.sin((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((this.theta2-this.thetaD)*Math.PI/180)   )
-                return Math.sin(a+eps)/(a+eps)*Math.sin(b+eps)/(b+eps) }
+            ref_distance(){ return this.r0+this.r1 +this.r2 }
         }
  
     };
@@ -247,7 +224,7 @@
     .Slider{
         margin: 10px;
         display: block;
-        width: 50%;
+        width: 30%;
     }
 
     .slidercontainer{

@@ -6,22 +6,20 @@
     <input v-model="thetaD" placeholder="edit me"> -->
 
     <div class="slidercontainer">
-        <div  class="Slider" dir="">
+
+        <div  class="Slider" >
+            <Slider v-model="thetaS" :min="0" :max="90"/>
+            <div style="text-align: center;">{{theta_sa}}</div>
+        </div>
+        <div  class="Slider" >
             <Slider v-model="theta2" :min="0" :max="90"/>
             <div style="text-align: center;">{{theta2s}}</div>
         </div>
-        <div class="Slider">
-            <Slider v-model="gamma" :min="18" :max="70" />
-            <div style="text-align: center;">{{gammas}}</div>
-        </div>
-        <div class="Slider">
-            <Slider v-model="thetaD" :min="-70" :max="70" />
-            <div style="text-align: center;">{{theta_Ds}}</div>
-        </div>
+        
     </div>
     
     <div class="chart">
-        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" class="shadow">
 
             <rect class="monochromator" :width="monocromator.width" :height="monocromator.height" 
             fill-opacity="0.4" :x="monocromator.xc" :y="monocromator.yc"/>
@@ -55,6 +53,19 @@
 
         </svg>
     </div>
+    <div class="slidercontainer">
+        <div class="Slider">
+            <Slider v-model="gamma" :min="18" :max="70" />
+            <div style="text-align: center;">{{gammas}}</div>
+        </div>
+        <div class="Slider">
+            <Slider v-model="thetaD" :min="-70" :max="70" />
+            <div style="text-align: center;">{{theta_Ds}}</div>
+        </div>
+    </div>
+    <div style="display: flex;  flex-direction: column; align-items: center; justify-content: center; " > 
+        <div class="shadow" style="font-size: 1.1rem;  text-align: center; padding:2px 20px 2px 20px">R: {{Reduction}}</div>
+    </div>
 
 </template>
 
@@ -70,7 +81,7 @@
             theta2s: String,
             gammas: String,
             theta_Ds: String,
-
+            theta_sa:String,
         },
         data() {
             return {
@@ -87,14 +98,18 @@
                 r2:100,
                 monocromator: {height:60,width:6, x:0,y:200*0.6,
                     get xc(){return this.x}, get yc(){return this.y-this.height/2}},
-                sample0:   {height:60,width:15},
+                sample0:   {height:60,width:30},
                 analyzer0: {height:60,width:6},
                 detector0: {height:60,width:6},
                 line10: { x0:0 },
-                //line2: () => line_data(100),
+              
                 //stroke:"url(#ReflectGradient)",
+                //line2: () => line_data(100),
             }
         },
+        //created: function() {
+
+        //},
         components: {
             Slider
         },
@@ -121,6 +136,12 @@
                 line1.y3 =  this.detector.ycent - ray_d_reflec * Math.sin(angle3*Math.PI/180 )
                 line1.tot_distance = ray_d_reflec +  liner1 +  line1.x1
                 return line1
+            }
+
+        },
+        created() {
+            return {
+               // line2:this.line_data(100)
             }
 
         },
@@ -157,7 +178,14 @@
             line1(){ return this.line_data(4,10)  },
             line2(){ return this.line_data(-2,-10)},
             line3(){ return this.line_data(0,0)   },
-            ref_distance(){ return this.r0+this.r1 +this.r2 }
+            ref_distance(){ return this.r0+this.r1 +this.r2 },
+            Reduction(){ 
+                var lambda =40*1.28
+                var eps= 0.0000001
+                var a = Math.PI*this.sample.width/lambda* (Math.cos( this.thetaS*Math.PI/180)- Math.cos((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((this.theta2-this.thetaD)*Math.PI/180)   )
+                var b = Math.PI*this.sample.height/lambda* (Math.sin( this.thetaS*Math.PI/180)+ Math.sin((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((this.theta2-this.thetaD)*Math.PI/180)   )
+                return Math.round( Math.sin(a+eps)/(a+eps)*Math.sin(b+eps)/(b+eps)  * 1000) / 1000
+            }
         }
  
     };
@@ -222,7 +250,7 @@
     .Slider{
         margin: 10px;
         display: block;
-        width: 30%;
+        width: 50%;
     }
 
     .slidercontainer{
@@ -232,9 +260,9 @@
      
     }
 
-    svg{
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-   
+    
+    .shadow{
+         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     

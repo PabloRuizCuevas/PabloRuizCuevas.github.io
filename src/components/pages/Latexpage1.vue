@@ -89,7 +89,7 @@
 
 <script>
     
-    import D3component from "../d3_figure2.vue"
+    import D3component from "../figures/d3_figure2.vue"
 
     export default {
         name: "Latexpage1",

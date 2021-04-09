@@ -36,12 +36,7 @@
 
         </div>
 
-        <!--
-        <div id="app">
-            <input v-model="latex"/><br>
-            <div :key="latex">{{latex}}</div>
-        </div>
-        -->
+        <!--<MCfig/>-->
 
     </main>
   
@@ -53,6 +48,9 @@
 
 
 <script>
+    
+   // import MCfig from "../figures/MC_figure.vue"
+
 
     export default {
         name: "Latexpage3",
@@ -61,6 +59,9 @@
             latex: '$$\\frac{a}{b}$$',
             latex2: '$12$',
             }
+        },
+        components: {
+           // MCfig
         },
         methods: {
             reRender() {
