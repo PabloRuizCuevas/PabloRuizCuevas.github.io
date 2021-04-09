@@ -4,7 +4,7 @@
   
     <main>
         <div class="article"> 
-            {{equation2}}
+           
             <h2> Geometric Reduction Factor of a cuboid </h2>
 
             <p> 
@@ -14,7 +14,7 @@
                 {{equation1}}
             </div>
 
-            <p> 
+            <p> {{}}
                 We can minimize this function obtaining the best $\theta_D$ for each  $2\theta$. that means, that we can tilt the detector in order to obtain the best Reduction possible factor.
             </p>
             
@@ -23,18 +23,18 @@
                 <figcaption> Reduction factor heat map for a {{theta_sa}} = 0 </figcaption>
             </div>  
 
-            <p> 
+            <p>  {{}}
                 But in the most general case we can have the sample rotated by an angle of $\theta_S$, in that case the reduction factor is given by:
             </p>
 
-            <div class="equation">
+            <div class="equation"> {{}}
                 \( R=sinc \left (\frac{\pi t}{\Lambda} \cdot \left [ \cos \theta_S-\frac{\cos{(\theta_D-\theta_S)}}{\cos(2 \theta - \theta_D)} \right ] \right )\)   \(sinc \left (\frac{\pi \omega}{\Lambda} \cdot \left [\sin \theta_S +  \frac{\sin{(\theta_D-\theta_S)}}{\cos(2 \theta - \theta_D)}  \right ] \right )\)
             </div>
 
-            <p> 
+            <p>  {{}}
                 To find the best reduction factor for this configuration we have developed an numerical optimizer, first we find the best possible \(\theta_S\) for each  \(\theta_D\), \(2\theta\) tuple and then we have find the best \(\theta_D\) for each \(2\theta\) conditioned to the previously calculated \(\theta_S\).
             </p>
-            <p> 
+            <p>  {{}}
                 For performing an accurate optimization without falling in a local minimum we have used n different equally spaced origins of each optimization problem and then we keep the best optimum.
             </p>
            
