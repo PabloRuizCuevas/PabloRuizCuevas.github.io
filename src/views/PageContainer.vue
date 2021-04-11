@@ -14,7 +14,7 @@
                 <router-link :to="{ name: 'PageContainer', params: {datakey: Math.max(1, parseInt(datakey)-1) } }">  
                 <button class="button1"> <b> &lt;  </b>  </button></router-link>
                
-                <i >Page {{ datakey }}</i>
+                <i >Page {{ datakey }} of {{maxpub}} </i>
                 <!--<input v-on:keyup.enter="addone">   @click="scrollToTop"   -->
                 <router-link :to="{ name: 'PageContainer', params: {datakey: Math.min( maxpub, parseInt(datakey)+1 )  } }" > 
                 <button class="button1">  <b>  >   </b> </button></router-link>

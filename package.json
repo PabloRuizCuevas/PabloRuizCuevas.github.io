@@ -9,7 +9,9 @@
     "deploy": "node scripts/gh-pages-deploy.js"
   },
   "dependencies": {
+    "@vueform/multiselect": "^1.4.0",
     "@vueform/slider": "^1.0.3",
+    "bessel": "^1.0.2",
     "chart.js": "^3.0.2",
     "core-js": "^3.6.5",
     "createServer": "^3.0.0",
@@ -25,6 +27,8 @@
     "vue-chartjs": "^3.5.1",
     "vue-katex": "file:vue-katex-master",
     "vue-mathjax": "^0.0.11",
+    "vue-next-select": "^2.1.1",
+    "vue-numeric-input": "^1.0.6",
     "vue-router": "^4.0.4",
     "vue3-chart-v2": "^0.8.1"
   },

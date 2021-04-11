@@ -8,6 +8,7 @@
       <div class="header-right">
         <!--<a v-on:click="choose_page(), home=true" id="inactive">  </a>-->
         <router-link id="header_letters" to="/">Home</router-link> 
+        <router-link id="header_letters" to="/tools">Tools</router-link> 
         <router-link id="header_letters" to="/about">About</router-link>
         <router-link id="header_letters" to="/contact">Contact</router-link>
         <router-link class="logo"  to="/"> <img  class="logo" alt="logo" src="../images/logo2.png">  </router-link> 
