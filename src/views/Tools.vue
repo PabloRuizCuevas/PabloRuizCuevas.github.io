@@ -14,7 +14,7 @@
 
                 <div>
                     <p>Method:</p>
-                    <Multiselect v-model="value2"  :options="options2"/>
+                    <Multiselect v-model="method"  :options="methods"/>
                 </div>
             
                 <div>
@@ -48,21 +48,27 @@
                 <div  v-if="shape!='Cuboid'">
                     <div style="display: flex;  flex-direction: column; align-items: center; justify-content: center; " > 
                         <p>Reduction factor:</p>
-                        <div class="shadow" style="font-size: 1.1rem;  text-align: center; padding:2px 20px 2px 20px">R: {{Reduction()}}</div>
+                        <div class="shadow" style="font-size: 1.1rem;  text-align: center; padding:2px 20px 2px 20px">R: {{Reduction_cilinder()}}</div>
                     </div>
                 </div>
                 
+
             </div>
 
         </div>
 
+        
 
-        <div id="bannerCenter" >
+        <div v-if="shape=='Cuboid'"  id="bannerCenter" >
+
+            <div v-if="method=='Monte Carlo'" >
+                <h2>Monte Carlo method in develop</h2>
+            </div>
 
             <div class="slidercontainer">
-                <div  v-if="shape=='Cuboid'" class="Slider" >
+                <div  class="Slider" >
                     <Slider  v-model="thetaS" :min="0" :max="90"/>
-                    <div style="text-align: center;" :class="Render" > <b><i>θ<sub>S</sub></i></b></div>
+                    <div style="text-align: center;"> <b><i>θ<sub>S</sub></i></b></div>
                 </div>
                 <div  class="Slider" >
                     <Slider v-model="theta2" :min="0" :max="90"/>
@@ -87,9 +93,42 @@
                     <div style="text-align: center;"><b><i>θ<sub>D</sub></i></b> - <b>2<i>θ</i></b> </div>
                 </div>
           </div>
+ 
+        </div>
 
+
+        <div v-if="shape!='Cuboid'"  id="bannerCenter" >
+
+            <div v-if="method=='Monte Carlo'" >
+                <h2>Monte Carlo method in develop</h2>
+            </div>
+
+            <div class="slidercontainer">
+    
+                <div  class="Slider" >
+                    <Slider v-model="theta2" :min="0" :max="90"/>
+                    <div style="text-align: center;"><b>2<i>θ</i></b></div>
+                </div>
+
+                <div class="Slider">
+                    <Slider v-model="gamma" :min="18" :max="70" />
+                    <div style="text-align: center;"><b><i>γ</i></b></div>
+                </div>
+
+            </div>
+
+            <D3component :theta_sa="theta_sa" :theta2s="theta2s" :gammas="gammas" 
+            :theta_Ds="theta_Ds" :shape="shape"
+            :gamma="gamma" :theta2="theta2" :thetaD="0" :thetaS="thetaS"
+            :sample_width="sample_width" 
+            :sample_height="sample_height"
+            :sample_radius="sample_radius" />
+
+            <p> The analytical case is only calculated for the case <i>θ<sub>D</sub></i> = 2<i>θ</i> </p>
 
         </div>
+
+
 
         <div id="pixelRight">&nbsp;</div>
     </div>
@@ -113,8 +152,8 @@
                 message: '10',
                 shape: 'Cuboid',
                 options: ['Cuboid', 'Cilinder','Sphere'],
-                value2: 'Analytical',
-                options2: ['Analytical', 'Monte Carlo'],
+                method: 'Analytical',
+                methods: ['Analytical', 'Monte Carlo'],
                 theta2s: '$2\\theta$',
                 gammas: '$\\gamma$',
                 theta_Ds: '$\\theta_D - 2\\theta$',
@@ -143,12 +182,12 @@
             },
             Reduction_cilinder(){
                 var BESSEL = require('bessel')
-                console.log(BESSEL.besselj(1,1))
                 var lambda =40*1.28
                 var eps= 0.0000001
-                var a = Math.PI*this.sample_width/lambda* (Math.cos( this.thetaS*Math.PI/180)- Math.cos((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((this.theta2-this.thetaD)*Math.PI/180)   )
-                var b = Math.PI*this.sample_height/lambda* (Math.sin( this.thetaS*Math.PI/180)+ Math.sin((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((this.theta2-this.thetaD)*Math.PI/180)   )
-                return Math.round( Math.sin(a+eps)/(a+eps)*Math.sin(b+eps)/(b+eps)  * 1000) / 1000
+                console.log(lambda/(2*Math.PI*this.sample_radius))
+                console.log(BESSEL.besselj(4*Math.PI*this.sample_radius/lambda*Math.sin(this.theta2*Math.PI/180/2),1)/Math.sin(this.theta2*Math.PI/180/2) )
+                var a = lambda/(2*Math.PI*this.sample_radius)*BESSEL.besselj(4*Math.PI*this.sample_radius/lambda*Math.sin(this.theta2*Math.PI/180/2+eps),1)/Math.sin(this.theta2*Math.PI/180/2+eps)
+                return Math.round( a* 1000) / 1000
             },
             reRender() {
                 if(window.MathJax) {
@@ -160,10 +199,6 @@
         mounted() {
             this.reRender();
         },
-        computed:{
-            Render(){ console.log("hola"); this.reRender(); return 1}
-            
-        }
 
         
 
@@ -245,5 +280,8 @@ input{
 .shadow{
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+
+    
 
 </style>
