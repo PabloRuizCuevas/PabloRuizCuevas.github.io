@@ -3,65 +3,84 @@
   <div class="page">
   
     <main>
-        <div class="article">
+        <div class="article"> 
+           
+            <h2> Geometric Reduction Factor of a cylinder </h2>
 
-            <h1> Monte Carlo Reduction Factor</h1>
+            <p> 
+                The reduction factor of a cylinder can be calculated analyticaly for the case {{theta_Ds = theta2s}}:
+            </p>  
 
-            <!-- <h3> Introduction</h3> -->
+            <div class="equation"> 
+                {{equation1}}
+            </div>
 
-            <p> A Monte Carlo {{}} appromimation can gives us a general approach to calculate the reduction factor whenever no analytical solution is possible. First of all we need to know the difference of path length given of two parallel beams with respect to the optical axis, this is already calculated in the literature <!--{Reference}--> and is given by: 
-                $$\Delta L_2= x - \frac{x*cos({\theta_D}) + y * sin{(\theta_D)}}{cos{(2 \theta - \theta_D )}} $$ Where X and Y are the components of the vector r denoting the distance of an arbitrary scattering point to the center of the sample. These leads to a phase difference at the detector given by: $$\Delta \Phi_D = 2 \pi \frac{\Delta L_2 }{ \Lambda} $$
-
-                And where  \( \Lambda  \)  is the distance traveled by a neutron of velocity v over one period of the oscillating signal. So the general equation for the reduction factor will be the integral over the  \( cos(\Delta \psi_D) \) over all possible neutron sample interaction points.
-                $$ R_{sample} =  \frac{ \int{ cos( { \Delta\psi_D} ) dV }}{V} $$
-
-                This integral, is has not always an analytical solution but is easy to calculate by a standard MC algorithm. First of all we will need a evenly distributed cluster of 3D random points inside our sample shape. And then we will average over all the $cos(\Delta\psi_D)$ of the random points. So we end up having the next equation:
-                $$  R_{sample} =   \lim_{N\to\infty}  \frac{1}{N}\sum_{ i = 0 }^{N} cos( { \Delta\psi_D})_i $$
-
-                The last thing we need to do is ensure that our approach gives the same result in the cases that we have an analytical formula.
+            <p>
+                The cylinder has rotation symetry with respect to the z axis, therefore the reduction factor doesn't change with {{theta_sa}}.
             </p>
-
-            <div class="image_container">
-                <img alt="Figure" src="/images/Mc.png">
-                <figcaption>  MC simulations with different number of iterations vs the real analytic value, The shape chosen for this simulation it was a cylinder.</figcaption>
-            </div>  
-            <p>  The error of MC decays with the square root of the random points used, but as the reduction factor is often zero, the relative error is not a good measure of the precision of this method, in any case for most applications we have estimated that 1e5 are enough iterations to have a reasonably good convergence.
-                 Finally we can calculate the reduction factor for different shapes and compare it with the theory
-            </p>
-
-            <div class="image_container">
-                <img alt="Figure" src="/images/RF_shapes.png">
-                <figcaption> Reduction factor for different shapes and comparation with theory. </figcaption>
+            
+            <div class="image_container" style="margin-top: 20px">
+                <img alt="Figure" src="/images/Rfcylinder.png">
+                <figcaption> Reduction factor of a cylinder of r = 1 mm, $\Lambda$ = 0.0002 m </figcaption>
             </div>  
 
+            <p> 
+                For the general case there is no close expresion but it can be calculated using a Monte Carlo approach.
+            </p>
+
+            <div class="slidercontainer">
+    
+                <div  class="Slider" >
+                    <Slider v-model="theta2" :min="0" :max="90"/>
+                    <div style="text-align: center;"><b>2<i>θ</i></b></div>
+                </div>
+
+                <div class="Slider">
+                    <Slider v-model="gamma" :min="18" :max="70" />
+                    <div style="text-align: center;"><b><i>γ</i></b></div>
+                </div>
+
+            </div>
+           
+            <D3component :theta_sa="theta_sa" :theta2s="theta2s" :gammas="gammas" 
+            :theta_Ds="theta_Ds" shape="cylinder"
+            :gamma="gamma" :theta2="theta2" :thetaD="0" :thetaS="thetaS"
+            :sample_width="sample_width" 
+            sample_height="sample_height"
+            sample_radius="20" />
+            
         </div>
-
-        <!--<MCfig/>-->
 
     </main>
   
   </div>
 
- 
 </template>
 
 
-
 <script>
-    
-   // import MCfig from "../figures/MC_figure.vue"
 
+    import D3component from "../figures/d3_figure_tools.vue"
+    import Slider from '@vueform/slider'
 
     export default {
-        name: "Latexpage3",
+        name: "Latexpage2b",
         data() {
             return {
-            latex: '$$\\frac{a}{b}$$',
-            latex2: '$12$',
+                theta2s: '$2\\theta$',
+                gammas: '$\\gamma$',
+                theta_Ds: '$\\theta_D - 2\\theta$',
+                theta_sa: '$\\theta_S$',
+                equation1:'$$ R(r, \\theta, \\Lambda) = \\frac{\\Lambda}{2 \\pi r  sin(2\\theta/2)} J_1 \\left ( \\frac{4 \\pi r sin(2\\theta/2)}{\\Lambda} \\right ) $$',
+                theta2:30,
+                gamma: 50,
+                thetaD:20,
+                thetaS:5,      
             }
         },
         components: {
-           // MCfig
+            D3component,
+            Slider
         },
         methods: {
             reRender() {
@@ -71,32 +90,17 @@
             }
             }
         },
-        created() {
-               
-        },
         mounted() {
             this.reRender();
         },
-
-        /*      
-        mounted() {
-            this.reRender();
-        },
-        watch: {
-            latex: function() {
-            console.log('data changed');
-            this.$nextTick().then(()=>{
-                this.reRender();
-            });
-            }
-        }
-        */
+ 
     };
+
 
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-
+<style src="../figures/slider.css"></style>
 <style scoped>
 
     .equation{
@@ -131,6 +135,21 @@
 
     img {
         display: block;
-        max-width: 60%;
+        max-width: 70%;
     }
+
+    .slidercontainer{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    }
+
+    .Slider{
+        margin: 10px;
+        display: block;
+        width: 50%;
+    }
+
+
 </style>

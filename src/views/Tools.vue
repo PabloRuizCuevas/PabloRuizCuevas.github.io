@@ -48,7 +48,7 @@
                 <div  v-if="shape!='Cuboid'">
                     <div style="display: flex;  flex-direction: column; align-items: center; justify-content: center; " > 
                         <p>Reduction factor:</p>
-                        <div class="shadow" style="font-size: 1.1rem;  text-align: center; padding:2px 20px 2px 20px">R: {{Reduction_cilinder()}}</div>
+                        <div class="shadow" style="font-size: 1.1rem;  text-align: center; padding:2px 20px 2px 20px">R: {{Reduction_cylinder()}}</div>
                     </div>
                 </div>
                 
@@ -151,7 +151,7 @@
                 sample_radius:20,
                 message: '10',
                 shape: 'Cuboid',
-                options: ['Cuboid', 'Cilinder','Sphere'],
+                options: ['Cuboid', 'Cylinder','Sphere'],
                 method: 'Analytical',
                 methods: ['Analytical', 'Monte Carlo'],
                 theta2s: '$2\\theta$',
@@ -180,7 +180,7 @@
                 var b = Math.PI*this.sample_height/lambda* (Math.sin( this.thetaS*Math.PI/180)+ Math.sin((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((this.theta2-this.thetaD)*Math.PI/180)   )
                 return Math.round( Math.sin(a+eps)/(a+eps)*Math.sin(b+eps)/(b+eps)  * 1000) / 1000
             },
-            Reduction_cilinder(){
+            Reduction_cylinder(){
                 var BESSEL = require('bessel')
                 var lambda =40*1.28
                 var eps= 0.0000001
@@ -226,7 +226,7 @@
 }
 
 #bannerCenter{
-    flex: 2.5;
+    flex: 2.;
     min-width: 300px;
 }
 
@@ -281,7 +281,6 @@ input{
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-
-    
+  
 
 </style>

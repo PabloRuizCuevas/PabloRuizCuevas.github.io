@@ -5,40 +5,61 @@
     <main>
         <div class="article">
 
-            <h1>  Critical dynamics of ferromagnets</h1>
+            <h1> Image analysis</h1>
 
-            <h3> Introduction</h3>
+            <p>  We can calculate the reduction factor $R$ of the real images we get in the detector by analyzing them.  First we need to take the image from the mira detector and convert it to a matrix, we crop the image in the place we observe most of the neutrons collide, in the case we analize here we can observe clearly the footprint of the cilinder of nikel we used as a sample.</p>
 
-            <p>  The dynamic scaling functions for ferromagnets near the critical temperature are determined using the mode coupling theory  </p>
+            <div class="image_container">
+                <img alt="Figure" src="/images/image2.png">
+                <figcaption> Image of one of the 16 detector plates.</figcaption>
+            </div>  
        
-            <p> We can calculate the dynamic scale function neglecting the dipole forces in the paramagnetic phase as is done by {reference}, but in our case we will follow {reference}
- wich derives the Kubo formulas for the transport coefficients without neglecting the dipole interactions. 
+            <p> The neutron detector consist has a total of 16 neutron sensitive layers, and therefore we have 16 of this images.The intensity they receive will depend on the reduction factor we have calculated in previos articles and in general it depends in the path length difference between the neutrons, the spin precesion of the neutron will lead to path differences causing destructive or constructive interferences that can be detected.
+            </p> 
+
+            <div class="image_container">
+                <img alt="Figure" src="/images/image.png">
+                <figcaption> Croped image of one of the 16 detector plates.</figcaption>
+            </div>  
+
+            <p> The reduction factor in our case will depend on the contrast and can be calculated by fitting our data by an armonic function.
             </p> 
 
             <p class="equation">
- \( \Gamma^L(q,g) = \frac{J^2 K_b T}{\pi^2\chi^L(q,g)} \int_{-1}^{1} d\eta \int_{0}^{\infty} dk k^2  \)
-\( [ v^{L}_{TT}(k,q,g,\eta) \frac{\chi^T(q,g)\chi^T(|q-k|,g)}{\Gamma^T(q,g)+\Gamma^T(|q-k|,g)} \)
-\(+v^{L}_{LT}(k,q,g,\eta) \frac{\chi^L(q,g)\chi^T(|q-k|,g)}{\Gamma^L(q,g)+\Gamma^T(|q-k|,g)} ] \)
-             </p> 
-
-             <p class="equation">
- \( \Gamma^T(q,g) = \frac{J^2 K_b T}{\pi^2\chi^T(q,g)} \int_{-1}^{1} d\eta \int_{0}^{\infty} dk k^2 \) 
- \( [ v^{T}_{TT}(k,q,g,\eta) \frac{\chi^T(q,g)\chi^T(|q-k|,g)}{\Gamma^T(q,g)+\Gamma^T(|q-k|,g)} \)
- \( +v^{L}_{LT}(k,q,g,\eta) \frac{\chi^L(q,g)\chi^T(|q-k|,g)}{\Gamma^L(q,g)+\Gamma^T(|q-k|,g)} \)
- \( +v^{L}_{LT}(k,q,g,\eta) \frac{\chi^L(q,g)\chi^T(|q-k|,g)}{\Gamma^L(q,g)+\Gamma^T(|q-k|,g)} ]\) 
+            $$ A * sin(bx+c)$$ 
             </p> 
-            <p>
-                In general to solve the set of integral coupled equeations will not be easy and we will make first a change of coordinates and make some aproximations.
+
+            <p> The reduction factor varies sligthly for each part of the image, but we can assume it more or less constant, taking the 16 images and summing up their intensity we can simply make a fit that will  
+            </p>  
+
+            <div class="image_container">
+                <img alt="Figure" src="/images/fit.png">
+                <figcaption> Croped image of one of the 16 detector plates.</figcaption>
+            </div> 
+
+            <p> Finall the contrast is calculated using the fitted values of the armonic equation:
             </p>  
 
 
-            <div class="image_container">
-                <img alt="Figure" src="/images/ferromagnets.png">
-                <figcaption>  Approximation to the kubo equation solution</figcaption>
-            </div>  
-            
+            <p class="equation">
+             $$ R = \frac{ |A| }{c} $$
+            </p> 
+ 
             <p>
-                In general to solve the set of integral coupled equeations will not be easy and we will make first a change of coordinates and make some aproximations.
+                To fit the equation we can simply use any python library, the error will be also given by the fit.
+            </p>  
+
+            <p>
+                If we need an alternative method to get more precision, specially if the difference of travel path between the different part of the images is not neglectable, we have developed a method inspired in the boostrap method. We will make a second crop in the image to analyze and calculate the reduction factor of this second crop, we repeat this procces for randomly generated crops of different size, depending in our necesities, and we can calculate the final contrast as the average value of all the crops. The error in this case is calculated using the sample standard deviation. In practice, for our case, this method didn't decrease the error but gave us a sligthly bigger contrast.
+            </p>  
+
+            <div class="image_container">
+                <img alt="Figure" src="/images/histogram.png">
+                <figcaption> The outcome of the constrast calculated over 50000 calculations with different crops of the image. </figcaption>
+            </div> 
+
+            <p>
+                In the code we serve in this page to dowload you can a jupiter notebook with exemplary data and the fits we have seen here.
             </p>  
 
         </div>
@@ -54,7 +75,7 @@
 
 
     export default {
-        name: "Latexpage5",
+        name: "Latexpage4",
         methods: {
             reRender() {
             if(window.MathJax) {
@@ -72,8 +93,32 @@
 
 </script>
 
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style scoped>
+
+    .equation{
+        justify-content: center;
+        text-align: center;
+    }
+
+    h1{
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .image_container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .article{
+        margin-bottom:40px ;
+    }
+
 
     .equation{
         justify-content: center;
