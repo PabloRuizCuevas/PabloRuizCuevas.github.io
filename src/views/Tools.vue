@@ -237,7 +237,7 @@
                 gamma: 50,
                 thetaD:10,
                 thetaS:5,
-                nsimulations:50,  
+                nsimulations:200,  
                 lambda:20, 
 
             }
@@ -342,23 +342,20 @@
                         y.push(ya)
                     }
                 }
-
-                for (var j = -90; j < 91; j += 5){  //calculate the average
-                    xchart.push(j)
-                    if (this.sample_radius > 0){
-
+                if (this.sample_radius > 0){
+                    for (var j = -90; j < 91; j += 5){  //calculate the average
+                        xchart.push(j)
                         var a = 0
                         for (var i = 0; i < x.length; i++ ){  //calculate the average
-                            console.log(this.path_legth_dif(x[i],y[i],j,this.thetaD))
                             a += Math.cos(2*Math.PI/lambda*this.path_legth_dif(x[i],y[i],j,this.thetaD));
                         }
                         a = a/x.length
                         ychart.push(Math.round( a* 10000)/ 10000)
                     }
-                    else{
-                        console.log("radius must be positive")
-                    } 
                 }
+                else{
+                    console.log("radius must be positive")
+                } 
                 return [xchart,ychart]
             },
             reRender() {
