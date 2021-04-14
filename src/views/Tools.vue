@@ -79,10 +79,6 @@
 
             <div v-if="shape=='Cuboid'"  >
 
-                <div v-if="method=='Monte Carlo'" >
-                    <h2>Monte Carlo => Analytical</h2>
-                </div>
-
                 <div class="slidercontainer">
                     <div  class="Slider" >
                         <Slider  v-model="thetaS" :min="0" :max="90"/>
@@ -110,8 +106,10 @@
                         <Slider v-model="thetaD" :min="-70" :max="70" />
                         <div style="text-align: center;"><b><i>θ<sub>D</sub></i></b> - <b>2<i>θ</i></b> </div>
                     </div>
-            </div>
-    
+                </div>
+                <div v-if="method=='Monte Carlo'" >
+                    <h2>Monte Carlo => Analytical</h2>
+                </div>
             </div>
 
 
@@ -144,11 +142,6 @@
 
             <div v-if=" (shape != 'Cuboid') && (method == 'Monte Carlo')">
 
-                <div v-if="method=='Monte Carlo'" >
-                    <h2>Monte Carlo method</h2>
-                    <p> With Monte Carlo simulations we can stimate the reduction factor in the general case. A big number of simulations will offer better results, but can slow down the webpage performance</p>
-                </div>
-
                 <div class="slidercontainer">
                     <div  class="Slider" >
                         <Slider v-model="theta2" :min="0" :max="90"/>
@@ -174,6 +167,12 @@
                     </div>
                 </div>
 
+                <div style="margin-top: -40px" v-if="method=='Monte Carlo'" >
+                    <h3>Monte Carlo method</h3>
+                    <p> With Monte Carlo simulations we can stimate the reduction factor in the general case. A big number of simulations will offer better results, but can slow down the webpage performance</p>
+                </div>
+
+
             </div>
 
         </div>
@@ -191,10 +190,14 @@
                 </div>
                 -->
             </div>
-            <div v-if="(shape != 'Cuboid')" > 
-                <h3>In develop, only for cuboid</h3>
+            <div v-if="(shape == 'Cylinder')&& (method != 'Monte Carlo')" >  
+                <Chart :datay="Reduction_array_cylinder()[0]" :datax="Reduction_array_cylinder()[1]" />
+                <!--<h3>In develop, only for cuboid</h3>-->
             </div>
-
+            <div v-if="(shape == 'Cylinder')&& (method == 'Monte Carlo')" >  
+                <Chart :datay="Reduction_array_cylinder_MC()[0]" :datax="Reduction_array_cylinder_MC()[1]" />
+                <!--<h3>In develop, only for cuboid</h3>-->
+            </div>
 
         </div>
 
@@ -234,7 +237,7 @@
                 gamma: 50,
                 thetaD:10,
                 thetaS:5,
-                nsimulations:100,  
+                nsimulations:50,  
                 lambda:20, 
 
             }
@@ -259,7 +262,7 @@
                 var eps= 0.0000001
                 var y=[]
                 var x=[]
-                for (var i = 0; i < 91; i++ ){  //calculate the average
+                for (var i = -90; i < 91; i += 2){  //calculate the average
                     x.push(i)
                     var a = Math.PI*this.sample_width/lambda* (Math.cos( this.thetaS*Math.PI/180)- Math.cos((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((i-this.thetaD)*Math.PI/180)   )
                     var b = Math.PI*this.sample_height/lambda* (Math.sin( this.thetaS*Math.PI/180)+ Math.sin((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((i-this.thetaD)*Math.PI/180)   )
@@ -307,6 +310,56 @@
                 else{
                     console.log("radius must be positive")
                 }
+            },
+            Reduction_array_cylinder(){  ///change this horrible way to put to make a function and pass data
+                var BESSEL = require('bessel')
+                var lambda = this.lambda //40*1.28
+                var eps= 0.0000001
+                var y=[]
+                var x=[]
+                for (var i = -90; i < 91; i += 2){  //calculate the average
+                    x.push(i)
+                    var a = lambda/(2*Math.PI*this.sample_radius)*BESSEL.besselj(4*Math.PI*this.sample_radius/lambda*Math.sin(i*Math.PI/180/2+eps),1)/Math.sin(i*Math.PI/180/2+eps)
+                    y.push(Math.round( a* 10000)/ 10000)
+                }
+                return [x,y]
+            },
+            Reduction_array_cylinder_MC(){  ///change this horrible way to put to make a function and pass data
+                
+                var x = [];
+                var y = [];
+                var xchart = [];
+                var ychart = [];
+                var n = this.nsimulations
+                var lambda = this.lambda //40*1.28
+
+                while( x.length < n) {  //throw random numbers
+                    var xa = Math.random(-this.sample_radius,this.sample_radius);
+                    var ya = Math.random(-this.sample_radius,this.sample_radius);
+                    var radi = Math.sqrt(xa**2+ya**2)  
+                    if (radi < this.sample_radius){ //take the ones inside the circle
+                        x.push(xa)
+                        y.push(ya)
+                    }
+                }
+
+                for (var j = -90; j < 91; j += 5){  //calculate the average
+                    xchart.push(j)
+                    if (this.sample_radius > 0){
+
+                        var a = 0
+                        for (var i = 0; i < x.length; i++ ){  //calculate the average
+                            console.log(this.path_legth_dif(x[i],y[i],j,this.thetaD))
+                            a += Math.cos(2*Math.PI/lambda*this.path_legth_dif(x[i],y[i],j,this.thetaD));
+                        }
+                        a = a/x.length
+                        ychart.push(Math.round( a* 10000)/ 10000)
+                    }
+                    else{
+                        console.log("radius must be positive")
+                    } 
+                }
+                return [xchart,ychart]
             },
             reRender() {
                 if(window.MathJax) {

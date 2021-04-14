@@ -66,6 +66,7 @@ export default {
             backgroundColor: ['#557aac'],
             data: props.datax
           }
+          
         ],
       },
       options: {
@@ -74,11 +75,11 @@ export default {
             y: {
                 type: 'linear',
                 min: -0.4,
-                max: 1
+                max: 1.2
             },
             x: {
                 type: 'linear',
-                min: 0,
+                min: -90,
                 max: 90
             }
         }
