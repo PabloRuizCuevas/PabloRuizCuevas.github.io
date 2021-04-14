@@ -6,8 +6,9 @@
     <div class="columns">
      
 
-        <div id="pixelLeft">
+        <div id="pixelLef">
             
+
             <div style="margin-bottom:200px" class="Select">
 
                 <div>
@@ -74,7 +75,7 @@
 
         </div>
 
-        <div id="bannerCenter" >
+        <div id="bannerCente" >
 
             <div v-if="shape=='Cuboid'"  >
 
@@ -174,13 +175,16 @@
                 </div>
 
             </div>
-            <Chart :datay="Reduction_array()[0]" :datax="Reduction_array()[1]" />
-             
+
         </div>
 
-        <div id="pixelRight">&nbsp;</div>
-    </div>
+        <div id="pixelRigh">  <!-- &nbsp; -->
+            <div > 
+             <Chart :datay="Reduction_array()[0]" :datax="Reduction_array()[1]" />
+            </div>
+        </div>
 
+    </div>
 
 
 </template>
@@ -217,7 +221,7 @@
                 thetaD:20,
                 thetaS:5,
                 nsimulations:100,  
-                lambda:2, 
+                lambda:20, 
 
             }
         },
@@ -241,7 +245,7 @@
                 var eps= 0.0000001
                 var y=[]
                 var x=[]
-                for (var i = 0; i < 45; i++ ){  //calculate the average
+                for (var i = 0; i < 91; i++ ){  //calculate the average
                     x.push(i)
                     var a = Math.PI*this.sample_width/lambda* (Math.cos( this.thetaS*Math.PI/180)- Math.cos((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((i-this.thetaD)*Math.PI/180)   )
                     var b = Math.PI*this.sample_height/lambda* (Math.sin( this.thetaS*Math.PI/180)+ Math.sin((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((i-this.thetaD)*Math.PI/180)   )
@@ -321,32 +325,38 @@
 .columns{
     display: flex;
     flex-direction: row;
-    /*align-items: flex-start;*/
-    justify-content: center;
+    justify-content: space-evenly;
     flex-wrap:wrap-reverse;
 }
 
-#bannerCenter{
-    flex: 2.;
-    min-width: 300px;
-}
-
-#pixelRight,#pixelLeft{  
+#bannerCente{
     flex: 1;
     min-width: 300px;
+    min-height: 0;
 }
 
-#pixelLeft{ 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+#pixelLef{  
+    display: inline-flex;; 
+    flex: 0.5;   
+    flex-direction: row;
     justify-content: center;
-
+    min-width: 300px;
+    min-height: 0;
 }
+
+#pixelRigh{  
+    display: inline-flex;; 
+    flex: 1;   
+    flex-direction: row;
+    justify-content: center;
+    min-height: 0;
+    /*min-width: 300px;*/
+}
+
 
 .Select{
-    margin: 10px;
     display: block;
+    margin: 10px;
     width: 50%;
 }
 
@@ -382,6 +392,11 @@ input{
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-  
+
+@media only screen and (max-width: 900px) {
+  .bannerCente{
+    width: 80%;
+  }
+}
 
 </style>

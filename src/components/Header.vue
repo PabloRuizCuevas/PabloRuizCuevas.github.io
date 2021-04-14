@@ -92,7 +92,7 @@
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 27px;
     font-weight: bold;
-    color: rgb(10, 102, 172);
+    color: #557aac;  /* rgb(10, 102, 172); */
     margin-left: 0px;
     margin-top:5px;
   }
