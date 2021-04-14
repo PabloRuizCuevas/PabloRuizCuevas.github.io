@@ -1,8 +1,11 @@
 
 <template>
 
+
+
     <div class="columns">
-        
+     
+
         <div id="pixelLeft">
             
             <div style="margin-bottom:200px" class="Select">
@@ -38,9 +41,9 @@
                             <input v-model="sample_radius" placeholder="edit me" />
                         </div>
                     </div>
-                    <p>Lamda [Å], Lsd [m]</p>
+                    <p>Lamda [mm], Lsd [m]</p>
                     <div  class="number_container">
-                        <input v-model="message" placeholder="edit me" />
+                        <input v-model="lambda" placeholder="edit me" />
                         <input v-model="message" placeholder="edit me" />
                     </div>
                 </div>
@@ -71,110 +74,113 @@
 
         </div>
 
-        
+        <div id="bannerCenter" >
 
-        <div v-if="shape=='Cuboid'"  id="bannerCenter" >
+            <div v-if="shape=='Cuboid'"  >
 
-            <div v-if="method=='Monte Carlo'" >
-                <h2>Monte Carlo => Analytical</h2>
+                <div v-if="method=='Monte Carlo'" >
+                    <h2>Monte Carlo => Analytical</h2>
+                </div>
+
+                <div class="slidercontainer">
+                    <div  class="Slider" >
+                        <Slider  v-model="thetaS" :min="0" :max="90"/>
+                        <div style="text-align: center;"> <b><i>θ<sub>S</sub></i></b></div>
+                    </div>
+                    <div  class="Slider" >
+                        <Slider v-model="theta2" :min="0" :max="90"/>
+                        <div style="text-align: center;"><b>2<i>θ</i></b></div>
+                    </div>
+                </div>
+
+                <D3component :theta_sa="theta_sa" :theta2s="theta2s" :gammas="gammas" 
+                :theta_Ds="theta_Ds" :shape="shape"
+                :gamma="gamma" :theta2="theta2" :thetaD="thetaD" :thetaS="thetaS"
+                :sample_width="sample_width" 
+                :sample_height="sample_height"
+                :sample_radius="sample_radius" />
+
+                <div class="slidercontainer">
+                    <div class="Slider">
+                        <Slider v-model="gamma" :min="18" :max="70" />
+                        <div style="text-align: center;"><b><i>γ</i></b></div>
+                    </div>
+                    <div class="Slider">
+                        <Slider v-model="thetaD" :min="-70" :max="70" />
+                        <div style="text-align: center;"><b><i>θ<sub>D</sub></i></b> - <b>2<i>θ</i></b> </div>
+                    </div>
             </div>
-
-            <div class="slidercontainer">
-                <div  class="Slider" >
-                    <Slider  v-model="thetaS" :min="0" :max="90"/>
-                    <div style="text-align: center;"> <b><i>θ<sub>S</sub></i></b></div>
-                </div>
-                <div  class="Slider" >
-                    <Slider v-model="theta2" :min="0" :max="90"/>
-                    <div style="text-align: center;"><b>2<i>θ</i></b></div>
-                </div>
-            </div>
-
-            <D3component :theta_sa="theta_sa" :theta2s="theta2s" :gammas="gammas" 
-            :theta_Ds="theta_Ds" :shape="shape"
-            :gamma="gamma" :theta2="theta2" :thetaD="thetaD" :thetaS="thetaS"
-            :sample_width="sample_width" 
-            :sample_height="sample_height"
-            :sample_radius="sample_radius" />
-
-            <div class="slidercontainer">
-                <div class="Slider">
-                    <Slider v-model="gamma" :min="18" :max="70" />
-                    <div style="text-align: center;"><b><i>γ</i></b></div>
-                </div>
-                <div class="Slider">
-                    <Slider v-model="thetaD" :min="-70" :max="70" />
-                    <div style="text-align: center;"><b><i>θ<sub>D</sub></i></b> - <b>2<i>θ</i></b> </div>
-                </div>
-          </div>
- 
-        </div>
-
-
-        <div v-if=" (shape != 'Cuboid') && (method != 'Monte Carlo')"  id="bannerCenter" >
-
-            <div class="slidercontainer">
     
-                <div  class="Slider" >
-                    <Slider v-model="theta2" :min="0" :max="90"/>
-                    <div style="text-align: center;"><b>2<i>θ</i></b></div>
+            </div>
+
+
+            <div v-if=" (shape != 'Cuboid') && (method != 'Monte Carlo')" >
+
+                <div class="slidercontainer">
+        
+                    <div  class="Slider" >
+                        <Slider v-model="theta2" :min="0" :max="90"/>
+                        <div style="text-align: center;"><b>2<i>θ</i></b></div>
+                    </div>
+
+                    <div class="Slider">
+                        <Slider v-model="gamma" :min="18" :max="70" />
+                        <div style="text-align: center;"><b><i>γ</i></b></div>
+                    </div>
+
                 </div>
 
-                <div class="Slider">
-                    <Slider v-model="gamma" :min="18" :max="70" />
-                    <div style="text-align: center;"><b><i>γ</i></b></div>
-                </div>
+                <D3component :theta_sa="theta_sa" :theta2s="theta2s" :gammas="gammas" 
+                :theta_Ds="theta_Ds" :shape="shape"
+                :gamma="gamma" :theta2="theta2" :thetaD="0" :thetaS="thetaS"
+                :sample_width="sample_width" 
+                :sample_height="sample_height"
+                :sample_radius="sample_radius" />
+
+                <p> The analytical case is only calculated for the case <i>θ<sub>D</sub></i> = 2<i>θ</i> </p>
 
             </div>
 
-            <D3component :theta_sa="theta_sa" :theta2s="theta2s" :gammas="gammas" 
-            :theta_Ds="theta_Ds" :shape="shape"
-            :gamma="gamma" :theta2="theta2" :thetaD="0" :thetaS="thetaS"
-            :sample_width="sample_width" 
-            :sample_height="sample_height"
-            :sample_radius="sample_radius" />
+            <div v-if=" (shape != 'Cuboid') && (method == 'Monte Carlo')">
 
-            <p> The analytical case is only calculated for the case <i>θ<sub>D</sub></i> = 2<i>θ</i> </p>
+                <div v-if="method=='Monte Carlo'" >
+                    <h2>Monte Carlo method</h2>
+                    <p> With Monte Carlo simulations we can stimate the reduction factor in the general case. A big number of simulations will offer better results, but can slow down the webpage performance</p>
+                </div>
 
+                <div class="slidercontainer">
+                    <div  class="Slider" >
+                        <Slider v-model="theta2" :min="0" :max="90"/>
+                        <div style="text-align: center;"><b>2<i>θ</i></b></div>
+                    </div>
+                </div>
+
+                <D3component :theta_sa="theta_sa" :theta2s="theta2s" :gammas="gammas" 
+                :theta_Ds="theta_Ds" :shape="shape"
+                :gamma="gamma" :theta2="theta2" :thetaD="thetaD" :thetaS="thetaS"
+                :sample_width="sample_width" 
+                :sample_height="sample_height"
+                :sample_radius="sample_radius" />
+
+                <div class="slidercontainer">
+                    <div class="Slider">
+                        <Slider v-model="gamma" :min="18" :max="70" />
+                        <div style="text-align: center;"><b><i>γ</i></b></div>
+                    </div>
+                    <div class="Slider">
+                        <Slider v-model="thetaD" :min="-70" :max="70" />
+                        <div style="text-align: center;"><b><i>θ<sub>D</sub></i></b> - <b>2<i>θ</i></b> </div>
+                    </div>
+                </div>
+
+            </div>
+            <Chart :datay="Reduction_array()[0]" :datax="Reduction_array()[1]" />
+             
         </div>
-
-        <div v-if=" (shape != 'Cuboid') && (method == 'Monte Carlo')"  id="bannerCenter" >
-
-            <div v-if="method=='Monte Carlo'" >
-                <h2>Monte Carlo method</h2>
-                <p> With Monte Carlo simulations we can stimate the reduction factor in the general case. A big number of simulations will offer better results, but can slow down the webpage performance</p>
-            </div>
-
-            <div class="slidercontainer">
-                <div  class="Slider" >
-                    <Slider v-model="theta2" :min="0" :max="90"/>
-                    <div style="text-align: center;"><b>2<i>θ</i></b></div>
-                </div>
-            </div>
-
-            <D3component :theta_sa="theta_sa" :theta2s="theta2s" :gammas="gammas" 
-            :theta_Ds="theta_Ds" :shape="shape"
-            :gamma="gamma" :theta2="theta2" :thetaD="thetaD" :thetaS="thetaS"
-            :sample_width="sample_width" 
-            :sample_height="sample_height"
-            :sample_radius="sample_radius" />
-
-            <div class="slidercontainer">
-                <div class="Slider">
-                    <Slider v-model="gamma" :min="18" :max="70" />
-                    <div style="text-align: center;"><b><i>γ</i></b></div>
-                </div>
-                <div class="Slider">
-                    <Slider v-model="thetaD" :min="-70" :max="70" />
-                    <div style="text-align: center;"><b><i>θ<sub>D</sub></i></b> - <b>2<i>θ</i></b> </div>
-                </div>
-          </div>
- 
-        </div>
-
 
         <div id="pixelRight">&nbsp;</div>
     </div>
+
 
 
 </template>
@@ -184,7 +190,9 @@
     import D3component from "../components/figures/d3_figure_tools.vue"
     import Multiselect from '@vueform/multiselect'
     import Slider from '@vueform/slider'
+    import Chart from "../components/figures/chart.vue"
     //const { pow,add,filter } = require('mathjs')
+
 
     export default {
         name: "Tools",
@@ -208,29 +216,43 @@
                 gamma: 50,
                 thetaD:20,
                 thetaS:5,
-                nsimulations:100,   
+                nsimulations:100,  
+                lambda:2, 
+
             }
         },
         components: {
             D3component,
             Multiselect,
             Slider,
+            Chart,
         },
         methods: {
 
             Reduction(){
-                var lambda =40*1.28
+                var lambda = this.lambda //40*1.28
                 var eps= 0.0000001
                 var a = Math.PI*this.sample_width/lambda* (Math.cos( this.thetaS*Math.PI/180)- Math.cos((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((this.theta2-this.thetaD)*Math.PI/180)   )
                 var b = Math.PI*this.sample_height/lambda* (Math.sin( this.thetaS*Math.PI/180)+ Math.sin((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((this.theta2-this.thetaD)*Math.PI/180)   )
                 return Math.round( Math.sin(a+eps)/(a+eps)*Math.sin(b+eps)/(b+eps)  * 1000) / 1000
             },
+            Reduction_array(){  ///change this horrible way to put to make a function and pass data
+                var lambda = this.lambda //40*1.28
+                var eps= 0.0000001
+                var y=[]
+                var x=[]
+                for (var i = 0; i < 45; i++ ){  //calculate the average
+                    x.push(i)
+                    var a = Math.PI*this.sample_width/lambda* (Math.cos( this.thetaS*Math.PI/180)- Math.cos((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((i-this.thetaD)*Math.PI/180)   )
+                    var b = Math.PI*this.sample_height/lambda* (Math.sin( this.thetaS*Math.PI/180)+ Math.sin((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((i-this.thetaD)*Math.PI/180)   )
+                    y.push(Math.round( Math.sin(a+eps)/(a+eps)*Math.sin(b+eps)/(b+eps)* 10000) / 10000)
+                }
+                return [x,y]
+            },
             Reduction_cylinder(){
                 var BESSEL = require('bessel')
-                var lambda =40*1.28
+                var lambda = this.lambda // 40*1.28 //0.0002 m en mm 0.2
                 var eps= 0.0000001
-                console.log(lambda/(2*Math.PI*this.sample_radius))
-                console.log(BESSEL.besselj(4*Math.PI*this.sample_radius/lambda*Math.sin(this.theta2*Math.PI/180/2),1)/Math.sin(this.theta2*Math.PI/180/2) )
                 var a = lambda/(2*Math.PI*this.sample_radius)*BESSEL.besselj(4*Math.PI*this.sample_radius/lambda*Math.sin(this.theta2*Math.PI/180/2+eps),1)/Math.sin(this.theta2*Math.PI/180/2+eps)
                 return Math.round( a* 1000) / 1000
             },
@@ -244,31 +266,30 @@
                 var x = [];
                 var y = [];
                 var n = this.nsimulations
-                var lambda =40*1.28
+                var lambda = this.lambda //40*1.28
 
                 if (this.sample_radius > 0){
-                    
                     while( x.length < n) {  //throw random numbers
                         var xa = Math.random(-this.sample_radius,this.sample_radius);
                         var ya = Math.random(-this.sample_radius,this.sample_radius);
-                        var radi = Math.sqrt(xa*xa+ya*ya)  
+                        var radi = Math.sqrt(xa**2+ya**2)  
                         if (radi < this.sample_radius){ //take the ones inside the circle
                             x.push(xa)
                             y.push(ya)
                         }
-                    
                     }
-    
                     var a = 0
                     for (var i = 0; i < x.length; i++ ){  //calculate the average
+                        console.log(this.path_legth_dif(x[i],y[i],this.theta2,this.thetaD))
                         a += Math.cos(2*Math.PI/lambda*this.path_legth_dif(x[i],y[i],this.theta2,this.thetaD));
                     }
                     a = a/x.length
-                    return Math.round( a* 1000) / 1000
+                    return Math.round(a*1000)/1000
                 }
-                
+                else{
+                    console.log("radius must be positive")
+                }
             },
-
             reRender() {
                 if(window.MathJax) {
                     console.log('rendering mathjax');

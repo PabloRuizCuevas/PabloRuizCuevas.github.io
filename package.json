@@ -9,8 +9,10 @@
     "deploy": "node scripts/gh-pages-deploy.js"
   },
   "dependencies": {
+    "@j-t-mcc/vue3-chartjs": "^1.0.0",
     "@vueform/multiselect": "^1.4.0",
     "@vueform/slider": "^1.0.3",
+    "apexcharts": "^3.26.0",
     "bessel": "^1.0.2",
     "chart.js": "^3.0.2",
     "core-js": "^3.6.5",
@@ -31,7 +33,9 @@
     "vue-next-select": "^2.1.1",
     "vue-numeric-input": "^1.0.6",
     "vue-router": "^4.0.4",
-    "vue3-chart-v2": "^0.8.1"
+    "vue3-apexcharts": "^1.2.1",
+    "vue3-chart-v2": "^0.8.1",
+    "vue3-echarts": "^1.0.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
