@@ -16,6 +16,13 @@
                     <p>Method:</p>
                     <Multiselect v-model="method"  :options="methods"/>
                 </div>
+
+                <div  v-if="method=='Monte Carlo'">
+                    <p>Simulations</p>
+                    <div  class="number_container">
+                        <input v-model="nsimulations" placeholder="edit me" />
+                    </div>
+                </div>
             
                 <div>
                     <div  v-if="shape=='Cuboid'">
@@ -45,10 +52,17 @@
                     </div>
                 </div>
 
-                <div  v-if="shape!='Cuboid'">
+                <div  v-if=" (shape != 'Cuboid') && (method != 'Monte Carlo') ">
                     <div style="display: flex;  flex-direction: column; align-items: center; justify-content: center; " > 
                         <p>Reduction factor:</p>
                         <div class="shadow" style="font-size: 1.1rem;  text-align: center; padding:2px 20px 2px 20px">R: {{Reduction_cylinder()}}</div>
+                    </div>
+                </div>
+
+                <div  v-if=" (shape != 'Cuboid') && (method == 'Monte Carlo') ">
+                    <div style="display: flex;  flex-direction: column; align-items: center; justify-content: center; " > 
+                        <p>Reduction factor:</p>
+                        <div class="shadow" style="font-size: 1.1rem;  text-align: center; padding:2px 20px 2px 20px">R: {{Reduction_cylinder_MC()}}</div>
                     </div>
                 </div>
                 
@@ -62,7 +76,7 @@
         <div v-if="shape=='Cuboid'"  id="bannerCenter" >
 
             <div v-if="method=='Monte Carlo'" >
-                <h2>Monte Carlo method in develop</h2>
+                <h2>Monte Carlo => Analytical</h2>
             </div>
 
             <div class="slidercontainer">
@@ -97,11 +111,7 @@
         </div>
 
 
-        <div v-if="shape!='Cuboid'"  id="bannerCenter" >
-
-            <div v-if="method=='Monte Carlo'" >
-                <h2>Monte Carlo method in develop</h2>
-            </div>
+        <div v-if=" (shape != 'Cuboid') && (method != 'Monte Carlo')"  id="bannerCenter" >
 
             <div class="slidercontainer">
     
@@ -128,6 +138,39 @@
 
         </div>
 
+        <div v-if=" (shape != 'Cuboid') && (method == 'Monte Carlo')"  id="bannerCenter" >
+
+            <div v-if="method=='Monte Carlo'" >
+                <h2>Monte Carlo method</h2>
+                <p> With Monte Carlo simulations we can stimate the reduction factor in the general case. A big number of simulations will offer better results, but can slow down the webpage performance</p>
+            </div>
+
+            <div class="slidercontainer">
+                <div  class="Slider" >
+                    <Slider v-model="theta2" :min="0" :max="90"/>
+                    <div style="text-align: center;"><b>2<i>θ</i></b></div>
+                </div>
+            </div>
+
+            <D3component :theta_sa="theta_sa" :theta2s="theta2s" :gammas="gammas" 
+            :theta_Ds="theta_Ds" :shape="shape"
+            :gamma="gamma" :theta2="theta2" :thetaD="thetaD" :thetaS="thetaS"
+            :sample_width="sample_width" 
+            :sample_height="sample_height"
+            :sample_radius="sample_radius" />
+
+            <div class="slidercontainer">
+                <div class="Slider">
+                    <Slider v-model="gamma" :min="18" :max="70" />
+                    <div style="text-align: center;"><b><i>γ</i></b></div>
+                </div>
+                <div class="Slider">
+                    <Slider v-model="thetaD" :min="-70" :max="70" />
+                    <div style="text-align: center;"><b><i>θ<sub>D</sub></i></b> - <b>2<i>θ</i></b> </div>
+                </div>
+          </div>
+ 
+        </div>
 
 
         <div id="pixelRight">&nbsp;</div>
@@ -141,6 +184,7 @@
     import D3component from "../components/figures/d3_figure_tools.vue"
     import Multiselect from '@vueform/multiselect'
     import Slider from '@vueform/slider'
+    //const { pow,add,filter } = require('mathjs')
 
     export default {
         name: "Tools",
@@ -163,7 +207,8 @@
                 theta2:30,
                 gamma: 50,
                 thetaD:20,
-                thetaS:5,      
+                thetaS:5,
+                nsimulations:100,   
             }
         },
         components: {
@@ -189,6 +234,41 @@
                 var a = lambda/(2*Math.PI*this.sample_radius)*BESSEL.besselj(4*Math.PI*this.sample_radius/lambda*Math.sin(this.theta2*Math.PI/180/2+eps),1)/Math.sin(this.theta2*Math.PI/180/2+eps)
                 return Math.round( a* 1000) / 1000
             },
+            path_legth_dif(x,y,Theta_two,Theta_D){
+                var radTheta_D   = Theta_D*Math.PI/180
+                var radTheta_two = Theta_two*Math.PI/180
+                var eps= 0.00000001
+                return(x-(x*Math.cos(radTheta_D+eps)+y*Math.sin(radTheta_D+eps))/Math.cos(radTheta_two-radTheta_D+eps))
+            },
+            Reduction_cylinder_MC(){
+                var x = [];
+                var y = [];
+                var n = this.nsimulations
+                var lambda =40*1.28
+
+                if (this.sample_radius > 0){
+                    
+                    while( x.length < n) {  //throw random numbers
+                        var xa = Math.random(-this.sample_radius,this.sample_radius);
+                        var ya = Math.random(-this.sample_radius,this.sample_radius);
+                        var radi = Math.sqrt(xa*xa+ya*ya)  
+                        if (radi < this.sample_radius){ //take the ones inside the circle
+                            x.push(xa)
+                            y.push(ya)
+                        }
+                    
+                    }
+    
+                    var a = 0
+                    for (var i = 0; i < x.length; i++ ){  //calculate the average
+                        a += Math.cos(2*Math.PI/lambda*this.path_legth_dif(x[i],y[i],this.theta2,this.thetaD));
+                    }
+                    a = a/x.length
+                    return Math.round( a* 1000) / 1000
+                }
+                
+            },
+
             reRender() {
                 if(window.MathJax) {
                     console.log('rendering mathjax');
