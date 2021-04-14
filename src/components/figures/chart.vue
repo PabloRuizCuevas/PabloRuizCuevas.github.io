@@ -19,18 +19,8 @@
         :options="doughnutChart.options"
     ></vue3-chart-js>
 
+     <div style="text-align: center;"><b>2<i>θ</i></b> [degrees]</div>
 
-    <div>
-        <div>
-            <p class="number_text" style="padding-left:10px; padding-right:10px"> min x, max x, min y, max y.</p>
-            <div  class="number_container">
-                <input v-model="minx" placeholder="edit me" />
-                <input v-model="maxx" placeholder="edit me" />
-                <input v-model="miny" placeholder="edit me" />
-                <input v-model="maxy" placeholder="edit me" />
-            </div>
-        </div>
-    </div>
 
     <button @click="updateChart">Update Chart</button>
     <button type="submit" @click="exportChart">Export Chart as PNG</button>
@@ -50,14 +40,14 @@ export default {
   props: {
     datax: Array,
     datay: Array,
+    minx: Number,
+    maxx: Number,
+    miny: Number,
+    maxy: Number,
   },
   data() {
     return {
       autoupdate: "yes",
-      minx: 0,
-      maxx: 90,
-      miny: 1,
-      maxy:-0.4,
     }
   },
   
@@ -104,6 +94,21 @@ export default {
             '#557aac',
           ],
           data: props.datax,
+          options: {
+            animation: false,
+            scales: {
+                y: {
+                    type: 'linear',
+                    min: props.miny,
+                    max: props.maxy
+                },
+                x: {
+                    type: 'linear',
+                    min: props.minx,
+                    max: props.maxx
+                }
+            }
+          }
         },
       ]
 

@@ -42,7 +42,7 @@
                             <input v-model="sample_radius" placeholder="edit me" />
                         </div>
                     </div>
-                    <p>Lamda [mm], Lsd [m]</p>
+                    <p>Lamda [mm], L [m]</p>
                     <div  class="number_container">
                         <input v-model="lambda" placeholder="edit me" />
                         <input v-model="message" placeholder="edit me" />
@@ -179,9 +179,23 @@
         </div>
 
         <div id="pixelRigh">  <!-- &nbsp; -->
-            <div > 
-             <Chart :datay="Reduction_array()[0]" :datax="Reduction_array()[1]" />
+            <div v-if="(shape == 'Cuboid')" > 
+                <Chart :datay="Reduction_array()[0]" :datax="Reduction_array()[1]" />
+                
+                <!--<div class="number_text" style="padding-left:10px; padding-right:10px"> min x, max x, min y, max y.</div>
+                <div  class="number_container2">
+                    <input v-model="minx" placeholder="edit me" />
+                    <input v-model="maxx" placeholder="edit me" />
+                    <input v-model="miny" placeholder="edit me" />
+                    <input v-model="maxy" placeholder="edit me" />
+                </div>
+                -->
             </div>
+            <div v-if="(shape != 'Cuboid')" > 
+                <h3>In develop, only for cuboid</h3>
+            </div>
+
+
         </div>
 
     </div>
@@ -218,7 +232,7 @@
                 equation2:'$ R=sinc \\left (\\frac{\\pi t}{\\Lambda} \\cdot \\left [ \\cos \\theta_S-\\frac{\\cos{(\\theta_D-\\theta_S)}}{\\cos(2 \\theta - \\theta_D)} \\right ] \\right ) sinc \\left (\\frac{\\pi \\omega}{\\Lambda} \\cdot \\left [\\sin \\theta_S +  \\frac{\\sin{(\\theta_D-\\theta_S)}}{\\cos(2 \\theta - \\theta_D)}  \\right ] \\right ) $',
                 theta2:30,
                 gamma: 50,
-                thetaD:20,
+                thetaD:10,
                 thetaS:5,
                 nsimulations:100,  
                 lambda:20, 
@@ -365,6 +379,14 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    
+}
+
+.number_container2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
     
 }
 
