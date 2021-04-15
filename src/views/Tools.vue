@@ -178,8 +178,8 @@
         </div>
 
         <div id="pixelRigh">  <!-- &nbsp; -->
-            <div v-if="(shape == 'Cuboid')" > 
-                <Chart :datay="Reduction_array()[0]" :datax="Reduction_array()[1]" />
+            <div v-if="(shape == 'Cuboid')&& (method != 'Monte Carlo')" > 
+                <Chart :datay="Reduction_array()[0]" :datax="Reduction_array()[1]" :theta2="theta2"/>
                 
                 <!--<div class="number_text" style="padding-left:10px; padding-right:10px"> min x, max x, min y, max y.</div>
                 <div  class="number_container2">
@@ -190,12 +190,18 @@
                 </div>
                 -->
             </div>
+            <div v-if="(shape == 'Cuboid')&& (method == 'Monte Carlo')" >  
+                <Chart :datay="Reduction_array_cuboid_MC()[0]" :datax="Reduction_array_cuboid_MC()[1]" :theta2="theta2"/>
+                <!--<h3>In develop, only for cuboid</h3>-->
+            </div>
+
+
             <div v-if="(shape == 'Cylinder')&& (method != 'Monte Carlo')" >  
-                <Chart :datay="Reduction_array_cylinder()[0]" :datax="Reduction_array_cylinder()[1]" />
+                <Chart :datay="Reduction_array_cylinder()[0]" :datax="Reduction_array_cylinder()[1]" :theta2="theta2"/>
                 <!--<h3>In develop, only for cuboid</h3>-->
             </div>
             <div v-if="(shape == 'Cylinder')&& (method == 'Monte Carlo')" >  
-                <Chart :datay="Reduction_array_cylinder_MC()[0]" :datax="Reduction_array_cylinder_MC()[1]" />
+                <Chart :datay="Reduction_array_cylinder_MC()[0]" :datax="Reduction_array_cylinder_MC()[1]" :theta2="theta2"/>
                 <!--<h3>In develop, only for cuboid</h3>-->
             </div>
 
@@ -288,7 +294,6 @@
                 var y = [];
                 var n = this.nsimulations
                 var lambda = this.lambda //40*1.28
-
                 if (this.sample_radius > 0){
                     while( x.length < n) {  //throw random numbers
                         var xa = Math.random(-this.sample_radius,this.sample_radius);
@@ -301,7 +306,6 @@
                     }
                     var a = 0
                     for (var i = 0; i < x.length; i++ ){  //calculate the average
-                        console.log(this.path_legth_dif(x[i],y[i],this.theta2,this.thetaD))
                         a += Math.cos(2*Math.PI/lambda*this.path_legth_dif(x[i],y[i],this.theta2,this.thetaD));
                     }
                     a = a/x.length
@@ -317,10 +321,12 @@
                 var eps= 0.0000001
                 var y=[]
                 var x=[]
-                for (var i = -90; i < 91; i += 2){  //calculate the average
-                    x.push(i)
-                    var a = lambda/(2*Math.PI*this.sample_radius)*BESSEL.besselj(4*Math.PI*this.sample_radius/lambda*Math.sin(i*Math.PI/180/2+eps),1)/Math.sin(i*Math.PI/180/2+eps)
-                    y.push(Math.round( a* 10000)/ 10000)
+                if (this.sample_radius > 0){
+                    for (var i = -90; i < 91; i += 2){  //calculate the average
+                        x.push(i)
+                        var a = lambda/(2*Math.PI*this.sample_radius)*BESSEL.besselj(4*Math.PI*this.sample_radius/lambda*Math.sin(i*Math.PI/180/2+eps),1)/Math.sin(i*Math.PI/180/2+eps)
+                        y.push(Math.round( a* 10000)/ 10000)
+                    }
                 }
                 return [x,y]
             },
@@ -332,17 +338,47 @@
                 var ychart = [];
                 var n = this.nsimulations
                 var lambda = this.lambda //40*1.28
-
-                while( x.length < n) {  //throw random numbers
-                    var xa = Math.random(-this.sample_radius,this.sample_radius);
-                    var ya = Math.random(-this.sample_radius,this.sample_radius);
-                    var radi = Math.sqrt(xa**2+ya**2)  
-                    if (radi < this.sample_radius){ //take the ones inside the circle
+                if (this.sample_radius > 0){
+                    while( x.length < n) {  //throw random numbers
+                        var xa = Math.random(-this.sample_radius,this.sample_radius);
+                        var ya = Math.random(-this.sample_radius,this.sample_radius);
+                        var radi = Math.sqrt(xa**2+ya**2)  
+                        if (radi < this.sample_radius){ //take the ones inside the circle
+                            x.push(xa)
+                            y.push(ya)
+                        }
+                    }
+                
+                    for (var j = -90; j < 91; j += 5){  //calculate the average
+                        xchart.push(j)
+                        var a = 0
+                        for (var i = 0; i < x.length; i++ ){  //calculate the average
+                            a += Math.cos(2*Math.PI/lambda*this.path_legth_dif(x[i],y[i],j,this.thetaD));
+                        }
+                        a = a/x.length
+                        ychart.push(Math.round( a* 10000)/ 10000)
+                    }
+                }
+                else{
+                    console.log("radius must be positive")
+                } 
+                return [xchart,ychart]
+            },
+            Reduction_array_cuboid_MC(){  ///change this horrible way to put to make a function and pass data
+                
+                var x = [];
+                var y = [];
+                var xchart = [];
+                var ychart = [];
+                var n = this.nsimulations
+                var lambda = this.lambda //40*1.28
+                if (this.sample_radius > 0){
+                    while( x.length < n) {  //throw random numbers
+                        var xa = Math.random(-this.sample_width/2,this.sample_width/2);
+                        var ya = Math.random(-this.sample_height/2,this.sample_height/2);
                         x.push(xa)
                         y.push(ya)
                     }
-                }
-                if (this.sample_radius > 0){
                     for (var j = -90; j < 91; j += 5){  //calculate the average
                         xchart.push(j)
                         var a = 0
@@ -368,8 +404,6 @@
         mounted() {
             this.reRender();
         },
-
-        
 
     };
 

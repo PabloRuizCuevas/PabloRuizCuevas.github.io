@@ -32,6 +32,7 @@
 import { ref } from 'vue'
 import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
 
+
 export default {
   name: 'App',
   components: {
@@ -44,15 +45,29 @@ export default {
     maxx: Number,
     miny: Number,
     maxy: Number,
+    theta2: Number,
   },
   data() {
     return {
       autoupdate: "yes",
+      context: [],
     }
+  },
+  methods: {
+
+
   },
   
   setup (props) {
     const chartRef = ref(null)
+
+    const customcolor = (context) => {
+      let index = context.dataIndex;
+      //let value = context.dataset.data[ index ];
+      return index == props.theta2  ? //|| value >= 8
+            "#aa1111" :
+            "#557aac" ;
+    }
 
     const doughnutChart = {
       id: 'line',
@@ -63,10 +78,13 @@ export default {
         datasets: [
           {
             label: 'Reduction factor',
-            backgroundColor: ['#557aac'],
-            data: props.datax
-          }
-          
+            backgroundColor:  customcolor,
+            data: props.datax,
+          },
+          {
+            label: 'Detector position',
+            backgroundColor:  "#aa1111",
+          },
         ],
       },
       options: {
@@ -91,9 +109,7 @@ export default {
       doughnutChart.data.datasets = [
         {
           label: 'Reduction factor',
-          backgroundColor: [
-            '#557aac',
-          ],
+          backgroundColor: customcolor,
           data: props.datax,
           options: {
             animation: false,
@@ -111,6 +127,10 @@ export default {
             }
           }
         },
+        {
+          label: 'Detector position',
+          backgroundColor:  "#aa1111",
+        },
       ]
 
       chartRef.value.update()
@@ -119,7 +139,7 @@ export default {
     const exportChart = () => {
       let a = document.createElement('a')
       a.href = chartRef.value.chartJSState.chart.toBase64Image()
-      a.download = 'image-export.png'
+      a.download = 'Reduction_Factor.png'
       a.click()
       a = null
     }
@@ -137,6 +157,7 @@ export default {
         if(this.autoupdate=="yes"){
           this.updateChart()
       }
+
     }
 
   }
