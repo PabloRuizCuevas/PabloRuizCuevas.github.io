@@ -64,7 +64,7 @@ export default {
     const customcolor = (context) => {
       let index = context.dataIndex;
       //let value = context.dataset.data[ index ];
-      return index == props.theta2  ? //|| value >= 8
+      return index == parseInt(props.theta2/2+45)  ? //|| value >= 8
             "#aa1111" :
             "#557aac" ;
     }

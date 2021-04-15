@@ -7,7 +7,7 @@
 
     
     <div class="chart">
-        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" class="shadow">
+        <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" class="shadow">
 
             <rect class="monochromator" :width="monocromator.width" :height="monocromator.height" 
             fill-opacity="0.4" :x="monocromator.xc" :y="monocromator.yc"/>

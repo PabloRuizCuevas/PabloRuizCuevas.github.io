@@ -85,7 +85,7 @@
                         <div style="text-align: center;"> <b><i>θ<sub>S</sub></i></b></div>
                     </div>
                     <div  class="Slider" >
-                        <Slider v-model="theta2" :min="0" :max="90"/>
+                        <Slider v-model="theta2" :min="-90" :max="90"/>
                         <div style="text-align: center;"><b>2<i>θ</i></b></div>
                     </div>
                 </div>
