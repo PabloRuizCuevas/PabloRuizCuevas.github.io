@@ -86,13 +86,13 @@
                     </div>
                     <div  class="Slider" >
                         <Slider v-model="theta2" :min="-90" :max="90"/>
-                        <div style="text-align: center;"><b>2<i>θ</i></b></div>
+                        <div style="text-align: center;"><b>2<i>θ</i> + <i>θ<sub>S</sub></i>   </b></div>
                     </div>
                 </div>
 
                 <D3component :theta_sa="theta_sa" :theta2s="theta2s" :gammas="gammas" 
                 :theta_Ds="theta_Ds" :shape="shape"
-                :gamma="gamma" :theta2="theta2" :thetaD="thetaD" :thetaS="thetaS"
+                :gamma="gamma" :theta2="Theta2_minus_s()" :thetaD="thetaD" :thetaS="thetaS"
                 :sample_width="sample_width" 
                 :sample_height="sample_height"
                 :sample_radius="sample_radius" />
@@ -179,7 +179,7 @@
 
         <div id="pixelRigh">  <!-- &nbsp; -->
             <div v-if="(shape == 'Cuboid')&& (method != 'Monte Carlo')" > 
-                <Chart :datay="Reduction_array()[0]" :datax="Reduction_array()[1]" :theta2="theta2"/>
+                <Chart :datay="Reduction_array()[0]" :datax="Reduction_array()[1]" :theta2="Theta2_minus_s()"/>
                 
                 <!--<div class="number_text" style="padding-left:10px; padding-right:10px"> min x, max x, min y, max y.</div>
                 <div  class="number_container2">
@@ -233,7 +233,7 @@
                 options: ['Cuboid', 'Cylinder','Sphere'],
                 method: 'Analytical',
                 methods: ['Analytical', 'Monte Carlo'],
-                theta2s: '$2\\theta$',
+                theta2s: '$2\\theta$ + \\theta_S ',
                 gammas: '$\\gamma$',
                 theta_Ds: '$\\theta_D - 2\\theta$',
                 theta_sa: '$\\theta_S$',
@@ -255,7 +255,10 @@
             Chart,
         },
         methods: {
-
+            Theta2_minus_s(){
+                var theta2_minus_s = this.theta2+this.thetaS
+                return theta2_minus_s
+            },
             Reduction(){
                 var lambda = this.lambda //40*1.28
                 var eps= 0.0000001
@@ -504,5 +507,11 @@ input{
     width: 80%;
   }
 }
+
+.columns{
+min-height: calc(100vh - 264px);
+margin-top: 10px;
+}
+
 
 </style>

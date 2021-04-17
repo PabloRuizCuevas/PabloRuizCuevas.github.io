@@ -32,6 +32,7 @@
 import { ref } from 'vue'
 import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
 
+// sol2 ? document.getElementById('myChart').parentElement.innerHTML = '<img style="max-height:100%;height:auto;width:100%;max-width:100%;margin:auto;display:inline;" src="' + chart.toBase64Image() + '" />';
 
 export default {
   name: 'App',
@@ -187,7 +188,7 @@ export default {
 }
 
 .linechart{
-  margin-top: 18px ;
+  margin-top: 17px ;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -280,5 +281,34 @@ input{
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 } 
+
+/*
+    @keyframes chartfix {
+        
+        0% {
+            transform: scale(1.0);
+            -webkit-transform: scale(1.0);
+        }
+        50% {
+            transform: scale(1.01);
+            -webkit-transform: scale(1.01);
+        }
+        100% {
+            transform: scale(1.0);
+            -webkit-transform: scale(1.0);
+        }
+    }
+
+    .linechart {
+        animation-delay: 3s;
+        -webkit-animation-delay: 3s;
+        animation: chartfix 5s;
+        -webkit-animation: chartfix 5s;
+    }
+    */
+
+
+
+    
 
 </style>
