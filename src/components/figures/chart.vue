@@ -179,7 +179,6 @@ export default {
   
 }
 
-
 .chart{
   /*height:800px;*/
   width: 30vw; 

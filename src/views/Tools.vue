@@ -24,7 +24,7 @@
                 <div  v-if="method=='Monte Carlo'">
                     <p>Simulations</p>
                     <div  class="number_container">
-                        <input v-model="nsimulations" placeholder="edit me" />
+                        <input v-model.number="nsimulations" placeholder="edit me" />
                     </div>
                 </div>
             
@@ -32,22 +32,29 @@
                     <div  v-if="shape=='Cuboid'">
                         <p>Width, height [mm]</p>
                         <div  class="number_container">
-                            <input v-model="sample_width" placeholder="edit me" />
-                            <input v-model="sample_height" placeholder="edit me" />
+                            <input v-model.number="sample_width" placeholder="edit me" />
+                            <input v-model.number="sample_height" placeholder="edit me" />
                         </div>
                     </div>
                     <div  v-if="shape!='Cuboid'">
                         <p>Radius [mm]</p>
                         <div  class="number_container">
-                            <input v-model="sample_radius" placeholder="edit me" />
+                            <input v-model.number="sample_radius" placeholder="edit me" />
                         </div>
                     </div>
-                    <p>Lamda [mm], L [m]</p>
+                    <p>λ [mm], τ [ns]</p>
                     <div  class="number_container">
-                        <input v-model="lambda" placeholder="edit me" />
-                        <input v-model="message" placeholder="edit me" />
+                        <input v-model.number="Small_lambda" placeholder="edit me" />
+                        <input v-model.number="tau" placeholder="edit me" />
                     </div>
+                    <p>Lenght [m]</p>
+                    <div  class="number_container">
+                        <input v-model.number="Lsd" placeholder="edit me" />
+                    </div>
+                    
+
                 </div>
+
 
                 <div  v-if="shape=='Cuboid'">
                     <div style="display: flex;  flex-direction: column; align-items: center; justify-content: center; " > 
@@ -86,16 +93,16 @@
                     </div>
                     <div  class="Slider" >
                         <Slider v-model="theta2" :min="-90" :max="90"/>
-                        <div style="text-align: center;"><b>2<i>θ</i> + <i>θ<sub>S</sub></i>   </b></div>
+                        <div style="text-align: center;"><b>2<i>θ</i>  </b></div>   <!-- + <i>θ<sub>S</sub></i>   -->
                     </div>
                 </div>
 
                 <D3component :theta_sa="theta_sa" :theta2s="theta2s" :gammas="gammas" 
                 :theta_Ds="theta_Ds" :shape="shape"
-                :gamma="gamma" :theta2="Theta2_minus_s()" :thetaD="thetaD" :thetaS="thetaS"
+                :gamma="gamma" :theta2="theta2" :thetaD="thetaD" :thetaS="thetaS" 
                 :sample_width="sample_width" 
                 :sample_height="sample_height"
-                :sample_radius="sample_radius" />
+                :sample_radius="sample_radius" /> <!-- Theta2_minus_s()   -->
 
                 <div class="slidercontainer">
                     <div class="Slider">
@@ -104,7 +111,7 @@
                     </div>
                     <div class="Slider">
                         <Slider v-model="thetaD" :min="-70" :max="70" />
-                        <div style="text-align: center;"><b><i>θ<sub>D</sub></i></b> - <b>2<i>θ</i></b> </div>
+                        <div style="text-align: center;"><b><i>θ<sub>D</sub></i></b> - <b>2<i>θ</i></b> </div> 
                     </div>
                 </div>
                 <div v-if="method=='Monte Carlo'" >
@@ -179,7 +186,7 @@
 
         <div id="pixelRigh">  <!-- &nbsp; -->
             <div v-if="(shape == 'Cuboid')&& (method != 'Monte Carlo')" > 
-                <Chart :datay="Reduction_array()[0]" :datax="Reduction_array()[1]" :theta2="Theta2_minus_s()"/>
+                <Chart :datay="Reduction_array()[0]" :datax="Reduction_array()[1]" :theta2="theta2"/>  <!--Theta2_minus_s()-->
                 
                 <!--<div class="number_text" style="padding-left:10px; padding-right:10px"> min x, max x, min y, max y.</div>
                 <div  class="number_container2">
@@ -233,19 +240,22 @@
                 options: ['Cuboid', 'Cylinder','Sphere'],
                 method: 'Analytical',
                 methods: ['Analytical', 'Monte Carlo'],
-                theta2s: '$2\\theta$ + \\theta_S ',
+                theta2s: '$2\\theta$ + \\theta_S ',  //dont need to pass it anymore
                 gammas: '$\\gamma$',
                 theta_Ds: '$\\theta_D - 2\\theta$',
                 theta_sa: '$\\theta_S$',
-                equation1:'$R= sinc \\left (\\frac{\\pi\\omega}{\\Lambda} \\cdot \\frac{\\sin{\\theta_D}}{\\cos(2 \\theta - \\theta_D)}\\right )  sinc \\left (\\frac{\\pi t}{\\Lambda} \\cdot \\left [ \\frac{\\sin{\\theta_D}}{\\cos(2 \\theta - \\theta_D)} -1 \\right ] \\right ) $',
-                equation2:'$ R=sinc \\left (\\frac{\\pi t}{\\Lambda} \\cdot \\left [ \\cos \\theta_S-\\frac{\\cos{(\\theta_D-\\theta_S)}}{\\cos(2 \\theta - \\theta_D)} \\right ] \\right ) sinc \\left (\\frac{\\pi \\omega}{\\Lambda} \\cdot \\left [\\sin \\theta_S +  \\frac{\\sin{(\\theta_D-\\theta_S)}}{\\cos(2 \\theta - \\theta_D)}  \\right ] \\right ) $',
                 theta2:30,
                 gamma: 50,
                 thetaD:10,
                 thetaS:5,
                 nsimulations:200,  
-                lambda:20, 
-
+                //Biglambda:, 
+                planck:6.62607015e-34, // 6.62607015×10−34 J⋅Hz−1  // 4.135667696...×10−15 eV⋅Hz−1
+                massn:1.67492749804e-27,  //kg
+                Small_lambda:4.75, // 4.75 Amstrom  
+                //wm:1,    
+                tau: 0.1, //ns
+                Lsd:2.2, //meters
             }
         },
         components: {
@@ -255,33 +265,46 @@
             Chart,
         },
         methods: {
+            Biglambda(){ 
+                var Small_lambda = this.Small_lambda*1e-10 //in meters
+                return 2*Math.PI*this.planck/(this.massn*Small_lambda*this.Wn())  //meters
+            },
+            Wn(){ 
+                var tau= this.tau*1e-9
+                var Small_lambda = this.Small_lambda*1e-10 
+                return tau/(this.Lsd*Small_lambda**3)*2*Math.PI*this.planck**2/this.massn**2
+            },
             Theta2_minus_s(){
                 var theta2_minus_s = this.theta2+this.thetaS
                 return theta2_minus_s
             },
             Reduction(){
-                var lambda = this.lambda //40*1.28
+                var lambda = this.Biglambda() //40*1.28
                 var eps= 0.0000001
-                var a = Math.PI*this.sample_width/lambda* (Math.cos( this.thetaS*Math.PI/180)- Math.cos((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((this.theta2-this.thetaD)*Math.PI/180)   )
-                var b = Math.PI*this.sample_height/lambda* (Math.sin( this.thetaS*Math.PI/180)+ Math.sin((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((this.theta2-this.thetaD)*Math.PI/180)   )
+                var sample_width = this.sample_width/1000
+                var sample_height = this.sample_height/1000
+                var a = Math.PI*sample_width/lambda* (Math.cos( this.thetaS*Math.PI/180)- Math.cos((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((this.theta2-this.thetaD)*Math.PI/180)   )
+                var b = Math.PI*sample_height/lambda* (Math.sin( this.thetaS*Math.PI/180)+ Math.sin((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((this.theta2-this.thetaD)*Math.PI/180)   )
                 return Math.round( Math.sin(a+eps)/(a+eps)*Math.sin(b+eps)/(b+eps)  * 1000) / 1000
             },
             Reduction_array(){  ///change this horrible way to put to make a function and pass data
-                var lambda = this.lambda //40*1.28
+                var lambda = this.Biglambda() //40*1.28
+                var sample_width = this.sample_width/1000
+                var sample_height = this.sample_height/1000
                 var eps= 0.0000001
                 var y=[]
                 var x=[]
                 for (var i = -90; i < 91; i += 2){  //calculate the average
                     x.push(i)
-                    var a = Math.PI*this.sample_width/lambda* (Math.cos( this.thetaS*Math.PI/180)- Math.cos((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((i-this.thetaD)*Math.PI/180)   )
-                    var b = Math.PI*this.sample_height/lambda* (Math.sin( this.thetaS*Math.PI/180)+ Math.sin((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((i-this.thetaD)*Math.PI/180)   )
+                    var a = Math.PI*sample_width/lambda* (Math.cos( this.thetaS*Math.PI/180)- Math.cos((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((i-this.thetaD)*Math.PI/180)   )
+                    var b = Math.PI*sample_height/lambda* (Math.sin( this.thetaS*Math.PI/180)+ Math.sin((this.thetaD-this.thetaS)*Math.PI/180)/Math.cos((i-this.thetaD)*Math.PI/180)   )
                     y.push(Math.round( Math.sin(a+eps)/(a+eps)*Math.sin(b+eps)/(b+eps)* 10000) / 10000)
                 }
                 return [x,y]
             },
             Reduction_cylinder(){
                 var BESSEL = require('bessel')
-                var lambda = this.lambda // 40*1.28 //0.0002 m en mm 0.2
+                var lambda = this.Biglambda() // 40*1.28 //0.0002 m en mm 0.2
                 var eps= 0.0000001
                 var a = lambda/(2*Math.PI*this.sample_radius)*BESSEL.besselj(4*Math.PI*this.sample_radius/lambda*Math.sin(this.theta2*Math.PI/180/2+eps),1)/Math.sin(this.theta2*Math.PI/180/2+eps)
                 return Math.round( a* 1000) / 1000
@@ -296,13 +319,14 @@
                 var x = [];
                 var y = [];
                 var n = this.nsimulations
-                var lambda = this.lambda //40*1.28
-                if (this.sample_radius > 0){
+                var lambda = this.Biglambda() //40*1.28
+                var sample_radius = this.sample_radius/1000
+                if (sample_radius > 0){
                     while( x.length < n) {  //throw random numbers
-                        var xa = Math.random(-this.sample_radius,this.sample_radius);
-                        var ya = Math.random(-this.sample_radius,this.sample_radius);
+                        var xa = Math.random(-sample_radius,sample_radius);   //radiuahs in milimetreds???? 
+                        var ya = Math.random(-sample_radius,sample_radius);
                         var radi = Math.sqrt(xa**2+ya**2)  
-                        if (radi < this.sample_radius){ //take the ones inside the circle
+                        if (radi < sample_radius){ //take the ones inside the circle
                             x.push(xa)
                             y.push(ya)
                         }
@@ -320,14 +344,15 @@
             },
             Reduction_array_cylinder(){  ///change this horrible way to put to make a function and pass data
                 var BESSEL = require('bessel')
-                var lambda = this.lambda //40*1.28
+                var lambda = this.Biglambda() //40*1.28
+                var sample_radius = this.sample_radius/1000
                 var eps= 0.0000001
                 var y=[]
                 var x=[]
-                if (this.sample_radius > 0){
+                if (sample_radius > 0){
                     for (var i = -90; i < 91; i += 2){  //calculate the average
                         x.push(i)
-                        var a = lambda/(2*Math.PI*this.sample_radius)*BESSEL.besselj(4*Math.PI*this.sample_radius/lambda*Math.sin(i*Math.PI/180/2+eps),1)/Math.sin(i*Math.PI/180/2+eps)
+                        var a = lambda/(2*Math.PI*sample_radius)*BESSEL.besselj(4*Math.PI*sample_radius/lambda*Math.sin(i*Math.PI/180/2+eps),1)/Math.sin(i*Math.PI/180/2+eps)
                         y.push(Math.round( a* 10000)/ 10000)
                     }
                 }
@@ -340,13 +365,14 @@
                 var xchart = [];
                 var ychart = [];
                 var n = this.nsimulations
-                var lambda = this.lambda //40*1.28
-                if (this.sample_radius > 0){
+                var lambda = this.Biglambda() //40*1.28
+                var sample_radius = this.sample_radius/1000
+                if (sample_radius > 0){                
                     while( x.length < n) {  //throw random numbers
-                        var xa = Math.random(-this.sample_radius,this.sample_radius);
-                        var ya = Math.random(-this.sample_radius,this.sample_radius);
+                        var xa = Math.random(-sample_radius,sample_radius);
+                        var ya = Math.random(-sample_radius,sample_radius);
                         var radi = Math.sqrt(xa**2+ya**2)  
-                        if (radi < this.sample_radius){ //take the ones inside the circle
+                        if (radi < sample_radius){ //take the ones inside the circle
                             x.push(xa)
                             y.push(ya)
                         }
@@ -374,11 +400,15 @@
                 var xchart = [];
                 var ychart = [];
                 var n = this.nsimulations
-                var lambda = this.lambda //40*1.28
-                if (this.sample_radius > 0){
-                    while( x.length < n) {  //throw random numbers
-                        var xa = Math.random(-this.sample_width/2,this.sample_width/2);
-                        var ya = Math.random(-this.sample_height/2,this.sample_height/2);
+                var lambda = this.Biglambda() //40*1.28
+                var sample_width = this.sample_width/1000
+                var sample_height = this.sample_height/1000
+                if (sample_width > 0){
+                    while( x.length < n) {  //throw random numbers   inside a rotated 2dcuboid
+                        var xa = Math.random(-sample_width/2,sample_width/2);
+                        var ya = Math.random(-sample_height/2,sample_height/2);
+                        xa= xa* Math.cos(this.thetaS) - ya * Math.sin(this.thetaS)
+                        ya= xa* Math.sin(this.thetaS) + ya * Math.cos(this.thetaS)
                         x.push(xa)
                         y.push(ya)
                     }
@@ -389,7 +419,7 @@
                             a += Math.cos(2*Math.PI/lambda*this.path_legth_dif(x[i],y[i],j,this.thetaD));
                         }
                         a = a/x.length
-                        ychart.push(Math.round( a* 10000)/ 10000)
+                        ychart.push(Math.round( a* 1000)/ 1000)
                     }
                 }
                 else{

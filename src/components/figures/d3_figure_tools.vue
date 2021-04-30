@@ -56,10 +56,6 @@
         name: "D3component",
         props:{
             shape:String,
-            theta2s: String,
-            gammas: String,
-            theta_Ds: String,
-            theta_sa:String,
             sample_width:Number,
             sample_height:Number,
             theta2:Number,
@@ -79,20 +75,11 @@
                 r2:100,
                 monocromator: {height:60,width:6, x:0,y:200*0.6,
                     get xc(){return this.x}, get yc(){return this.y-this.height/2}},
-                sample0:   {height:60,width:30},
                 analyzer0: {height:60,width:6},
                 detector0: {height:60,width:6},
-                line10: { x0:0 },
-              
                 //stroke:"url(#ReflectGradient)",
                 //line2: () => line_data(100),
             }
-        },
-        //created: function() {
-
-        //},
-        components: {
-        
         },
         methods: {
 
@@ -118,12 +105,6 @@
                 line1.tot_distance = ray_d_reflec +  liner1 +  line1.x1
                 return line1
             },
-
-        },
-        created() {
-            return {
-               // line2:this.line_data(100)
-            }
 
         },
         computed:{
